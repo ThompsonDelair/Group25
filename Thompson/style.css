@@ -3,7 +3,11 @@
     height: 100px;
 }
 
-#spoilTitle{
-    width: 20vw;
-    height: auto;
+#foodTitle{
+    font-size: 5vw;    
+}
+
+#foodLogo{
+    width: 8vw;
+    height: 8vw;
 }
