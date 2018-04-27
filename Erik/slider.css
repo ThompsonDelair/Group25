@@ -1,0 +1,11 @@
+body{
+    background-color:gainsboro;
+}
+#demo{
+    width:50%;
+}
+
+#num0, #num1, #num2, #num3, #num4, #num5{
+    cursor:pointer;
+}
+

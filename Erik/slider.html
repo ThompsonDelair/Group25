@@ -1,37 +1,100 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        
+    <link rel="stylesheet" href="slider.css">
+    <style>
+        
     
+    </style>
 </head>
 <body>
+    
+    <div class="container">
+    
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- The slideshow -->
+  <div class="carousel-inner text-center">
+    <div class="carousel-item active">
+      <img src="Images/num0.png" id="num0" class="img-responsive" >
+    </div>
+    <div class="carousel-item">
+      <img src="Images/num1.png" id="num1" class="img-responsive" > 
+    </div>
+    <div class="carousel-item">
+      <img src="Images/num2.png" id="num2" class="img-responsive" >
+    </div>
+      <div class="carousel-item">
+      <img src="Images/num3.png" id="num3" class="img-responsive" >
+        </div>
+      <div class="carousel-item">
+      <img src="Images/num4.png" id="num4" class="img-responsive" >
+        </div>
+      <div class="carousel-item">
+      <img src="Images/num5.png" id="num5" class="img-responsive" >
+        </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+    </div>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>
-    
-        var leftOuter;
-        var num1;
-        var num2 = 0;
-        var num3 = 1;
-        var num4 = 2;
-        var num5 = 3;
-        var rightOuter = 4;
-        var center = 2;
-    
+    /*<![CDATA[*/
+        var days = 0;
+        $(document).ready(function(){
+            $("#num0").click(function(event){
+                days=0;
+                console.log("You clicked " + days +"!");
+            });
+            
+            $("#num1").click(function(event){
+                days=1;
+                console.log("You clicked " + days +"!");
+            });
+            
+            $("#num2").click(function(event){
+                days=2;
+                console.log("You clicked " + days +"!");
+            });
+            
+            $("#num3").click(function(event){
+                days=3;
+                console.log("You clicked " + days +"!");
+            });
+            
+            $("#num4").click(function(event){
+                days=4;
+               console.log("You clicked " + days +"!");
+            });
+            $("#num5").click(function(event){
+                days=5;
+                console.log("You clicked " + days +"!");
+            });
+            
+        });
         
+     /*]]>*/    
     </script>
+  
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    
+    
+
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang = "en"> 
 
-<head>
-<meta charset = "utf-8">
-<meta http-equiv = "X-UA-Compatible" content = "IE = edge">
-<meta name = "viewport" content = "width = device-width, 
-         initial-scale = 1">
-</head>
-
-<body>
-</body>
-</html>	
->>>>>>> d538916ee5ee29dabca269da8de3d3a5379a5e06
