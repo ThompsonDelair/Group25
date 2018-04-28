@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">back</a>
+                <span class="nav navbar-nav navbar-right">Your Cart(x)</span>
+            </div>
+        </nav>
+        
+        <!-- Accordion -->
+        <div id="accordion">                       
+            
+        </div>        
+        
+    </body>
+    <script>        
+        var food = ["Eggs","Bread","Potato","Banana"];
+        var accordion = document.getElementById("accordion");
+        for(var i = 0; i < food.length; i++){
+            
+            var card = document.createElement("div");
+            card.classList.add('card');
+            
+            var header = document.createElement("div");
+            header.classList.add('card-header');
+            
+            var a = document.createElement("a");
+            a.classList.add('collapsed');
+            a.classList.add('card-link');
+            a.setAttribute("data-toggle","collapse");
+            var href = '#collapse' + i;
+            a.setAttribute("href",href);
+            a.textContent = food[i];
+            
+            var collapse = document.createElement("div");
+            var id = 'collapse' + i;
+            collapse.setAttribute("id",id);
+            collapse.classList.add('collapse');
+            collapse.setAttribute("data-parent","#accordion");
+            
+            var body = document.createElement("div");
+            body.classList.add('card-body');
+            body.innerHTML = "<br>Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>Comments:";
+            
+            header.appendChild(a);
+            card.appendChild(header);
+            collapse.appendChild(body);
+            card.appendChild(collapse)
+            accordion.appendChild(card);
+        }
+        
+    </script>
+</html>
