@@ -1,31 +1,11 @@
 <!DOCTYPE html>
   <head>
     <meta charset="utf-8">
-    <title> test </title>
-    <link rel="stylesheet" type="text/css" href="page3css.css">
+    <title> Page 2 </title>
+    <link rel="stylesheet" type="text/css" href="page2css.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
 
-<!--
-<nav class="pn-ProductNav">
-  <div class="pn-ProductNav_Contents">
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-      <div class="pn-ProductNav_Link"></div>
-  </div>
-</nav>
--->
 
 <div class="buttons">
     <a  id="showall"></a>
@@ -39,7 +19,7 @@
 <div id="div1" class="targetDiv">
     <h1 id="meatTitle">Meat</h1>
     <ul id="meatUL">
-        <li class="meatLI" onclick="btnColor('meatLI','blue');"> Item 1</li>
+        <li class="meatLI"> Egg</li>
         <li class="meatLI"> Item 2</li>
         <li class="meatLI"> Item 3</li>
         <li class="meatLI"> Item 4</li>
@@ -53,16 +33,16 @@
     <ul id="veggieUL">
         <li class="veggieLI"> Item 1</li>
         <li class="veggieLI"> Item 2</li>
-        <li class="veggieLI"> Item 3</li>
+        <li class="veggieLI"> Potato</li>
         <li class="veggieLI"> Item 4</li>
         <li class="veggieLI"> Item 5</li>
     </ul>
 </div>
 
 <div id="div3" class="targetDiv">
-    <h1 id="seafoodTitle">Seafood</h1>
+    <h1 id="seafoodTitle">Fruit</h1>
     <ul id="seafoodUL">
-        <li class="seafoodLI"> Item 1</li>
+        <li class="seafoodLI"> Banana</li>
         <li class="seafoodLI"> Item 2</li>
         <li class="seafoodLI"> Item 3</li>
         <li class="seafoodLI"> Item 4</li>
@@ -71,21 +51,28 @@
 </div>
 
 <div id="div4" class="targetDiv">
-    <h1>Div 4</h1>
+    <h1 id="bakeTitle">Baked Goods</h1>
+    <ul id="bakeUL">
+      <li class="bakeLI"> Item 1</li>
+      <li class="bakeLI"> Bread</li>
+      <li class="bakeLI"> Item 3</li>
+      <li class="bakeLI"> Item 4</li>
+      <li class="bakeLI"> Item 5</li>
+    </ul>
 </div>
 
 <div id="div5" class="targetDiv">
-    <h1>Div 5</h1>
+    <h1>Food Category 5</h1>
 </div>
 
-<button onclick="resetColor();">Go</button>
+<a href="Page3.html"><button onclick="resetColor();">Go</button></a>
 
 <script>
-    
-    function resetColor(){  
+
+    function resetColor(){
     $("li").removeClass("myClass").addClass('backgroundWhite')
-};  
-    
+};
+
     jQuery(function(){
              jQuery('#showall').click(function(){
                    jQuery('.targetDiv').fadeIn('fast');
@@ -95,12 +82,12 @@
                   jQuery('#div'+$(this).attr('target')).fadeIn('fast');
             });
     });
-       
+
 $("li").click(function(){
       $(this).toggleClass('myClass');
     });
 
-       
+
 
 </script>
 
