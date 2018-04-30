@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title> test </title>
+    <link rel="stylesheet" type="text/css" href="page3css.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+
+<!--
+<nav class="pn-ProductNav">
+  <div class="pn-ProductNav_Contents">
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+      <div class="pn-ProductNav_Link"></div>
+  </div>
+</nav>
+-->
+
+<div class="buttons">
+    <a  id="showall"></a>
+    <a  class="showSingle" target="1" onclick="toggleClick()"></a>
+    <a  class="showSingle" target="2"></a>
+    <a  class="showSingle" target="3"></a>
+    <a  class="showSingle" target="4"></a>
+    <a  class="showSingle" target="5"></a>
+</div>
+
+<div id="div1" class="targetDiv">
+    <h1 id="meatTitle">Meat</h1>
+    <ul id="meatUL">
+        <li class="meatLI" onclick="btnColor('meatLI','blue');"> Item 1</li>
+        <li class="meatLI"> Item 2</li>
+        <li class="meatLI"> Item 3</li>
+        <li class="meatLI"> Item 4</li>
+        <li class="meatLI"> Item 5</li>
+    </ul>
+</div>
+
+
+<div id="div2" class="targetDiv">
+    <h1 id="veggieTitle">Vegetables</h1>
+    <ul id="veggieUL">
+        <li class="veggieLI"> Item 1</li>
+        <li class="veggieLI"> Item 2</li>
+        <li class="veggieLI"> Item 3</li>
+        <li class="veggieLI"> Item 4</li>
+        <li class="veggieLI"> Item 5</li>
+    </ul>
+</div>
+
+<div id="div3" class="targetDiv">
+    <h1 id="seafoodTitle">Seafood</h1>
+    <ul id="seafoodUL">
+        <li class="seafoodLI"> Item 1</li>
+        <li class="seafoodLI"> Item 2</li>
+        <li class="seafoodLI"> Item 3</li>
+        <li class="seafoodLI"> Item 4</li>
+        <li class="seafoodLI"> Item 5</li>
+    </ul>
+</div>
+
+<div id="div4" class="targetDiv">
+    <h1>Div 4</h1>
+</div>
+
+<div id="div5" class="targetDiv">
+    <h1>Div 5</h1>
+</div>
+
+<button onclick="resetColor();">Go</button>
+
+<script>
+    
+    function resetColor(){  
+    $("li").removeClass("myClass").addClass('backgroundWhite')
+};  
+    
+    jQuery(function(){
+             jQuery('#showall').click(function(){
+                   jQuery('.targetDiv').fadeIn('fast');
+            });
+            jQuery('.showSingle').click(function(){
+                  jQuery('.targetDiv').hide();
+                  jQuery('#div'+$(this).attr('target')).fadeIn('fast');
+            });
+    });
+       
+$("li").click(function(){
+      $(this).toggleClass('myClass');
+    });
+
+       
+
+</script>
+
+</html>
