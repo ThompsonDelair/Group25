@@ -31,7 +31,7 @@
 *********************************/
 
 #showall {
-    background-image: url("showall.jpg");
+    background-image: url("Images/showall.jpg");
     background-size: 500px;
     background-position: 20% 30%;
     filter: brightness(70%);
@@ -46,28 +46,28 @@
 }
 
 #meatPic {
-  background-image: url("meat.jpg");
+  background-image: url("Images/meat.jpg");
   background-size: 600px;
   background-position: 55% 30%;
   filter: brightness(70%);
 }
 
 #veggiePic {
-  background-image: url("veggie.jpg");
+  background-image: url("Images/veggie.jpg");
   background-size: 600px;
   background-position: 40% 30%;
   filter: brightness(70%);
 }
 
 #fruitPic {
-  background-image: url("fruit.jpg");
+  background-image: url("Images/fruit.jpg");
   background-size: 600px;
   background-position: 30% 50%;
   filter: brightness(70%);
 }
 
 #breadPic {
-  background-image: url("bread.jpg");
+  background-image: url("Images/bread.jpg");
   background-size: 600px;
   background-position: 40% 60%;
   filter: brightness(70%);
