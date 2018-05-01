@@ -1,0 +1,30 @@
+      #goButton {
+        position:relative;
+        left:45%;
+        width:7rem;
+        height:7rem;
+        color:#5585ff;
+        border:5px solid #5585ff;
+        background-color:transparent;
+        cursor:pointer;
+        line-height:2;
+        padding:0;
+        border-radius: 6rem;
+        font-size:2rem;
+        font-weight:bold;
+        outline: none;
+				margin: 0 auto;
+      }
+
+body{
+    background-color:gainsboro;
+}
+#demo{
+    width:50%;
+	margin: 0 auto;
+	
+}
+
+#num0, #num1, #num2, #num3, #num4, #num5{
+    cursor:pointer;
+}
