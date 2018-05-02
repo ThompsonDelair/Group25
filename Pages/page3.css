@@ -1,5 +1,5 @@
 body{
-    background-color: #85C4ED !important;
+    background-color: #85C4ED;
 }
 
 .pagemain {
@@ -12,6 +12,10 @@ body{
    .pagemain {
         width: 100vw;
     } 
+}
+
+.navbar {
+    background-color: #3f7547;
 }
 
 
