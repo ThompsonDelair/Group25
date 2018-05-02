@@ -8,7 +8,7 @@
          initial-scale = 1">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	<link rel="stylesheet" href="page1.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 	<body>
@@ -19,14 +19,17 @@
 		<!-- navbar vers 1.0-->
 		<div id="navigation">
 
-			<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #3499DB">
-				<!-- logo-->
-					<img src="Images/logo-ver2-01.jpg" class="img-responsive img-thumbnail pull-left" width = "50%" height = "auto">
+			<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f7547">
                 
 				<button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		
     <span class="navbar-toggler-icon"></span>
   </button>
+				  <ul class="nav navbar-nav navbar-logo mx-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+    </ul>
 				<!-- becomes collapsed-->
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -63,9 +66,11 @@
 			</nav>
 			
 			
-			
-			
-			
+			<!-- logo-->
+		
+		<div class="mx-auto pt-5 pb-5" style="width: 200px;" id = "dontbespoiled">
+  <img src="images/dontbespoiledlogo.png" width= "120%" height = "auto"> 
+</div>
 			
 
 <!-- Large resolution, stuff hidden for med and small-->
@@ -196,7 +201,7 @@
 
 	<script>
 		function redirect() {
-			window.location = "page2.html";
+			window.location = "www.bcit.ca";
 		}
 	</script>
 </body>
