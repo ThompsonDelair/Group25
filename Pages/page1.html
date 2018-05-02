@@ -8,10 +8,10 @@
          initial-scale = 1">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="page1.css">
 </head>
 
-	<body>
+<body>
 
 	<!--this is for padding, please put things inside div container-->
 	<div class="container">
@@ -20,16 +20,16 @@
 		<div id="navigation">
 
 			<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f7547">
-                
+
 				<button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		
     <span class="navbar-toggler-icon"></span>
   </button>
-				  <ul class="nav navbar-nav navbar-logo mx-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-    </ul>
+				<ul class="nav navbar-nav navbar-logo mx-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Home</a>
+					</li>
+				</ul>
 				<!-- becomes collapsed-->
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -58,91 +58,71 @@
 						</li>
 					</ul>
 					<!-- this is a search form-->
+
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 					</form>
 				</div>
 			</nav>
-			
-			
-			<!-- logo-->
-		
-		<div class="mx-auto pt-5 pb-5" style="width: 200px;" id = "dontbespoiled">
-  <img src="images/dontbespoiledlogo.png" width= "120%" height = "auto"> 
-</div>
-			
 
-<!-- Large resolution, stuff hidden for med and small-->
-			 
-<div class="d-none d-lg-block d-xl-block">
-	<div id="CarouselLARGE" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active">
-      <img class="d-block img-fluid" src="https://dummyimage.com/1200x400/125f96/fff" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://dummyimage.com/1200x400/125f96/fff" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://dummyimage.com/1200x400/125f96/fff" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+
+			<!-- logo-->
+
+			<div class="mx-auto pt-5 pb-5" style="width: 200px;" id="dontbespoiled">
+				<img src="images/dontbespoiledlogo.png" width="120%" height="auto">
+			</div>
+
+
+			<!-- Large resolution, stuff hidden for med and small-->
+
+			<div class="d-none d-lg-block d-xl-block">
+				<div id="CarouselLARGE" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<div class="carousel-item active">
+							<img class="d-block img-fluid" src="https://dummyimage.com/1200x400/125f96/fff" alt="First slide">
+						</div>
+						<div class="carousel-item">
+							<img class="d-block img-fluid" src="https://dummyimage.com/1200x400/125f96/fff" alt="Second slide">
+						</div>
+						<div class="carousel-item">
+							<img class="d-block img-fluid" src="https://dummyimage.com/1200x400/125f96/fff" alt="Third slide">
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
-</div>
-			
-			
-			
-			
-			
-			
+				</div>
+			</div>
+
+
+
+
+
+
 			<!-- Checkbox Options -->
 			<div class="jumbotron">
-				<h3>Dietary Habits</h3>
-				<p id="tips">Check all that apply</p>
-				<form>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Vegan</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Vegetarian</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Gluten Free</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">No Dietary Restrictions</label>
-					</div>
-				</form>
-			</div>
-
-			<div class="jumbotron">
-				<h3>Cuisine</h3>
-				<p id="tips">What cuisines do you eat at home?</p>
-				<form>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Indian</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Korean</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Japanese</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">North American</label>
-					</div>
-				</form>
-			</div>
-
+				<h6>Help us know what food you have at home</h6>
+				<p id="tips">Choose your dietary habits:</p>
+				<select class="form-control form-control-lg">
+  <option>No Restriction</option>
+					<option>Vegetarian</option>
+					<option>Vegan</option>
+					<option>Gluten Free</option>
+</select>
+				<p id="tips">Choose your cuisine preference:</p>
+				<select class="form-control form-control-lg">
+  <option>North American</option>
+					<option>Korean</option>
+					<option>Chinese</option>
+					<option>Japaneses</option>
+</select>
+		
 
 
 
