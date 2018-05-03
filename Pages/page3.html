@@ -19,23 +19,44 @@
 <!--        font awesome-->
         
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div class="pagemain">
-            <!-- Navbar -->
+        
+        <!-- Navbar -->
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="page2.html">back<i class="fas fa-angle-left"></i></a>
                     <span class="nav navbar-nav navbar-right">Your Cart(x)</span>
                 </div>
             </nav>
+        
+        <div class="pagemain">
             
-            <p>Learn more about your food!</p>
+            
+            <p id='blurb'>Learn more about your food!</p>
             
             <!-- Accordion -->
             <div id="accordion">                       
                 
             </div> 
+            
+            <div id="acc2" class="accordion">
+                <div class="card">
+                    <div class="card-header collapsed" aria-expanded="true" data-toggle="collapse" data-parent="#acc2" href="#colOne">
+                        <a class="card-title">
+                            Item 1
+                        </a>
+                    </div>
+                    <div class="card-block collapse" id="colOne">
+                        <p>
+                            content
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            
         </div>
                
         

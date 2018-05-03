@@ -1,22 +1,46 @@
 body{
-    background-color: #85C4ED;
+    background-color: #F9F9F9;
 }
 
 .pagemain {
-    width: 60vw;
+    width: 50vw;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 25px;
 }
 
 @media (max-width: 675px){
    .pagemain {
-        width: 100vw;
+        width: 85vw;
     } 
 }
 
-.navbar {
-    background-color: #3f7547;
+a {
+    color: #F9F9F9;
 }
 
+.card-header{
+    background-color: #1A1A1A;
+}
+
+.collapse{
+    background-color: #F9F9F9;
+}
+
+.accordion .card-header:after{
+    font-family: 'FontAwesome';
+    content: "\f107";
+    float: right;
+    background-color: red;
+}
+
+.accordion .card-header.collapsed:after{
+    content: "\f0d8";
+    background-color: blue;
+}
+
+.pagemain{
+    
+}
 
 
