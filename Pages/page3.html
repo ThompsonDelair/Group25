@@ -1,65 +1,124 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="page3.css" />
         
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <!--        bootstrap-->
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        
+<!--        our css-->
+        
+        <link rel="stylesheet" href="style.css"/>
+        
+        <link rel="stylesheet" href="page3.css" />
+        
+<!--        font awesome-->
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div class="pagemain">
-            <!-- Navbar -->
+        
+        <!-- Navbar -->
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="page2.html">back</a>
+                    <a class="navbar-brand" href="page2.html"><i class="fas fa-angle-left"></i></a>
                     <span class="nav navbar-nav navbar-right">Your Cart(x)</span>
                 </div>
             </nav>
+        
+        <div class="pagemain">
+            
+            
+            <p id='blurb'>Learn more about your food!</p>
             
             <!-- Accordion -->
-            <div id="accordion">                       
+            <div id="accordion" class="accordion">                     
                 
             </div> 
+            
+            
+            
+<!--            Stuff for testing, pls ignore-->
+            
+<!--
+            <div id="acc2" class="accordion">
+                <div class="card">
+                    <div class="card-header collapsed" aria-expanded="true" data-toggle="collapse" data-parent="#acc2" href="#colOne">
+                        <a class="card-title">
+                            Item 1
+                        </a>
+                    </div>
+                    <div class="card-block collapse" id="colOne">
+                        <p>
+                            content
+                        </p>
+                    </div>
+                    <div class="card-header collapsed" aria-expanded="true" data-toggle="collapse" data-parent="#acc2" href="#col2">
+                        <a class="card-title">
+                            Item 2
+                        </a>
+                    </div>
+                    <div class="card-block collapse" id="col2">
+                        <p>
+                            content
+                        </p>
+                    </div>
+                </div>
+            </div>
+-->
+            
+            
         </div>
                
         
     </body>
     <script>        
         var food = ["Eggs","Bread","Potato","Banana"];
+        
         var accordion = document.getElementById("accordion");
+        
+        var card = document.createElement("div");
+        card.classList.add('card');
+        accordion.appendChild(card);
+        
         for(var i = 0; i < food.length; i++){
             
-            var card = document.createElement("div");
-            card.classList.add('card');
-            
             var header = document.createElement("div");
-            header.classList.add('card-header');
+            header.classList.add('card-header','collapsed');
+            header.setAttribute("aria-expanded","true");
+            header.setAttribute("data-toggle","collapse");
+            header.setAttribute("data-parent","#accordion");
+            var href = '#collapse' + i;
+            header.setAttribute("href",href);            
             
             var a = document.createElement("a");
-            a.classList.add('collapsed');
-            a.classList.add('card-link');
-            a.setAttribute("data-toggle","collapse");
-            var href = '#collapse' + i;
-            a.setAttribute("href",href);
+            a.classList.add('card-title');            
             a.textContent = food[i];
             
-            var collapse = document.createElement("div");
+            var block = document.createElement("div");
             var id = 'collapse' + i;
-            collapse.setAttribute("id",id);
-            collapse.classList.add('collapse');
-            collapse.setAttribute("data-parent","#accordion");
+            block.setAttribute("id",id);
+            block.classList.add('card-block','collapse');
+            var paragraph = document.createElement("p");
+            paragraph.style.padding = "10px";
+            paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>Comments:";
             
-            var body = document.createElement("div");
-            body.classList.add('card-body');
-            body.innerHTML = "<br>Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>Comments:";
-            
+            var comments = document.createElement("a");
+            comments.setAttribute("href", "page4.html");
+            comments.innerHTML = "Community";
+
             header.appendChild(a);
             card.appendChild(header);
-            collapse.appendChild(body);
-            card.appendChild(collapse)
-            accordion.appendChild(card);
+            block.appendChild(paragraph);
+
+            card.appendChild(block);
+            block.appendChild(comments);   
+
         }
         
     </script>
