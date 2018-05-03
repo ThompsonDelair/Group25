@@ -15,12 +15,17 @@ body{
     } 
 }
 
+.navbar{
+    color: #F9F9F9;
+}
+
 a {
     color: #F9F9F9;
 }
 
 .card-header{
     background-color: #1A1A1A;
+    color: #F9F9F9;
 }
 
 .collapse{
@@ -29,14 +34,15 @@ a {
 
 .accordion .card-header:after{
     font-family: 'FontAwesome';
-    content: "\f107";
+    content: "\f106";
     float: right;
-    background-color: red;
+    //background-color: red;
+    color: #F9F9F9;
 }
 
 .accordion .card-header.collapsed:after{
-    content: "\f0d8";
-    background-color: blue;
+    content: "\f107";
+    //background-color: blue;
 }
 
 .pagemain{

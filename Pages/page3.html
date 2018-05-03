@@ -26,7 +26,7 @@
         <!-- Navbar -->
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="page2.html">back<i class="fas fa-angle-left"></i></a>
+                    <a class="navbar-brand" href="page2.html"><i class="fas fa-angle-left"></i></a>
                     <span class="nav navbar-nav navbar-right">Your Cart(x)</span>
                 </div>
             </nav>
@@ -37,10 +37,15 @@
             <p id='blurb'>Learn more about your food!</p>
             
             <!-- Accordion -->
-            <div id="accordion">                       
+            <div id="accordion" class="accordion">                     
                 
             </div> 
             
+            
+            
+<!--            Stuff for testing, pls ignore-->
+            
+<!--
             <div id="acc2" class="accordion">
                 <div class="card">
                     <div class="card-header collapsed" aria-expanded="true" data-toggle="collapse" data-parent="#acc2" href="#colOne">
@@ -53,8 +58,19 @@
                             content
                         </p>
                     </div>
+                    <div class="card-header collapsed" aria-expanded="true" data-toggle="collapse" data-parent="#acc2" href="#col2">
+                        <a class="card-title">
+                            Item 2
+                        </a>
+                    </div>
+                    <div class="card-block collapse" id="col2">
+                        <p>
+                            content
+                        </p>
+                    </div>
                 </div>
             </div>
+-->
             
             
         </div>
@@ -63,38 +79,39 @@
     </body>
     <script>        
         var food = ["Eggs","Bread","Potato","Banana"];
+        
         var accordion = document.getElementById("accordion");
+        
+        var card = document.createElement("div");
+        card.classList.add('card');
+        accordion.appendChild(card);
+        
         for(var i = 0; i < food.length; i++){
             
-            var card = document.createElement("div");
-            card.classList.add('card');
-            
             var header = document.createElement("div");
-            header.classList.add('card-header');
+            header.classList.add('card-header','collapsed');
+            header.setAttribute("aria-expanded","true");
+            header.setAttribute("data-toggle","collapse");
+            header.setAttribute("data-parent","#accordion");
+            var href = '#collapse' + i;
+            header.setAttribute("href",href);            
             
             var a = document.createElement("a");
-            a.classList.add('collapsed');
-            a.classList.add('card-link');
-            a.setAttribute("data-toggle","collapse");
-            var href = '#collapse' + i;
-            a.setAttribute("href",href);
+            a.classList.add('card-title');            
             a.textContent = food[i];
             
-            var collapse = document.createElement("div");
+            var block = document.createElement("div");
             var id = 'collapse' + i;
-            collapse.setAttribute("id",id);
-            collapse.classList.add('collapse');
-            collapse.setAttribute("data-parent","#accordion");
-            
-            var body = document.createElement("div");
-            body.classList.add('card-body');
-            body.innerHTML = "<br>Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>Comments:";
+            block.setAttribute("id",id);
+            block.classList.add('card-block','collapse');
+            var paragraph = document.createElement("p");
+            paragraph.style.padding = "10px";
+            paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>Comments:";
             
             header.appendChild(a);
             card.appendChild(header);
-            collapse.appendChild(body);
-            card.appendChild(collapse)
-            accordion.appendChild(card);
+            block.appendChild(paragraph);
+            card.appendChild(block);            
         }
         
     </script>
