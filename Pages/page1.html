@@ -21,6 +21,7 @@
 
 			<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f7547">
 
+
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -29,6 +30,12 @@
 						<a class="nav-link" href="#">Home</a>
 					</li>
 				</ul>
+
+				<button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
 				<!-- becomes collapsed-->
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -135,8 +142,48 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+  <script>
+		/*<![CDATA[*/
+		var days = 0;
+		$(document).ready(function() {
+			$("#num0").click(function(event) {
+				days = 0;
+				console.log("You clicked " + days + "!");
+			});
+			$("#num1").click(function(event) {
+				days = 1;
+				console.log("You clicked " + days + "!");
+			});
+			$("#num2").click(function(event) {
+				days = 2;
+				console.log("You clicked " + days + "!");
+			});
+			$("#num3").click(function(event) {
+				days = 3;
+				console.log("You clicked " + days + "!");
+			});
+			$("#num4").click(function(event) {
+				days = 4;
+				console.log("You clicked " + days + "!");
+			});
+			$("#num5").click(function(event) {
+				days = 5;
+				console.log("You clicked " + days + "!");
+			});
+		});
+		/*]]>*/
+	</script>
 
 
+
+
+
+
+	<script>
+		function redirect() {
+			window.location = "page2.html";
+		}
+	</script>
 </body>
 
 </html>
