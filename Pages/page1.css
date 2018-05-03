@@ -1,25 +1,6 @@
-      #goButton {
-        position:relative;
-        left:40%;
-        width:7rem;
-        height:7rem;
-        color:#0F85D1;
-        border:5px solid #0F85D1;
-        background-color:transparent;
-        cursor:pointer;
-        line-height:2;
-        padding:0;
-        border-radius: 6rem;
-        font-size:2rem;
-        font-weight:bold;
-        outline: none;
-				margin: 0 auto;
-      }
+
 #tips {
 	color: gray
-}
-body{
-    background-color: #85C4ED;
 }
 
 #demo{
