@@ -108,10 +108,15 @@
             paragraph.style.padding = "10px";
             paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>Comments:";
             
+            var comments = document.createElement("a");
+            comments.setAttribute("href", "page4.html");
+            comments.innerHTML = "Community";
+
             header.appendChild(a);
             card.appendChild(header);
             block.appendChild(paragraph);
-            card.appendChild(block);            
+            card.appendChild(block);
+            block.appendChild(comments);   
         }
         
     </script>
