@@ -26,3 +26,12 @@
     width: 8vw;
     height: 8vw;
 }
+
+.jumbotron {
+   background: rgb(255, 255, 255); 
+   background: rgba(255, 255, 255, 0.3); 
+}
+
+#pressGo{
+	color: #3f7547;
+}
