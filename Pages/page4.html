@@ -14,6 +14,60 @@
 
 <body>
     <div class="container">
+            <div id="navigation">
+
+                    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3f7547">
+        
+                        <ul class="nav navbar-nav navbar-logo mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                        </ul>
+        
+                        <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+        
+                        <!-- becomes collapsed-->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+                            <ul class="navbar-nav mr-auto">
+        
+                                <li class="nav-item">
+        
+                                    <a class="nav-link" href="aboutus.html">About us</a>
+                                </li>
+                                <li class="nav-item">
+        
+                                    <a class="nav-link" href="page4.html">Community Tips</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Get Involved
+                </a>
+                                    <!-- has drop down options -->
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="http://www.lovefoodhatewaste.ca">Love Food Hate Waste</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="https://www.foodbank.bc.ca/our-programs/food-recovery/">Greater Vancouver Foodbank</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Link to Another team's project</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- this is a search form-->
+        
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+    </div>
+
+    <div class="container">
         <div class="page-header dgreen">
             <h1>Bell Pepper</h1>
         </div>
@@ -70,9 +124,9 @@
         </div>
 
         <div class="input-group">
-            <input type="text" class="form-control">
+            <textarea class="form-control" rows="5"></textarea>
             <span class="input-group-btn">
-                <button class="btn btn-default">Submit</button>
+                <button class="btn btn-default align-middle">Submit</button>
             </span>
         </div>
     </div>
