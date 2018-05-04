@@ -51,7 +51,15 @@ citiesRef.doc("BJ").set({
     capital: true, population: 21500000 });
 
     var query = citiesRef.where("state", "==", "CA");
-  
+    
+    query.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            console.log(doc.data().name);
+        });
+    });
+    
 
 
 

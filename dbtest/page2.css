@@ -1,0 +1,199 @@
+.buttons::-webkit-scrollbar {
+  display: none;
+}
+
+.buttons {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+
+#showall {
+  width: 400px;
+  height: 400px;
+  display: inline-block;
+  background-color: lightblue;
+  margin: 10px 10px 0 10px;
+}
+
+.showSingle {
+  width: 400px;
+  height: 400px;
+  display: inline-block;
+  background-color: lightblue;
+  margin: 10px 10px 0 10px;
+}
+
+/*********************************
+                    Show All Div
+*********************************/
+
+#showall {
+    background-image: url("Images/showall.jpg");
+    background-size: 500px;
+    background-position: 20% 30%;
+    filter: brightness(70%);
+}
+
+#showText{
+  color: white;
+  z-index: 99;
+  filter:brightness(200%);
+  display: inline-block;
+  margin: 80px auto;
+}
+
+#meatPic {
+  background-image: url("Images/meat.jpg");
+  background-size: 600px;
+  background-position: 55% 30%;
+  filter: brightness(70%);
+}
+
+#veggiePic {
+  background-image: url("Images/veggie.jpg");
+  background-size: 600px;
+  background-position: 40% 30%;
+  filter: brightness(70%);
+}
+
+#fruitPic {
+  background-image: url("Images/fruit.jpg");
+  background-size: 600px;
+  background-position: 30% 50%;
+  filter: brightness(70%);
+}
+
+#breadPic {
+  background-image: url("Images/bread.jpg");
+  background-size: 600px;
+  background-position: 40% 60%;
+  filter: brightness(70%);
+}
+
+/*********************************
+                        Meat Div
+*********************************/
+
+#div1 {
+    font-family: 'Lato', sans-serif;
+}
+
+#meatTitle {
+    font-size: 30pt;
+    margin: 15px 0 0 15px;
+}
+
+#meatUL {
+    width: 25%;
+    padding: 0 0 0 15px;
+}
+
+.meatLI {
+    list-style-type: none;
+    padding: 10px 0 10px 0px;
+}
+
+.myClass {
+    background-color: lightgreen;
+}
+
+/*********************************
+                    Vegetable Div
+*********************************/
+
+#div2 {
+      font-family: 'Lato', sans-serif;
+}
+
+#veggieTitle {
+    font-size: 30pt;
+    margin: 15px 0 0 15px;
+}
+
+#veggieUL {
+    width: 25%;
+    padding: 0 0 0 15px;
+}
+
+.veggieLI {
+    list-style-type: none;
+    padding: 10px 0 10px 0px;
+}
+
+/*********************************
+                    Seafood Div
+*********************************/
+
+#div3 {
+    font-family: 'Lato', sans-serif;
+}
+
+#seafoodTitle {
+    font-size: 30pt;
+    margin: 15px 0 0 15px;
+}
+
+#seafoodUL {
+    width: 25%;
+    padding: 0 0 0 15px;
+}
+
+.seafoodLI {
+    list-style-type: none;
+    padding: 10px 0 10px 0px;
+}
+
+/*********************************
+                    Bakery Div
+*********************************/
+
+#div4 {
+    font-family: 'Lato', sans-serif;
+}
+
+#bakeTitle {
+    font-size: 30pt;
+    margin: 15px 0 0 15px;
+}
+
+#bakeUL {
+    width: 25%;
+    padding: 0 0 0 15px;
+}
+
+.bakeLI {
+    list-style-type: none;
+    padding: 10px 0 10px 0px;
+}
+
+/*********************************
+                    button Div
+*********************************/
+
+
+.backgroundButton {
+  background-color: white;
+}
+
+.button {
+    background-color: grey; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: grey;
+    color: black;
+    border: 2px solid grey;
+}
