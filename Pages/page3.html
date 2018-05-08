@@ -92,6 +92,7 @@
             header.classList.add('card-header','collapsed');
             header.setAttribute("aria-expanded","true");
             header.setAttribute("data-toggle","collapse");
+            header.setAttribute("cursor","pointer");
             header.setAttribute("data-parent","#accordion");
             var href = '#collapse' + i;
             header.setAttribute("href",href);            
@@ -106,7 +107,7 @@
             block.classList.add('card-block','collapse');
             var paragraph = document.createElement("p");
             paragraph.style.padding = "10px";
-            paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>Comments:";
+            paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>";
             
             var comments = document.createElement("a");
             comments.setAttribute("href", "page4.html");
@@ -117,7 +118,7 @@
             block.appendChild(paragraph);
 
             card.appendChild(block);
-            block.appendChild(comments);   
+            paragraph.appendChild(comments);   
 
         }
         
