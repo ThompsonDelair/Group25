@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!--        bootstrap-->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        
+<!--        our css-->
+        
+        <link rel="stylesheet" href="style.css"/>
+        
+        <link rel="stylesheet" href="page3.css" />
+        
+<!--        font awesome-->
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        
+        <!-- Navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="page2.html"><i class="fas fa-angle-left"></i></a>
+                    <span class="nav navbar-nav navbar-right">Your Cart(x)</span>
+                </div>
+            </nav>
+        
+        <div class="pagemain">
+            
+            
+            <p id='blurb'>Learn more about your food!</p>
+            
+            <!-- Accordion -->
+            <div id="accordion" class="accordion">                     
+                
+            </div>            
+            
+        </div>
+               
+        
+    </body>
+    <script>        
+        var food = ["Eggs","Bread","Potato","Banana"];
+        
+        var accordion = document.getElementById("accordion");
+        
+        var card = document.createElement("div");
+        card.classList.add('card');
+        accordion.appendChild(card);
+        
+        for(var i = 0; i < food.length; i++){
+            
+            var header = document.createElement("div");
+            header.classList.add('card-header','collapsed');
+            header.setAttribute("aria-expanded","true");
+            header.setAttribute("data-toggle","collapse");
+            header.setAttribute("cursor","pointer");
+            header.setAttribute("data-parent","#accordion");
+            var href = '#collapse' + i;
+            header.setAttribute("href",href);            
+            
+            var a = document.createElement("a");
+            a.classList.add('card-title');            
+            a.textContent = food[i];
+            
+            var block = document.createElement("div");
+            var id = 'collapse' + i;
+            block.setAttribute("id",id);
+            block.classList.add('card-block','collapse');
+            var paragraph = document.createElement("p");
+            paragraph.style.padding = "10px";
+            paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>";
+            
+            
+            // Storage
+            
+            var storage = document.createElement("div");
+            storage.classList.add('storage','block');
+            storage.innerHTML = "Storage";
+            storage.style.fontFamily = "lato-medium";
+            storage.style.fontWeight = "bold";
+            
+            var storage2 = document.createElement("div");
+            storage2.innerHTML = "Storage2";
+            storage2.style.fontFamily = "lato-regular";
+            storage2.style.fontWeight = "normal";
+            storage.appendChild(storage2);
+            
+            // Spoil
+            
+            var spoil = document.createElement("div");
+            spoil.classList.add('spoil','block');
+            spoil.innerHTML = "Spoil";
+            spoil.style.fontFamily = "lato-medium";
+            spoil.style.fontWeight = "bold";
+            
+            var spoil2 = document.createElement("div");
+            spoil2.innerHTML = "Spoil2";
+            spoil2.style.fontFamily = "lato-regular";
+            spoil2.style.fontWeight = "normal";
+            spoil.appendChild(spoil2);
+            
+            // Community
+            
+            var community = document.createElement("div");
+            community.classList.add('community');
+            community.innerHTML = "Community";
+            
+            var community2 = document.createElement("div");
+            community2.innerHTML = "Community2";
+            community2.style.backgroundColor = "#F9F9F9";
+            community.appendChild(community2);
+            
+            var comments = document.createElement("a");
+            comments.setAttribute("href", "page4.html");
+            comments.innerHTML = "Community";
+
+            header.appendChild(a);
+            
+            block.appendChild(storage);
+            block.appendChild(spoil);
+            block.appendChild(community);
+            
+            card.appendChild(header);
+<<<<<<< HEAD
+            block.appendChild(paragraph);
+
+            card.appendChild(block);
+            paragraph.appendChild(comments);   
+=======
+            card.appendChild(block); 
+>>>>>>> e41b5978a583cfb753f7d86558c21a4085335989
+
+        }
+        
+    </script>
+</html>

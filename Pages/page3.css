@@ -1,0 +1,100 @@
+/*  C O L O R S */
+
+:root {
+    --storage:      #8ED9ED;
+    --storage2:     #2DB9EA;
+    --spoil2:        #D63031;
+    --spoil:       #F43B45;
+    --community:    #662D91;
+    --community2:   #8C58BA;
+}
+
+body{
+    background-color: #F9F9F9;
+}
+
+.pagemain {
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+@media (max-width: 675px){
+   .pagemain {
+        width: 85vw;
+    } 
+}
+
+.navbar{
+    color: #F9F9F9;
+}
+
+.navbar a {
+    color: #F9F9F9;
+}
+
+.card-header{
+    background-color: #1A1A1A;
+    color: #F9F9F9;
+}
+
+.collapse{
+    background-color: #F9F9F9;
+}
+
+.accordion .card-header:after{
+    font-family: 'FontAwesome';
+    content: "\f106";
+    float: right;
+    //background-color: red;
+    color: #F9F9F9;
+}
+
+.accordion .card-header.collapsed:after{
+    content: "\f107";
+    //background-color: blue;
+}
+
+.pagemain{
+    
+}
+
+.block{
+    
+}
+
+.block div{
+    float: right;
+    width: 66%;
+}
+
+/*  Storage   */
+
+.storage{
+    background-color: var(--storage);
+}
+.storage div{
+    background-color: var(--storage2);    
+}
+
+/*  Spoil   */
+
+.spoil{
+    background-color: var(--spoil);
+}
+.spoil div{
+    background-color: var(--spoil2);    
+}
+
+/*  Community   */
+
+.community{
+    background-color: var(--community);
+}
+.community div{
+    background-color: var(--community2);
+}
+
+
+
