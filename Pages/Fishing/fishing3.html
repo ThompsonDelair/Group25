@@ -9,11 +9,18 @@
     </body>
     <script>
         
-        var bg = new Image;
+        // C A N V A S
+        
+        let fishcanvas = document.getElementById("canvas");        
+        let context = canvas.getContext('2d');
+        
+        // I M A G E S
+        
+        let bg = new Image;
         bg.src = "images/bg640.png";
         
-        var erikfish = new Image;
-        erikfish.src = "images/erikfish.png";
+        let shell = new Image
+        shell.src = "images/shell.png";
         
         let frame1 = new Image;
         frame1.src = "images/frame1.png"
@@ -24,11 +31,15 @@
         let frame3 = new Image;
         frame3.src = "images/frame3.png"
         
+        let erikfish = new Image;
+        erikfish.src = "images/erikfish.png";
+        
         var currentFrame = frame1;
         
-        let fishcanvas = document.getElementById("canvas");        
-        let context = canvas.getContext('2d');
+        let scoreFish = new Image;
+        scoreFish.src = "images/score.png";
         
+        let pile = new Image;
         
         //  O N  C L I C K
         
@@ -40,23 +51,38 @@
             var y = event.pageY;
             mouseX = x;
             mouseY = y;
-            //console.log(x);
-            //console.log(y);
-            console.log(fishes.length+" fish remain!");
+            console.log(x);
+            console.log(y);
+            //console.log(fishes.length+" fish remain!");
             fishes.forEach(function(item, index){
                 var fish = item;
                 if(mouseX > item.x && mouseX < (item.x + item.width)){
                     if(mouseY > item.y && mouseY < (item.y + item.height)){
-                        //console.log(fishes.length+" fish remain!");
                         fishes.splice(index,1);
                         if(playingAnimation == false){
-                            playAnimation();
+                            onCatch();
                         }
                     }
                 }
             });
             
         },false);
+        
+        // O N  C A T C H
+        
+        function onCatch(){
+            playAnimation();
+            score++;
+            if(score > 16){
+                pile.src = "images/pile3.png";
+            } else if (score > 8){
+                pile.src = "images/pile2.png";
+            } else if (score > 0) {
+                pile.src = "images/pile1.png";
+            }
+        }
+        
+        //  A N I M A T I O N
         
         function playAnimation(){
             playingAnimation = true;
@@ -77,12 +103,14 @@
             playingAnimation = false;
         }
         
-        var x = 0;
-        var y = 0;
+        // G A M E  I N F O
+
+        var score = 0;
         
+        //  F I S H  I N F O        
         
         var fishcounter = 0;
-        var spawnCooldown = 30;
+        var spawnCooldown = 15;
         var spawnTimeStamp = 0;
         var fishes = new Array();
         function Fish (){
@@ -91,7 +119,9 @@
             this.width = 50;
             this.height = 40;
             this.direction = 1;
-        }        
+        }
+        
+        //  G A M E  U P D A T E
         
         var ticker = setInterval(tick,30);
         var totalTicks = 0;
@@ -101,8 +131,8 @@
             
             if(fishcounter < 20 && spawnTimeStamp < totalTicks){
                 var newFish = new Fish()
-                newFish.y = Math.random() * ((canvas.height/2) - 60) + 30 + (canvas.height/2);
-                newFish.x = Math.random() * (canvas.width - 60) + 30;
+                newFish.y = Math.random() * ((canvas.height/2) - 70) + 35 + (canvas.height/2);
+                newFish.x = Math.random() * (canvas.width - 70) + 35;
                 fishes.push(newFish); 
                 spawnTimeStamp += spawnCooldown;
                 fishcounter++;
@@ -118,6 +148,12 @@
             // backgroud image
             context.drawImage(bg,0,0);
             
+            // shell
+            context.drawImage(shell,0,0);
+            
+            // fish pile
+            context.drawImage(pile,0,0);
+            
             // turt
             context.drawImage(currentFrame,0,0);
             
@@ -129,6 +165,12 @@
                     
                 }
             });
+            
+            // score
+            context.fillStyle="#47493c";
+            context.drawImage(scoreFish,180,0);
+            context.font = "25px Arial";
+            context.fillText("Score: "+score,238,55);
             
             // last click position
             context.fillStyle="#FF0000";
