@@ -39,6 +39,21 @@ function tick(){
     
 }
 
+
+document.addEventListener('DOMContentLoaded',domloaded,false);
+function domloaded(){
+    
+}
+
+$(document).ready(function(){
+    var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+    ctx.moveTo(0, 0);
+    ctx.lineTo(200, 100);
+    ctx.stroke();
+});
+
+
 function fishClick(){
     console.log("you clicked a fish!");
 }
