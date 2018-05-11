@@ -9,6 +9,16 @@
     </body>
     <script>
         
+        // D O C U M E N T
+        
+        canvas.addEventListener('mousemove',function(){
+            var x = event.pageX - fishcanvas.offsetLeft;
+            var y = event.pageY;
+            mouseX = x;
+            mouseY = y;
+            
+        });
+        
         // C A N V A S
         
         let fishcanvas = document.getElementById("canvas");        
@@ -34,116 +44,190 @@
         let erikfish = new Image;
         erikfish.src = "images/fishing/erikfish.png";
         
+        let johnfish = new Image;
+        johnfish.src = "images/fishing/johnfish.png";
+        
+        let thompsonfish = new Image;
+        thompsonfish.src = "images/fishing/thompsonfish.png";
+        
+        let oscarfish = new Image;
+        oscarfish.src = "images/fishing/oscarfish.png";
+        
         var currentFrame = frame1;
         
         let scoreFish = new Image;
         scoreFish.src = "images/fishing/score.png";
         
+        let hook = new Image;
+        hook.src = "images/fishing/hook.png";
+        
         let pile = new Image;
+        
+        let easterEgg = new Image;
+        easterEgg.src = "images/fishing/EasterEgg.png";
+        
+        let easterEgg2 = new Image;
+        easterEgg2.src = "images/fishing/EasterEgg2.png";
+        
+        let easterEgg3 = new Image;
+        easterEgg3.src = "images/fishing/EasterEgg3.png";
         
         //  O N  C L I C K
         
         var playingAnimation = false;
+        var showHook = true;
         var mouseX = 0;
         var mouseY = 0;
         fishcanvas.addEventListener('mousedown',function(){
-            var x = event.pageX - fishcanvas.offsetLeft;
-            var y = event.pageY;
-            mouseX = x;
-            mouseY = y;
-//            console.log(x);
-//            console.log(y);
-            //console.log(fishes.length+" fish remain!");
-            
+//            var x = event.pageX - fishcanvas.offsetLeft;
+//            var y = event.pageY;
+//            mouseX = x;
+//            mouseY = y;
+             
             // catch main fish
-            if(mouseX > mainFish.x && mouseX < (mainFish.x + mainFish.width)){
+            if(playingAnimation == false){
+                playAnimation();
+              if(mouseX > mainFish.x && mouseX < (mainFish.x + mainFish.width)){
                     if(mouseY > mainFish.y && mouseY < (mainFish.y + mainFish.height)){
                         score++;
-                        //fishes.splice(index,1);
-                        if(playingAnimation == false){
-                            mainFish.x = 999999;
-                            mainFish.y = 999999;
-                            onCatch();                            
-                        }
+                        onCatch();
+                    } else {
+                        onMiss();
                     }
-                }
-            
-            
-//            fishes.forEach(function(item, index){
-//                var fish = item;
-//                if(mouseX > item.x && mouseX < (item.x + item.width)){
-//                    if(mouseY > item.y && mouseY < (item.y + item.height)){
-//                        score++;
-//                        fishes.splice(index,1);
-//                        if(playingAnimation == false){                            
-//                            onCatch();                            
-//                        }
-//                    }
-//                }
-//            });
+                } else {
+                    onMiss();
+                } 
+            }
             
         },false);
         
         // O N  C A T C H
         
         function onCatch(){
-            playAnimation();
             
-            if(score > 16){
+            catched = new catchText();
+            catched.color = "#005c97";
+            let rand = Math.floor(Math.random() * 3);
+            if(rand == 0){
+                catched.text = "CAUGHT!";             
+            } else if (rand == 1){
+                catched.text = "HOOK'ED!";
+            } else if (rand == 2){
+                catched.text = "FISHES +1!";
+            }
+            
+            catched.x = mainFish.x;
+            catched.y = mainFish.y;
+            catchTexts.push(catched);
+
+            if(score < 21){
+                spawnFish();
+            } else {
+                mainFish.x = 99999;
+                mainFish.y = 99999;
+            }
+           
+            scoreSize = 40;
+            if(score > 12){
                 pile.src = "images/fishing/pile3.png";
-            } else if (score > 8){
+            } else if (score > 6){
                 pile.src = "images/fishing/pile2.png";
             } else if (score > 0) {
                 pile.src = "images/fishing/pile1.png";
             }
         }
         
+        //  O N  M I S S 
+        
+        function onMiss(){
+            catched = new catchText();
+            catched.color = "#7bdbfb";
+            let rand = Math.floor(Math.random() * 3);
+            if(rand == 0){
+                catched.text = "you missed!";             
+            } else if (rand == 1){
+                catched.text = "cant catch me!";
+            } else if (rand == 2){
+                catched.text = "too slow!";
+            }
+            catched.x = mainFish.x - 35;
+            catched.y = mainFish.y;
+            catchTexts.push(catched);
+        }
+        
         //  A N I M A T I O N
         
+        let delay = 215;
+        
         function playAnimation(){
-            playingAnimation = true;
-            currentFrame = frame2;
-            console.log("playing animation ...");
-            setTimeout(playAnimation2,150);            
+            playingAnimation = true;            
+            console.log("playing animation ...");   
+            
+            
+            setTimeout(function(){
+                currentFrame = frame3;
+                showHook = false;
+            },delay * 0.25);
+            
+            setTimeout(function(){
+                currentFrame = frame2;
+            },delay * 0.75);
+            setTimeout(function(){
+                currentFrame = frame3;
+            },delay * 1.75);
+            setTimeout(function(){
+                currentFrame = frame1;
+            },delay * 2.5);
+            setTimeout(function(){
+                playingAnimation = false;
+                showHook = true;
+            },delay * 3.5);
         }
-        
-        function playAnimation2(){
-            currentFrame = frame3;
-            console.log("playing animation2 ...");
-            setTimeout(playAnimation3,250);
-        }
-        
-        function playAnimation3(){
-            currentFrame = frame1;
-            console.log("playing animation3 ...");
-            playingAnimation = false;
-        }
-        
+                
         // G A M E  I N F O
 
-        var score = 0;
-        let gameBorder = 50;
-        let spawnBorder = gameBorder + 65;
+        var score = 19;
+        var scoreSize = 25;
         
-        //  F I S H  I N F O        
+        var catchTexts = new Array();
         
-        var mainFish = new Fish();
+        function catchText(){
+            this.text;
+            this.textSize = 40;
+            this.x;
+            this.y;
+            this.color;
+            this.decayRate = 0.5;
+        }
+        
+        let gameBorder = 15;
+        let spawnBorder = gameBorder + 75;
+        
+        //  F I S H  I N F O  
         
         var fishcounter = 0;
         let fishAllowed = 1;
         
-        var spawnCooldown = 40;
+        var spawnCooldown = 80;
         var spawnTimeStamp = 0;
+        
+        let jukeCooldown = 20;
+        let jukeTimestamp = jukeCooldown;
         
         var fishes = new Array();
         
-        let fishSpeed = 7.5;
+        let fishSpeed = 12;
         
+        // fish "class"
         function Fish (){
+            this.image;
             this.x = 0;
             this.y = 0;
-            this.width = 50;
-            this.height = 40;
+            this.width = 80;
+            this.height = 60;
+            this.speed;
+            this.bounceXCooldown = 0;
+            this.bounceYCooldown = 0;
             
             // generate fish direction            
             var rads = Math.random() * Math.PI * 2;
@@ -151,42 +235,86 @@
             this.vectorY = Math.sin(rads);
         }
         
+        // get random fish
+        function randomFish(){
+            let rand = Math.floor(Math.random() * 4);
+            //console.log(rand);
+            let returnFish = new Fish();
+            
+            if(rand == 0){
+                returnFish.image = erikfish;                
+            } else if (rand == 1){
+                returnFish.image = johnfish;
+            } else if (rand == 2){
+                returnFish.image = thompsonfish;
+            } else if (rand == 3){
+                returnFish.image = oscarfish;
+            }
+            return returnFish;
+        }
+        
+        // spawn fish
+        function spawnFish(){
+            mainFish = randomFish();
+            if(score == 20){
+                fishSpeed = 18;
+                mainFish.image = easterEgg;
+                bossText = new catchText();
+                bossText.text = "FINAL BOSS!";
+                bossText.x = 130;
+                bossText.y = 450;
+                bossText.textSize = 80;
+                bossText.color = "#e7a5ff";
+                bossText.decayRate = 0.25;
+                catchTexts.push(bossText);
+            }
+                mainFish.y = Math.random() * ((canvas.height/2) - spawnBorder * 2) + (spawnBorder) + (canvas.height/2);
+                mainFish.x = Math.random() * (canvas.width - spawnBorder * 2) + (spawnBorder);  
+        }
+        
         //  G A M E  U P D A T E
         
         var ticker = setInterval(tick,30);
         var totalTicks = 0;
         
+        spawnFish();
+        
         // the game tick
         function tick(){
-            //console.log("tick!");  
+            //console.log("tick!"); 
             
-            //  G A M E  L O G I C
-                      
-            if(spawnTimeStamp < totalTicks){
-                mainFish = new Fish();
-                mainFish.y = Math.random() * ((canvas.height/2) - spawnBorder * 2) + (spawnBorder) + (canvas.height/2);
-                mainFish.x = Math.random() * (canvas.width - spawnBorder * 2) + (spawnBorder);                
-//                newFish.y = Math.random() * ((canvas.height/2) - 70) + 35 + (canvas.height/2);
-//                newFish.x = Math.random() * (canvas.width - 70) + 35;
-//                fishes.push(newFish); 
-                spawnTimeStamp += spawnCooldown;
-//                fishcounter++;
-            }            
+            //  G A M E  L O G I C             
             
             // fish jukes are real
-            if(spawnTimeStamp - Math.round(spawnCooldown /2) == totalTicks){
+            if(jukeTimestamp < totalTicks && mainFish.bounceXCooldown <= 0 && mainFish.bounceYCooldown <= 0){
                 var rads = Math.random() * Math.PI * 2;
                 mainFish.vectorX = Math.cos(rads);
                 mainFish.vectorY = Math.sin(rads);
+                jukeTimestamp = totalTicks + jukeCooldown;
             }
             
-            if(mainFish.y > fishcanvas.height - gameBorder){
-                mainFish.vectorY *= -1;
+            
+            // bounce off sizes
+            
+            if(mainFish.bounceXCooldown <= 0){
+                if(mainFish.x < 35 || mainFish.x > fishcanvas.width - mainFish.width - gameBorder){
+                    mainFish.vectorX *= -1;
+                    mainFish.bounceXCooldown = 3;
+                }
+            } else {
+                mainFish.bounceXCooldown--;
             }
-            if(mainFish.x < 35 || mainFish.x > fishcanvas.width - gameBorder){
-                mainFish.vectorX *= -1;
+            
+            if(mainFish.bounceYCooldown <= 0){
+                if(mainFish.y > fishcanvas.height - mainFish.height -gameBorder || mainFish.y < 280){
+                    mainFish.vectorY *= -1;
+                    mainFish.bounceYCooldown = 3;
+                }
+            } else {
+                mainFish.bounceYCooldown--;
             }
-
+            
+            // move fish
             mainFish.x += mainFish.vectorX * fishSpeed;
             mainFish.y += mainFish.vectorY * fishSpeed;
             
@@ -208,27 +336,57 @@
             // turt
             context.drawImage(currentFrame,0,0);
             
-            // render fishies
-            
-            context.drawImage(erikfish,mainFish.x,mainFish.y);
-            
-            fishes.forEach(function(item){
-                var fish = item;
-                context.drawImage(erikfish,item.x,item.y);
-                if(fish.x < 1 || fish.x > fishcanvas.width){
-                    
+            // pop-up text
+            for(i = 0; i < catchTexts.length; i++){
+                if(catchTexts[i].textSize < 25){
+                    catchTexts.splice(i,1);
+                } else {
+                    context.fillStyle = catchTexts[i].color;
+                    console.log(catchTexts[i].text);
+                    context.font = catchTexts[i].textSize+"px Arial";
+                    context.fillText(catchTexts[i].text,catchTexts[i].x,catchTexts[i].y);
+                    catchTexts[i].textSize -= catchTexts[i].decayRate;
                 }
-            });
+            }
+            
+            // Fish
+            
+            context.drawImage(mainFish.image,mainFish.x,mainFish.y,80,60);
+
             
             // score
             context.fillStyle="#47493c";
             context.drawImage(scoreFish,180,0);
-            context.font = "25px Arial";
-            context.fillText("Score: "+score,238,55);
+            context.font = scoreSize+"px Arial";
+            context.fillText("Score: "+score,230,57);
             
-            // last click position
-            //context.fillStyle="#FF0000";
-            //context.fillRect(mouseX - 2.5,mouseY - 2.5,5,5);
+            if(scoreSize > 25){
+                scoreSize -= 0.5;
+            }
+            
+            // draw hook and line
+            if(showHook){
+               context.drawImage(hook,mouseX-15,mouseY-35,30,45);
+                context.beginPath();
+                context.moveTo(515,228);
+                context.lineTo(mouseX,mouseY-29);
+                context.stroke();
+            }
+            
+            //  2 0  S C O R E  O V E R L A Y
+            
+            if(score >= 21){
+                context.fillStyle="#7bdbfb";
+                context.font = "70px Arial";
+                context.fillText("Team 25!",160,420);
+                
+                context.drawImage(erikfish,160,460);
+                context.drawImage(johnfish,360,450,200,100);
+                context.drawImage(oscarfish,60,390);
+                context.drawImage(thompsonfish,460,350);
+                context.drawImage(easterEgg2,245,200);
+                context.drawImage(easterEgg3,300,150);
+            }
             
             totalTicks++;
         }
