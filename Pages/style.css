@@ -27,6 +27,18 @@
 
 /* O V E R R I D E S */
 
+#values {
+	top: 5em;
+}
+
+body {
+	background-image: url("images/background.jpg");
+	background-size: auto 200%;
+	font-family: 'lato-light';
+	background-color: black;
+}
+
+
 .navbar {
 	background-color: #3f7547;
 	font-family: 'lato-light';
@@ -42,9 +54,4 @@ h4 {
 
 h5 {
 	font-family: 'lato-light';
-}
-
-body {
-	background-image: url("background.jpeg");
-	font-family: 'lato-light'
 }
