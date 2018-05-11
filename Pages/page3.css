@@ -1,3 +1,14 @@
+/*  C O L O R S */
+
+:root {
+    --storage:      #8ED9ED;
+    --storage2:     #2DB9EA;
+    --spoil2:        #D63031;
+    --spoil:       #F43B45;
+    --community:    #662D91;
+    --community2:   #8C58BA;
+}
+
 body{
     background-color: #F9F9F9;
 }
@@ -19,7 +30,7 @@ body{
     color: #F9F9F9;
 }
 
-a {
+.navbar a {
     color: #F9F9F9;
 }
 
@@ -48,5 +59,42 @@ a {
 .pagemain{
     
 }
+
+.block{
+    
+}
+
+.block div{
+    float: right;
+    width: 66%;
+}
+
+/*  Storage   */
+
+.storage{
+    background-color: var(--storage);
+}
+.storage div{
+    background-color: var(--storage2);    
+}
+
+/*  Spoil   */
+
+.spoil{
+    background-color: var(--spoil);
+}
+.spoil div{
+    background-color: var(--spoil2);    
+}
+
+/*  Community   */
+
+.community{
+    background-color: var(--community);
+}
+.community div{
+    background-color: var(--community2);
+}
+
 
 
