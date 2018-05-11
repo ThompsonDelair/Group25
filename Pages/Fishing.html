@@ -50,6 +50,9 @@
         let thompsonfish = new Image;
         thompsonfish.src = "images/fishing/thompsonfish.png";
         
+        let oscarfish = new Image;
+        oscarfish.src = "images/fishing/oscarfish.png";
+        
         var currentFrame = frame1;
         
         let scoreFish = new Image;
@@ -72,15 +75,14 @@
         //  O N  C L I C K
         
         var playingAnimation = false;
+        var showHook = true;
         var mouseX = 0;
         var mouseY = 0;
         fishcanvas.addEventListener('mousedown',function(){
-            var x = event.pageX - fishcanvas.offsetLeft;
-            var y = event.pageY;
-            mouseX = x;
-            mouseY = y;
-//            console.log(x);
-//            console.log(y);
+//            var x = event.pageX - fishcanvas.offsetLeft;
+//            var y = event.pageY;
+//            mouseX = x;
+//            mouseY = y;
              
             // catch main fish
             if(playingAnimation == false){
@@ -104,7 +106,7 @@
         function onCatch(){
             
             catched = new catchText();
-            
+            catched.color = "#005c97";
             let rand = Math.floor(Math.random() * 3);
             if(rand == 0){
                 catched.text = "CAUGHT!";             
@@ -117,9 +119,7 @@
             catched.x = mainFish.x;
             catched.y = mainFish.y;
             catchTexts.push(catched);
-            
-//            mainFish.x = 999999;
-//                            mainFish.y = 999999;
+
             if(score < 21){
                 spawnFish();
             } else {
@@ -141,7 +141,7 @@
         
         function onMiss(){
             catched = new catchText();
-            
+            catched.color = "#7bdbfb";
             let rand = Math.floor(Math.random() * 3);
             if(rand == 0){
                 catched.text = "you missed!";             
@@ -161,8 +161,14 @@
         
         function playAnimation(){
             playingAnimation = true;            
-            console.log("playing animation ...");
-            currentFrame = frame3;
+            console.log("playing animation ...");   
+            
+            
+            setTimeout(function(){
+                currentFrame = frame3;
+                showHook = false;
+            },delay * 0.25);
+            
             setTimeout(function(){
                 currentFrame = frame2;
             },delay * 0.75);
@@ -174,12 +180,13 @@
             },delay * 2.5);
             setTimeout(function(){
                 playingAnimation = false;
+                showHook = true;
             },delay * 3.5);
         }
                 
         // G A M E  I N F O
 
-        var score = 0;
+        var score = 19;
         var scoreSize = 25;
         
         var catchTexts = new Array();
@@ -189,6 +196,8 @@
             this.textSize = 40;
             this.x;
             this.y;
+            this.color;
+            this.decayRate = 0.5;
         }
         
         let gameBorder = 15;
@@ -228,7 +237,7 @@
         
         // get random fish
         function randomFish(){
-            let rand = Math.floor(Math.random() * 3);
+            let rand = Math.floor(Math.random() * 4);
             //console.log(rand);
             let returnFish = new Fish();
             
@@ -238,6 +247,8 @@
                 returnFish.image = johnfish;
             } else if (rand == 2){
                 returnFish.image = thompsonfish;
+            } else if (rand == 3){
+                returnFish.image = oscarfish;
             }
             return returnFish;
         }
@@ -246,8 +257,16 @@
         function spawnFish(){
             mainFish = randomFish();
             if(score == 20){
-                fishSpeed = 20;
+                fishSpeed = 18;
                 mainFish.image = easterEgg;
+                bossText = new catchText();
+                bossText.text = "FINAL BOSS!";
+                bossText.x = 130;
+                bossText.y = 450;
+                bossText.textSize = 80;
+                bossText.color = "#e7a5ff";
+                bossText.decayRate = 0.25;
+                catchTexts.push(bossText);
             }
                 mainFish.y = Math.random() * ((canvas.height/2) - spawnBorder * 2) + (spawnBorder) + (canvas.height/2);
                 mainFish.x = Math.random() * (canvas.width - spawnBorder * 2) + (spawnBorder);  
@@ -317,17 +336,16 @@
             // turt
             context.drawImage(currentFrame,0,0);
             
-            // catches
-            
-            context.fillStyle="#7bdbfb";
+            // pop-up text
             for(i = 0; i < catchTexts.length; i++){
                 if(catchTexts[i].textSize < 25){
                     catchTexts.splice(i,1);
                 } else {
+                    context.fillStyle = catchTexts[i].color;
                     console.log(catchTexts[i].text);
                     context.font = catchTexts[i].textSize+"px Arial";
                     context.fillText(catchTexts[i].text,catchTexts[i].x,catchTexts[i].y);
-                    catchTexts[i].textSize -= 0.5;
+                    catchTexts[i].textSize -= catchTexts[i].decayRate;
                 }
             }
             
@@ -340,14 +358,14 @@
             context.fillStyle="#47493c";
             context.drawImage(scoreFish,180,0);
             context.font = scoreSize+"px Arial";
-            context.fillText("Score: "+score,238,55);
+            context.fillText("Score: "+score,230,57);
             
             if(scoreSize > 25){
                 scoreSize -= 0.5;
             }
             
             // draw hook and line
-            if(!playingAnimation){
+            if(showHook){
                context.drawImage(hook,mouseX-15,mouseY-35,30,45);
                 context.beginPath();
                 context.moveTo(515,228);
@@ -364,12 +382,11 @@
                 
                 context.drawImage(erikfish,160,460);
                 context.drawImage(johnfish,360,450,200,100);
+                context.drawImage(oscarfish,60,390);
                 context.drawImage(thompsonfish,460,350);
                 context.drawImage(easterEgg2,245,200);
                 context.drawImage(easterEgg3,300,150);
             }
-            
-            
             
             totalTicks++;
         }
