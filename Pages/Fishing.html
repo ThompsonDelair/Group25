@@ -123,6 +123,7 @@
             if(score < 21){
                 spawnFish();
             } else {
+                catchTexts.splice(0,catchTexts.length);
                 mainFish.x = 99999;
                 mainFish.y = 99999;
             }
@@ -186,7 +187,7 @@
                 
         // G A M E  I N F O
 
-        var score = 19;
+        var score = 0;
         var scoreSize = 25;
         
         var catchTexts = new Array();
@@ -256,6 +257,28 @@
         // spawn fish
         function spawnFish(){
             mainFish = randomFish();
+            
+            if(score < 12){
+                fishSpeed = 1 + score;
+            }
+            
+            
+//            if(score == 0){
+//                fishSpeed = 1;
+//            } else if(score == 1){
+//                fishSpeed = 2;
+//            } else if(score == 2){
+//                fishSpeed = 4;
+//            } else if(score == 3){
+//                fishSpeed = 6;
+//            } else if (score == 4){
+//                fishSpeed = 8;
+//            } else if (score == 5){
+//                fishSpeed = 10;
+//            } else if (score == 6){
+//                fishSpeed = 12;
+//            }
+            
             if(score == 20){
                 fishSpeed = 18;
                 mainFish.image = easterEgg;
@@ -382,7 +405,7 @@
                 
                 context.drawImage(erikfish,160,460);
                 context.drawImage(johnfish,360,450,200,100);
-                context.drawImage(oscarfish,60,390);
+                context.drawImage(oscarfish,25,410,170,110);
                 context.drawImage(thompsonfish,460,350);
                 context.drawImage(easterEgg2,245,200);
                 context.drawImage(easterEgg3,300,150);
