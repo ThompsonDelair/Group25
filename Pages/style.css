@@ -27,6 +27,10 @@
 
 /* O V E R R I D E S */
 
+#values {
+	top: 5em;
+}
+
 body {
 	background-image: url("images/background.jpg");
 	background-size: auto 200%;
