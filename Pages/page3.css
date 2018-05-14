@@ -15,16 +15,26 @@
 	src: url('Fonts/Lato-Medium.ttf')
 }
 
-/*  C O L O R S */
-
 :root {
+    
+    /*  C O L O R S */
+    
+    --black:       #1A1A1A;
+    --yellow:      #FFBD37;
+    --green-light: #B5FFC5;
+    --green-dark:  #3F7547;
+    --white:       #F9F9F9;
+    
     --storage:      #6BC7D6;
     --storage2:     #2DB9EA;    
     --spoil:        #C6586D;
     --spoil2:       #D63031;
     --community:    #6F459B;
     --community2:   #8C58BA;
-    --blockMargin: 15px;
+    
+/*    block content spacing margin */
+    
+    --blockMargin: 10px;
 }
 
 body{
@@ -55,6 +65,16 @@ body{
 .card-header{
     background-color: #1A1A1A;
     color: #F9F9F9;
+    position: relative;
+}
+
+.headerLine{
+    top: 30%;
+    left: 91%;
+    width: 112px;
+    height: 40%;
+    position: absolute;    
+    border-left: 1px solid var(--white);    
 }
 
 .collapse{
@@ -76,37 +96,32 @@ body{
 
 .accordion .card-header.collapsed:after{
     content: "\f107";
-    //background-color: blue;
 }
 
-.asdf{
+.transparentBG{
     background-color: transparent;
 }
 
 .content{
     margin-top: var(--blockMargin);
     float: left; 
-    width: 100%;
-    
+    width: 100%;    
     color: #F9F9F9;
 }
 
 .details:nth-child(1){
     float: left;
     width: 34%;
-/*    height: 100%;*/
     font-family: lato-medium;
-    margin: 0 auto;
-/*    background-color: orange;*/
+    font-size: 24px;
+    margin-top: 12px;
     text-align: center;
 }
 
-.details:nth-child(2){
-    
+.details:nth-child(2){    
     padding: 15px;
     float: right;
     width: 66%;
-/*    background-color: greenyellow;*/
 }
 
 /*  Storage   */
@@ -124,26 +139,25 @@ body{
 
 /*  Community   */
 
-.community{
-    
+.community{    
     margin-bottom: var(--blockMargin);
-        
 }
 
 .community div:nth-child(1){
     float: none;
     width: 100%;
     color: #F9F9F9;
+    margin: auto;
+    padding: 8px;
     background-color: var(--community);
     font-size: 24px;
 }
 
 .community div:nth-child(2){
     float: none;
-    background-color: goldenrod;
+    color: black;
+    background-color: #F9F9F9;
     width: 100%;
     text-align: center;
+    padding: 30px;
 }
-
-
-

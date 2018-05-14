@@ -54,7 +54,11 @@
         card.classList.add('card');
         accordion.appendChild(card);
         
+        // populate accordion
+        
         for(var i = 0; i < food.length; i++){
+            
+            // create card header
             
             var header = document.createElement("div");
             header.classList.add('card-header','collapsed');
@@ -64,33 +68,44 @@
             header.setAttribute("data-parent","#accordion");
             var href = '#collapse' + i;
             header.setAttribute("href",href);            
+            card.appendChild(header);
+            
+            // card header title
             
             var a = document.createElement("a");
             a.classList.add('card-title');            
             a.textContent = food[i];
+            header.appendChild(a);
+            
+            // card header line
+            
+            var line = document.createElement("div");
+            line.classList.add('headerLine');
+            header.appendChild(line);
+            
+            // create card body
             
             var block = document.createElement("div");
-            block.classList.add('asdf');
+            block.classList.add('transparentBG');
             var id = 'collapse' + i;
             block.setAttribute("id",id);
             block.classList.add('card-block','collapse');
+            card.appendChild(block);
             
-//            var paragraph = document.createElement("p");
-//            paragraph.style.padding = "10px";
-//            paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>";
+            // populate card body contents
             
             for(n = 0;n < 3;n++){
-                var type;
-                if(n == 0){
-                    type = "storage";
-                } else if(n == 1) {
-                    type = "spoil";
-                } else {
-                    type = "community";
-                }
+//                var type;
+//                if(n == 0){
+//                    type = "storage";
+//                } else if(n == 1) {
+//                    type = "spoil";
+//                } else {
+//                    type = "community";
+//                }
                 
                 var content = document.createElement("div");
-                content.classList.add(type,'content');
+                content.classList.add('content');
                 block.appendChild(content);
                 
                 var detail1 = document.createElement("div");
@@ -102,13 +117,22 @@
                 detail2.classList.add('details');
                 detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
                 content.append(detail2);
-                
-                
-                
             }
             
+            // content info
+            var storage =  block.childNodes[0];
+            storage.classList.add('storage');
+            storage.childNodes[0].innerHTML = "Storage<br>Method";
             
+            var spoil = block.childNodes[1];
+            spoil.classList.add('spoil');
+            spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
+            spoil.childNodes[1].innerHTML = "Slimy<br>Color chanaged<br>Unpleasant Odor";
             
+            var community = block.childNodes[2];
+            community.classList.add('community');
+            community.childNodes[0].innerHTML = "Community Advice"
+            community.childNodes[1].innerHTML = "'Meat is like good or something'";
             
 //            // Storage
 //            
@@ -167,10 +191,10 @@
 //            comments.setAttribute("href", "page4.html");
 //            comments.innerHTML = "Community";
 
-            header.appendChild(a);
             
-            card.appendChild(header);
-            card.appendChild(block);
+            
+            
+            
 
         }
         
