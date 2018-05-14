@@ -33,7 +33,7 @@
 
 body {
 	background-image: url("images/background.jpg");
-	background-size: auto 150%;
+	background-size: auto auto;
 	background-repeat: no-repeat;
 	font-family: 'lato-light';
 	background-color: black;
