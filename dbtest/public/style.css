@@ -1,0 +1,50 @@
+/*
+    C O L O R S
+
+    black       #1A1A1A
+    yellow      #FFBD37
+    light green #B5FFC5
+    dark green  #3F7547
+    off white   #F9F9F9
+*/
+
+/* F O N T S */
+
+@font-face {
+	font-family: lato-light;
+	src: url('Fonts/Lato-Light.ttf')
+}
+
+@font-face {
+	font-family: lato-regular;
+	src: url('Fonts/Lato-Regular.ttf')
+}
+
+@font-face {
+	font-family: lato-medium;
+	src: url('Fonts/Lato-Medium.ttf')
+}
+
+/* O V E R R I D E S */
+
+.navbar {
+	background-color: #3f7547;
+	font-family: 'lato-light';
+}
+
+p {
+	font-family: 'lato-light';
+}
+
+h4 {
+	font-family: 'lato-light';
+}
+
+h5 {
+	font-family: 'lato-light';
+}
+
+body {
+	background-color: lightgray;
+	font-family: 'lato-light'
+}
