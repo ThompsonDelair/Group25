@@ -1,0 +1,95 @@
+{
+	"textures": [
+		{
+			"image": "scaled-hd.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1196,
+				"h": 188
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "turtle3.png",
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 140,
+						"h": 180
+					},
+					"rotated": false,
+					"trimmed": true,
+					"spriteSourceSize": {
+						"x": 192,
+						"y": 0,
+						"w": 140,
+						"h": 180
+					},
+					"sourceSize": {
+						"w": 978,
+						"h": 182
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "turtle1.png",
+					"frame": {
+						"x": 152,
+						"y": 4,
+						"w": 676,
+						"h": 176
+					},
+					"rotated": false,
+					"trimmed": true,
+					"spriteSourceSize": {
+						"x": 200,
+						"y": 0,
+						"w": 676,
+						"h": 176
+					},
+					"sourceSize": {
+						"w": 978,
+						"h": 182
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "turtle2.png",
+					"frame": {
+						"x": 836,
+						"y": 4,
+						"w": 356,
+						"h": 148
+					},
+					"rotated": false,
+					"trimmed": true,
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 32,
+						"w": 356,
+						"h": 148
+					},
+					"sourceSize": {
+						"w": 978,
+						"h": 182
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:1cdf706ad0ed8e05b20bbef8fa6139d1:6eceaa9f272f0f245348c13a7705013d:84461320cdf50038e35c96b671c87e94$"
+	}
+}
