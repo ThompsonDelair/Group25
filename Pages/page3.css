@@ -66,13 +66,14 @@ body{
     background-color: #1A1A1A;
     color: #F9F9F9;
     position: relative;
+    margin-bottom: 4px;
 }
 
 .headerLine{
-    top: 30%;
-    left: 91%;
-    width: 112px;
-    height: 40%;
+    top: 24%;
+    right: 45px;
+    width: 0px;
+    height: 52%;
     position: absolute;    
     border-left: 1px solid var(--white);    
 }
