@@ -1,11 +1,11 @@
 /*  C O L O R S */
 
 :root {
-    --black:       #1A1A1A;
-    --yellow:      #FFBD37;
-    --green-light: #B5FFC5;
-    --green-dark:  #3F7547;
-    --white:       #F9F9F9;
+	--black: #1A1A1A;
+	--yellow: #FFBD37;
+	--green-light: #B5FFC5;
+	--green-dark: #3F7547;
+	--white: #F9F9F9;
 }
 
 /* F O N T S */
@@ -27,6 +27,19 @@
 
 /* O V E R R I D E S */
 
+#values {
+	top: 5em;
+}
+
+body {
+	background-image: url("images/background.jpg");
+	background-size: auto 150%;
+	background-repeat: no-repeat;
+	font-family: 'lato-light';
+	background-color: black;
+}
+
+
 .navbar {
 	background-color: #3f7547;
 	font-family: 'lato-light';
@@ -42,9 +55,4 @@ h4 {
 
 h5 {
 	font-family: 'lato-light';
-}
-
-body {
-	background-image: url("background.jpeg");
-	font-family: 'lato-light'
 }
