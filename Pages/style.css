@@ -1,11 +1,11 @@
 /*  C O L O R S */
 
 :root {
-    --black:       #1A1A1A;
-    --yellow:      #FFBD37;
-    --green-light: #B5FFC5;
-    --green-dark:  #3F7547;
-    --white:       #F9F9F9;
+	--black: #1A1A1A;
+	--yellow: #FFBD37;
+	--green-light: #B5FFC5;
+	--green-dark: #3F7547;
+	--white: #F9F9F9;
 }
 
 /* F O N T S */
@@ -33,7 +33,8 @@
 
 body {
 	background-image: url("images/background.jpg");
-	background-size: auto 200%;
+	background-size: auto 150%;
+	background-repeat: no-repeat;
 	font-family: 'lato-light';
 	background-color: black;
 }
