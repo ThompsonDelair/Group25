@@ -12,8 +12,6 @@ const firestore = firebase.firestore();
 
 const collRef = firestore.collection("Comments");
 
-const inputComment = document.querySelector("#commentInput");
-
 updatePage = function() {
     collRef.orderBy("date_posted", "desc").onSnapshot(function (querySnapshot) {
 
@@ -35,16 +33,13 @@ updatePage = function() {
 
         for(var commentUpdate = 0; commentUpdate < querySnapshot.size; commentUpdate++){
             document.getElementById("commentContainer").innerHTML += 
-                "<div class=\"jumbotron\"><div class=\"container-fluid\"><div class=\"row\">" + commentEntry[commentUpdate] +  
-                "<div class=\"col-lg-10 col-md-9 col-sm-4 col-xs-6\">" + commentDate[commentUpdate] +
-                "</div><div class=\"col-lg-2 col-md-3 col-sm-8 col-xs-6\"><div class=\"btn-group float-right\" role=\"group\">" + 
+                "<div class=\"jumbotron\"><div class=\"container-fluid\"><div class=\"row\">" + commentEntry[commentUpdate] + "</div><div><br></div>" +
+                "<div class=\"row\"><div class=\"col-lg-10 col-md-9 col-sm-4 col-8\">" + commentDate[commentUpdate] +
+                "</div><div class=\"col-lg-2 col-md-3 col-sm-8 col-4\"><div class=\"btn-group float-right\" role=\"group\">" + 
                 "<button type=\"button\" class=\"btn btn-xs float-right\" onclick=\"thumbsUp(this.id)\" id=\"" + commentRef[commentUpdate] + "\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span> : " + commentUp[commentUpdate] + "</button>" +
                 "<button type=\"button\" class=\"btn btn-xs float-right\" onclick=\"thumbsDown(this.id)\" id=\"" + commentRef[commentUpdate] + "\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span> : " + commentDown[commentUpdate] + "</button>" +
                 "</div></div></div></div></div>"
         }
-        console.log(commentDate);
-        console.log(commentEntry);
-        console.log(commentRef);
     });
 };
 
