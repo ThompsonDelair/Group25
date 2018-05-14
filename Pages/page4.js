@@ -12,106 +12,112 @@ const firestore = firebase.firestore();
 
 const collRef = firestore.collection("Comments");
 
-const inputComment = document.querySelector("#commentInput");
-const submitComment = document.querySelector("#commentSubmit");
-
-submitComment.addEventListener("click", function() {
-    const commentText = inputComment.value;
-    console.log("The comment " + commentText + " has been added.");
-})
-
-
-// firestore.collection("Comments").onSnapshot(function (querySnapshot) {
-//     querySnapshot.forEach(function (doc) {
-//         commentDate.push(doc.data().date_posted);
-//         commentEntry.push(doc.data().quote);
-//     });
-// });
-
 updatePage = function() {
     collRef.orderBy("date_posted", "desc").onSnapshot(function (querySnapshot) {
 
         var commentDate = [];
         var commentEntry = [];
+        var commentRef = [];
+        var commentUp = [];
+        var commentDown = [];
         
-        querySnapshot.forEach(function (doc) {    
+        querySnapshot.forEach(function (doc) {
             commentDate.push(doc.data().date_posted);
             commentEntry.push(doc.data().quote);
+            commentRef.push(doc.data().reference);
+            commentUp.push(doc.data().upvote);
+            commentDown.push(doc.data().downvote);
         });
         
         document.getElementById("commentContainer").innerHTML = "";
 
         for(var commentUpdate = 0; commentUpdate < querySnapshot.size; commentUpdate++){
             document.getElementById("commentContainer").innerHTML += 
-                "<div class=\"jumbotron\"><div class=\"container-fluid\"><div class=\"row\">" + commentEntry[commentUpdate] +  
-                "<div class=\"col-lg-10 col-md-9 col-sm-4 col-xs-6\">" + commentDate[commentUpdate] +
-                "</div><div class=\"col-lg-2 col-md-3 col-sm-8 col-xs-6\"><div class=\"btn-group float-right\" role=\"group\">" + 
-                "<button type=\"button\" class=\"btn btn-xs float-right\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\" onclick=\"thumbsUp()\"></span> : 0</button>" +
-                "<button type=\"button\" class=\"btn btn-xs float-right\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\" onclick=\"thumbsDown()\"></span> : 0</button>" +
+                "<div class=\"jumbotron\"><div class=\"container-fluid\"><div class=\"row\">" + commentEntry[commentUpdate] + "</div><div><br></div>" +
+                "<div class=\"row\"><div class=\"col-lg-10 col-md-9 col-sm-4 col-8\">" + commentDate[commentUpdate] +
+                "</div><div class=\"col-lg-2 col-md-3 col-sm-8 col-4\"><div class=\"btn-group float-right\" role=\"group\">" + 
+                "<button type=\"button\" class=\"btn btn-xs float-right\" onclick=\"thumbsUp(this.id)\" id=\"" + commentRef[commentUpdate] + "\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span> : " + commentUp[commentUpdate] + "</button>" +
+                "<button type=\"button\" class=\"btn btn-xs float-right\" onclick=\"thumbsDown(this.id)\" id=\"" + commentRef[commentUpdate] + "\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span> : " + commentDown[commentUpdate] + "</button>" +
                 "</div></div></div></div></div>"
         }
-        console.log(commentDate);
-        console.log(commentEntry);
+    });
+};
+
+function thumbsUp(docID) {
+    var upvoteNum;
+    var documentName = docID;
+
+    // collRef.doc(docID).onSnapshot(function (doc) {
+    //     upvoteNum = doc.data().upvote + 1; 
+    //     console.log(doc.data().upvote);  
+    //     console.log(upvoteNum);
+
+    //     collRef.doc(docID).update({
+    //         upvote : upvoteNum
+    //     })
+    // });
+
+    firestore.runTransaction(function(transaction) {
+        // This code may get re-run multiple times if there are conflicts.
+        return transaction.get(collRef.doc(docID)).then(function(commentDoc) {
+            if (!commentDoc.exists) {
+                throw "Document does not exist!";
+            }
+            var newUpvote = commentDoc.data().upvote + 1;
+            transaction.update(collRef.doc(docID), { upvote: newUpvote });
+        });
+    }).then(function() {
+        console.log("Transaction successfully committed!");
+    }).catch(function(error) {
+        console.log("Transaction failed: ", error);
     });
 }
 
-// updatePage = function() {
-//     for(var commentUpdate = 0; commentUpdate < numberOfComments; commentUpdate++){
-//         document.getElementById("commentContainer").innerHTML += 
-//             "<div class=\"jumbotron\"><div class=\"container-fluid\"><div class=\"row\">" + commentEntry[commentUpdate] +  
-//             "<div class=\"col-lg-10 col-md-9 col-sm-4 col-xs-6\">" + commentDate[commentUpdate] +
-//             "</div><div class=\"col-lg-2 col-md-3 col-sm-8 col-xs-6\"><div class=\"btn-group float-right\" role=\"group\">" + 
-//             "<button type=\"button\" class=\"btn btn-xs float-right\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\" onclick=\"thumbsUp()\"></span> : 0</button>" +
-//             "<button type=\"button\" class=\"btn btn-xs float-right\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\" onclick=\"thumbsDown()\"></span> : 0</button>" +
-//             "</div></div></div></div></div>"
-//         commentUpdate++;
-//     }
-// }
-
-// firestore.collection("Comments").get().then(function(querySnapshot){
-//     querySnapshot.forEach(function(doc){
-//         commentDate[count] = doc.data().date_posted;
-//         commentEntry[count] = doc.data().quote;
-//         count++;
-//     });
-//     updatePage();
-// });
-
-var idNumber = 1;
-
-function thumbsUp() {
-    var upvoteNum;
-    collRef.doc.get().then(doc => {
-        upvoteNum = doc.data().upvote;
-    })
-
-    upvoteNum++;
-
-    collRef.doc.update({ upvote: upvoteNum});
-    console.log("upvoted");
-}
-
-function thumbsDown() {
+function thumbsDown(docID) {
     var downvoteNum;
-    collRef.doc.get().then(doc => {
-        downvoteNum = doc.data().downvote;
-    })
+    var documentName = docID;
 
-    downvoteNum++;
+    // collRef.doc(docID).onSnapshot(function (doc) {
+    //     upvoteNum = doc.data().upvote + 1; 
+    //     console.log(doc.data().upvote);  
+    //     console.log(upvoteNum);
 
-    collRef.doc.update({ downvote: downvoteNum});
-    console.log("downvoted");
+    //     collRef.doc(docID).update({
+    //         upvote : upvoteNum
+    //     })
+    // });
+
+    firestore.runTransaction(function(transaction) {
+        // This code may get re-run multiple times if there are conflicts.
+        return transaction.get(collRef.doc(docID)).then(function(commentDoc) {
+            if (!commentDoc.exists) {
+                throw "Document does not exist!";
+            }
+            var newDownvote = commentDoc.data().downvote + 1;
+            transaction.update(collRef.doc(docID), { downvote: newDownvote });
+        });
+    }).then(function() {
+        console.log("Transaction successfully committed!");
+    }).catch(function(error) {
+        console.log("Transaction failed: ", error);
+    });
 }
 
 function addComment() {
+
+    var newCommentRef = collRef.doc();
+
     var commentID = "comment";
     var dateData = new Date().toLocaleString();
     var commentData = {
         quote: document.getElementById("commentInput").value,
         upvote: 0,
         downvote: 0,
-        date_posted: dateData
+        date_posted: dateData,
+        reference: newCommentRef.id
     }
 
-    firestore.collection("Comments").add(commentData);
+    newCommentRef.set(commentData);
+
+    document.getElementById("commentInput").value = "";
 };
