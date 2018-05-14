@@ -70,72 +70,107 @@
             a.textContent = food[i];
             
             var block = document.createElement("div");
+            block.classList.add('asdf');
             var id = 'collapse' + i;
             block.setAttribute("id",id);
             block.classList.add('card-block','collapse');
-            var paragraph = document.createElement("p");
-            paragraph.style.padding = "10px";
-            paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>";
+            
+//            var paragraph = document.createElement("p");
+//            paragraph.style.padding = "10px";
+//            paragraph.innerHTML = "Levels of Ripeness:<br><br><br>Average price per unit():<br><br><br>Storage tips:<br><br><br>";
+            
+            for(n = 0;n < 3;n++){
+                var type;
+                if(n == 0){
+                    type = "storage";
+                } else if(n == 1) {
+                    type = "spoil";
+                } else {
+                    type = "community";
+                }
+                
+                var content = document.createElement("div");
+                content.classList.add(type,'content');
+                block.appendChild(content);
+                
+                var detail1 = document.createElement("div");
+                detail1.classList.add('details');
+                detail1.innerHTML = 'Title';
+                content.append(detail1);
+                
+                var detail2 = document.createElement("div");
+                detail2.classList.add('details');
+                detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
+                content.append(detail2);
+                
+                
+                
+            }
             
             
-            // Storage
             
-            var storage = document.createElement("div");
-            storage.classList.add('storage','block');
-            storage.innerHTML = "Storage";
-            storage.style.fontFamily = "lato-medium";
-            storage.style.fontWeight = "bold";
             
-            var storage2 = document.createElement("div");
-            storage2.innerHTML = "Storage2";
-            storage2.style.fontFamily = "lato-regular";
-            storage2.style.fontWeight = "normal";
-            storage.appendChild(storage2);
-            
-            // Spoil
-            
-            var spoil = document.createElement("div");
-            spoil.classList.add('spoil','block');
-            spoil.innerHTML = "Spoil";
-            spoil.style.fontFamily = "lato-medium";
-            spoil.style.fontWeight = "bold";
-            
-            var spoil2 = document.createElement("div");
-            spoil2.innerHTML = "Spoil2";
-            spoil2.style.fontFamily = "lato-regular";
-            spoil2.style.fontWeight = "normal";
-            spoil.appendChild(spoil2);
-            
-            // Community
-            
-            var community = document.createElement("div");
-            community.classList.add('community');
-            community.innerHTML = "Community";
-            
-            var community2 = document.createElement("div");
-            community2.innerHTML = "Community2";
-            community2.style.backgroundColor = "#F9F9F9";
-            community.appendChild(community2);
-            
-            var comments = document.createElement("a");
-            comments.setAttribute("href", "page4.html");
-            comments.innerHTML = "Community";
+//            // Storage
+//            
+//            var storage = document.createElement("div");
+//            storage.classList.add('storage');
+//            block.appendChild(storage);
+//            
+//            var storageTitle = document.createElement("div");
+//            storageTitle.classList.add('storageTitle','details');
+//            storageTitle.innerHTML = "Storage<br>Method";
+//            storageTitle.style.fontFamily = "lato-medium";
+//            storageTitle.style.fontWeight = "bold";
+//            storage.appendChild(storageTitle);
+//            
+//            
+//            var storageContent = document.createElement("div");
+//            storageContent.classList.add('storageContent','details');
+//            storageContent.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.";
+//            storageContent.style.fontFamily = "lato-regular";
+//            storageContent.style.fontWeight = "normal";
+//            storage.appendChild(storageContent);
+//            
+//            
+//            // Spoil
+//            
+//            var spoil = document.createElement("div");
+//            spoil.classList.add('spoil');
+//            block.appendChild(storge);
+//            
+//            var spoilTitle = document.createElement("div");
+//            storageTitle.classList.add('spoilTitle','details');
+//            spoilTitle.innerHTML = "Spoil";
+//            spoilTitle.style.fontFamily = "lato-medium";
+//            spoilTitle.style.fontWeight = "bold";
+//            spoil.appendChild(spoilTitle);
+//              
+//            var spoilContent = document.createElement("div");
+//            storageTitle.classList.add('spoilContent','details');
+//            spoilContent.innerHTML = "Spoil2";
+//            spoilContent.style.fontFamily = "lato-regular";
+//            spoilContent.style.fontWeight = "normal";
+//            spoil.appendChild(spoilContent;
+//            
+//            // Community
+//            
+//            var community = document.createElement("div");
+//            community.classList.add('community');
+//            community.innerHTML = "Community";
+//            
+//            var community2 = document.createElement("div");
+//            community2.innerHTML = "Community2";
+//            community2.style.backgroundColor = "#F9F9F9";
+//            community.appendChild(community2);
+//            
+//            var comments = document.createElement("a");
+//            comments.setAttribute("href", "page4.html");
+//            comments.innerHTML = "Community";
 
             header.appendChild(a);
             
-            block.appendChild(storage);
-            block.appendChild(spoil);
-            block.appendChild(community);
-            
             card.appendChild(header);
-<<<<<<< HEAD
-            block.appendChild(paragraph);
-
             card.appendChild(block);
-            paragraph.appendChild(comments);   
-=======
-            card.appendChild(block); 
->>>>>>> e41b5978a583cfb753f7d86558c21a4085335989
 
         }
         
