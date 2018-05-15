@@ -68,7 +68,7 @@
 		<!-- logo-->
 		<div class="d-xl-none d-lg-none">
 			<div class="mx-auto pt-5 pb-5" style="width: 200px;" id="dontbespoiled">
-				<img src="Images/dontbespoiledlogo.png" width="120%" height="auto">
+				<img src="https://wwww.dontbespoiled.com/images/dontbespoiledlogo.png" width="120%" height="auto">
 			</div>
 		</div>
 
@@ -98,11 +98,11 @@
 			</div>
 
 
-			<!-- rows for jumbotron -->
+			<!-- Large screen only -->
 			<div class="row">
 				<div class="jumbotron text-center col-md-6 col-sm-offset-1">
 					<div class="mx-auto pt-5 pb-5" style="width: 200px;" id="dontbespoiled">
-						<img src="Images/dontbespoiledlogo.png" width="120%" height="auto">
+						<img src="https://wwww.dontbespoiled.com/images/dontbespoiledlogo.png" width="120%" height="auto">
 					</div>
 					<h6>Help us know what food you have at home</h6>
 				</div>
@@ -121,7 +121,14 @@
 					<option>Chinese</option>
 </select>
 
+
 					<a href="page2.html" class="btn btn btn-link float-right" id="pressGo">GO »</a>
+				</div>
+			</div>
+
+			<div class="jumbotron" id="twitterFeed">
+				<div id="getJSON">
+					<a href='#'>Click here to get the data as JSON.</a>
 				</div>
 			</div>
 		</div>
@@ -131,7 +138,7 @@
 
 
 
-		<!-- Checkbox Options only available for small-->
+		<!-- Small display only-->
 		<div class="d-xl-none d-lg-none">
 			<div class="jumbotron">
 
@@ -161,6 +168,41 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+	<script>
+		/*<![CDATA[*/
+		$(document).ready(function() {
+
+			$('#getJSON a').click(function(e) {
+				// don't allow the anchor to visit the link
+				e.preventDefault();
+				console.log('clicked for JSON');
+
+				$.ajax({
+					url: "index.php",
+					dataType: "json",
+					type: "GET",
+					data: {
+						output: 'json'
+					},
+					success: function(data) {
+
+						console.log(data);
+						// YOUR CODE GOES HERE
+
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						$("#p1").text(textStatus + " " + errorThrown +
+							jqXHR.responseText);
+					}
+				});
+			});
+
+
+		});
+
+		/*]]>*/
+
+	</script>
 
 
 
