@@ -25,12 +25,9 @@
     --green-dark:  #3F7547;
     --white:       #F9F9F9;
     
-    --storage:      #6BC7D6;
-    --storage2:     #2DB9EA;    
+    --storage:      #6BC7D6;    
     --spoil:        #C6586D;
-    --spoil2:       #D63031;
     --community:    #6F459B;
-    --community2:   #8C58BA;
     
 /*    block content spacing margin */
     
@@ -54,6 +51,7 @@ body{
     } 
 }
 
+/*
 .navbar{
     color: #F9F9F9;
 }
@@ -61,6 +59,7 @@ body{
 .navbar a {
     color: #F9F9F9;
 }
+*/
 
 .card-header{
     background-color: #1A1A1A;
@@ -78,9 +77,11 @@ body{
     border-left: 1px solid var(--white);    
 }
 
+/*
 .collapse{
     background-color: #F9F9F9;
 }
+*/
 
 .card{
     background-color: transparent;

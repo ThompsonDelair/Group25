@@ -10,6 +10,10 @@
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         
+<!--        our javascripts-->
+        
+        <script src="navbar.js"></script>
+        
 <!--        our css-->
         
         <link rel="stylesheet" href="style.css"/>
@@ -24,12 +28,17 @@
     <body>
         
         <!-- Navbar -->
+        
+        <div id = "navigation"></div>
+        
+<!--
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="page2.html"><i class="fas fa-angle-left"></i></a>
                     <span class="nav navbar-nav navbar-right">Your Cart(x)</span>
                 </div>
             </nav>
+-->
         
         <div class="pagemain">
             
@@ -45,7 +54,10 @@
                
         
     </body>
-    <script>        
+    <script>
+        
+        createNavbar();
+        
         var food = ["Eggs","Bread","Potato","Banana"];
         
         var accordion = document.getElementById("accordion");
@@ -94,16 +106,7 @@
             
             // populate card body contents
             
-            for(n = 0;n < 3;n++){
-//                var type;
-//                if(n == 0){
-//                    type = "storage";
-//                } else if(n == 1) {
-//                    type = "spoil";
-//                } else {
-//                    type = "community";
-//                }
-                
+            for(n = 0;n < 3;n++){                
                 var content = document.createElement("div");
                 content.classList.add('content');
                 block.appendChild(content);
@@ -120,6 +123,7 @@
             }
             
             // content info
+            
             var storage =  block.childNodes[0];
             storage.classList.add('storage');
             storage.childNodes[0].innerHTML = "Storage<br>Method";
@@ -134,68 +138,6 @@
             community.childNodes[0].innerHTML = "Community Advice"
             community.childNodes[1].innerHTML = "'Meat is like good or something'";
             
-//            // Storage
-//            
-//            var storage = document.createElement("div");
-//            storage.classList.add('storage');
-//            block.appendChild(storage);
-//            
-//            var storageTitle = document.createElement("div");
-//            storageTitle.classList.add('storageTitle','details');
-//            storageTitle.innerHTML = "Storage<br>Method";
-//            storageTitle.style.fontFamily = "lato-medium";
-//            storageTitle.style.fontWeight = "bold";
-//            storage.appendChild(storageTitle);
-//            
-//            
-//            var storageContent = document.createElement("div");
-//            storageContent.classList.add('storageContent','details');
-//            storageContent.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.";
-//            storageContent.style.fontFamily = "lato-regular";
-//            storageContent.style.fontWeight = "normal";
-//            storage.appendChild(storageContent);
-//            
-//            
-//            // Spoil
-//            
-//            var spoil = document.createElement("div");
-//            spoil.classList.add('spoil');
-//            block.appendChild(storge);
-//            
-//            var spoilTitle = document.createElement("div");
-//            storageTitle.classList.add('spoilTitle','details');
-//            spoilTitle.innerHTML = "Spoil";
-//            spoilTitle.style.fontFamily = "lato-medium";
-//            spoilTitle.style.fontWeight = "bold";
-//            spoil.appendChild(spoilTitle);
-//              
-//            var spoilContent = document.createElement("div");
-//            storageTitle.classList.add('spoilContent','details');
-//            spoilContent.innerHTML = "Spoil2";
-//            spoilContent.style.fontFamily = "lato-regular";
-//            spoilContent.style.fontWeight = "normal";
-//            spoil.appendChild(spoilContent;
-//            
-//            // Community
-//            
-//            var community = document.createElement("div");
-//            community.classList.add('community');
-//            community.innerHTML = "Community";
-//            
-//            var community2 = document.createElement("div");
-//            community2.innerHTML = "Community2";
-//            community2.style.backgroundColor = "#F9F9F9";
-//            community.appendChild(community2);
-//            
-//            var comments = document.createElement("a");
-//            comments.setAttribute("href", "page4.html");
-//            comments.innerHTML = "Community";
-
-            
-            
-            
-            
-
         }
         
     </script>
