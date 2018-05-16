@@ -214,7 +214,7 @@ body {
                         Meat Div
 *********************************/
 
-#div1 {
+#meatDiv {
     font-family: 'Lato', sans-serif;
     letter-spacing: 1px;
     font-size: 16pt;
@@ -245,7 +245,7 @@ body {
                     Vegetable Div
 *********************************/
 
-#div2 {
+#vegDiv {
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
   font-size: 16pt;
@@ -269,26 +269,28 @@ body {
 }
 
 /*********************************
-                    Seafood Div
+                    Fruit Div
 *********************************/
 
-#div3 {
+#fruitDiv {
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
   font-size: 16pt;
 }
 
-#seafoodTitle {
+#fruitTitle {
     font-size: 30pt;
     margin: 15px 0 0 5px;
 }
 
-#seafoodUL {
+#fruitUL {
     width: 80%;
     padding: 0 0 0 5px;
+    display: inline-block;
 }
 
-.seafoodLI {
+
+.fruitLI {
   list-style-type: none;
   padding: 20px 0 20px 20px;
   background-color: #222222;
@@ -299,7 +301,7 @@ body {
                     Bakery Div
 *********************************/
 
-#div4 {
+#bakeDiv {
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
   font-size: 16pt;
