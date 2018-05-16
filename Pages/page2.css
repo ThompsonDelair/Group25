@@ -214,7 +214,7 @@ body {
                         Meat Div
 *********************************/
 
-#div1 {
+#meatDiv {
     font-family: 'Lato', sans-serif;
     letter-spacing: 1px;
     font-size: 16pt;
@@ -245,7 +245,7 @@ body {
                     Vegetable Div
 *********************************/
 
-#div2 {
+#vegDiv {
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
   font-size: 16pt;
@@ -269,10 +269,10 @@ body {
 }
 
 /*********************************
-                    Seafood Div
+                    Fruit Div
 *********************************/
 
-#div3 {
+#fruitDiv {
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
   font-size: 16pt;
@@ -301,7 +301,7 @@ body {
                     Bakery Div
 *********************************/
 
-#div4 {
+#bakeDiv {
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
   font-size: 16pt;

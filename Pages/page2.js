@@ -11,57 +11,111 @@ var config = {
 firebase.initializeApp(config);
 var firestore = firebase.firestore();
 
-var meatList = document.getElementsByClassName("meatLabel");
-var meatCount = 0;
 //puts name of foods in array
 firestore.collection("Meats").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
-        meatList[meatCount].innerHTML += doc.data().Name;
-        console.log(doc.data().Name);
-        meatCount++;
+        document.getElementById("meatUL").innerHTML+="<li class='meatLI'><label class='container'><input type='checkbox'"
+        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
-    console.log("Error getting documents: ", error);
+    console.log("Error getting meat documents: ", error);
 });
 
-var list = document.getElementsByClassName("fruitLabel");
-var count = 0;
+
 //puts name of foods in array
-firestore.collection("DairyandEggs").get().then(function(querySnapshot){
+firestore.collection("Vegetables").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
-        list[count].innerHTML += doc.data().Name;
-        console.log(doc.data().Name);
-        count++;
+        document.getElementById("veggieUL").innerHTML+="<li class='veggieLI'><label class='container'><input type='checkbox'"
+        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + "<span class='checkmark'></span> </label></li>";
+    });
+}).catch(function(error){
+    console.log("Error getting vegetas documents: ", error);
+});
+
+
+//puts name of foods in array
+firestore.collection("Fruits").get().then(function(querySnapshot){
+    querySnapshot.forEach(function(doc){
+        document.getElementById("fruitUL").innerHTML+="<li class='fruitLI'><label class='container'><input type='checkbox'"
+        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
     console.log("Error getting dairy documents: ", error);
 });
 
-
-
-var vegList = document.getElementsByClassName("vegLabel");
-var vegCount = 0;
-//puts name of foods in array
-firestore.collection("Vegetables").get().then(function(querySnapshot){
-    querySnapshot.forEach(function(doc){
-        vegList[vegCount].innerHTML += doc.data().Name;
-        console.log(doc.data().Name);
-        vegCount++;
-    });
-}).catch(function(error){
-    console.log("Error getting documents: ", error);
-});
-
-var grainList = document.getElementsByClassName("grainLabel");
-var grainCount = 0;
-//puts name of foods in array
+//retrieves from database and adds html
 firestore.collection("Grains").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
-        grainList[grainCount].innerHTML += doc.data().Name;
-        console.log(doc.data().Name);
-        grainCount++;
+        document.getElementById("bakeUL").innerHTML+="<li class='bakeLI'><label class='container'><input type='checkbox'"
+        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
     console.log("Error getting documents: ", error);
 });
+
+firestore.collection("MeatAlternatives").get().then(function(querySnapshot){
+    querySnapshot.forEach(function(doc){
+        document.getElementById("meatAltUL").innerHTML+="<li class='meatAltLI'><label class='container'><input type='checkbox'"
+        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + "<span class='checkmark'></span> </label></li>";
+    });
+}).catch(function(error){
+    console.log("Error getting documents: ", error);
+});
+
+firestore.collection("DairyandEggs").get().then(function(querySnapshot){
+    querySnapshot.forEach(function(doc){
+        document.getElementById("dairyUL").innerHTML+="<li class='dairyLI'><label class='container'><input type='checkbox'"
+        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + "<span class='checkmark'></span> </label></li>";
+    });
+}).catch(function(error){
+    console.log("Error getting documents: ", error);
+});
+
+switch(sessionStorage.getItem("diet")){
+    case "veg":
+        jQuery("#meatDiv").hide();
+        jQuery("#meatPic").hide();
+        break;
+    case "vegan":
+        jQuery("#meatDiv").hide();
+        jQuery("#dairyDiv").hide();
+        jQuery("#meatPic").hide();
+        jQuery("#dairyPic").hide();
+        break;
+    case "glufree":
+        jQuery("#bakeDiv").hide();
+        jQuery("#breadPic").hide();
+        break;
+    default:
+    
+};
+
+var cart =[];
+
+function onCheck(foodItem){
+    if(foodItem.checked){
+        cart.push(foodItem.value);
+        console.log("This food is checked! " + foodItem.value);
+    } else{
+        var index = cart.indexOf(foodItem.value);
+        cart.splice(index, 1);
+        console.log("This food is unchecked! " + foodItem.value);
+    }
+    console.log(cart);
+}
+
+function storeArray(){
+
+    sessionStorage.setItem("foods", JSON.stringify(cart));
+    console.log("Array is stored!")
+}
+
+
+
 

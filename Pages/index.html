@@ -108,17 +108,17 @@
 				</div>
 				<div class="jumbotron text-center col-md-6">
 					<p id="tips">Choose your dietary habits:</p>
-					<select class="form-control form-control-lg" id="dietSelectWeb">
+					<select class="form-control form-control-lg" id="dietSelectWeb" onchange="dietWebFunc()">
 						<option value="none">No Restriction</option>
 						<option value="veg">Vegetarian</option>
 						<option value="vegan">Vegan</option>
 						<option value="glufree">Gluten Free</option>
 					</select>
 					<p id="tips">Choose your cuisine preference:</p>
-					<select class="form-control form-control-lg" id="cuisSelectWeb">
+					<select class="form-control form-control-lg" id="cuisSelectWeb" onchange="cuisWebFunc()">
 						<option value="na">North American</option>
-						<option value="kor">Korean</option>
-						<option value="chin">Chinese</option>
+						<option value="korean">Korean</option>
+						<option value="chinese">Chinese</option>
 					</select>
 
 					<a href="page2.html" class="btn btn btn-link float-right" id="pressGo">GO »</a>
@@ -137,17 +137,17 @@
 
 				<h6>Help us know what food you have at home</h6>
 				<p id="tips">Choose your dietary habits:</p>
-				<select class="form-control form-control-lg" id="dietSelectMob">
+				<select class="form-control form-control-lg" id="dietSelectMob" onchange="dietMobFunc()">
   					<option value="none">No Restriction</option>
 					<option value="veg">Vegetarian</option>
 					<option value="vegan">Vegan</option>
 					<option value="glufree">Gluten Free</option>
 				</select>
 				<p id="tips">Choose your cuisine preference:</p>
-				<select class="form-control form-control-lg"id="cuisSelectMob">
+				<select class="form-control form-control-lg"id="cuisSelectMob" onchange="cuisMobFunc()">
   					<option value="na">North American</option>
-					<option value="kor">Korean</option>
-					<option value="chin">Chinese</option>
+					<option value="korean">Korean</option>
+					<option value="chinese">Chinese</option>
 				
 				</select>
 
@@ -155,6 +155,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="./page1.js"></script>
 
 	<!-- Script for Jquery, Popper.js, Javascript -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
