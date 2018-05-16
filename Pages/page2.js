@@ -11,7 +11,7 @@ var config = {
 firebase.initializeApp(config);
 var firestore = firebase.firestore();
 
-//puts name of foods in array
+//puts meats into html into meat list
 firestore.collection("Meats").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("meatUL").innerHTML+="<li class='meatLI'><label class='container'><input type='checkbox'"
@@ -23,7 +23,7 @@ firestore.collection("Meats").get().then(function(querySnapshot){
 });
 
 
-//puts name of foods in array
+//puts vegetables into html into veg list
 firestore.collection("Vegetables").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("veggieUL").innerHTML+="<li class='veggieLI'><label class='container'><input type='checkbox'"
@@ -35,7 +35,7 @@ firestore.collection("Vegetables").get().then(function(querySnapshot){
 });
 
 
-//puts name of foods in array
+//puts fruits into html into fruit list
 firestore.collection("Fruits").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("fruitUL").innerHTML+="<li class='fruitLI'><label class='container'><input type='checkbox'"
@@ -46,7 +46,7 @@ firestore.collection("Fruits").get().then(function(querySnapshot){
     console.log("Error getting dairy documents: ", error);
 });
 
-//retrieves from database and adds html
+//puts grains into html into grain list
 firestore.collection("Grains").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("bakeUL").innerHTML+="<li class='bakeLI'><label class='container'><input type='checkbox'"
@@ -57,6 +57,7 @@ firestore.collection("Grains").get().then(function(querySnapshot){
     console.log("Error getting documents: ", error);
 });
 
+//puts meat alts into html into meat alt list
 firestore.collection("MeatAlternatives").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("meatAltUL").innerHTML+="<li class='meatAltLI'><label class='container'><input type='checkbox'"
@@ -67,6 +68,7 @@ firestore.collection("MeatAlternatives").get().then(function(querySnapshot){
     console.log("Error getting documents: ", error);
 });
 
+//puts dairy into html into dairy list
 firestore.collection("DairyandEggs").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("dairyUL").innerHTML+="<li class='dairyLI'><label class='container'><input type='checkbox'"

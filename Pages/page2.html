@@ -19,12 +19,12 @@
 
   <div class="buttons">
       <a id="showall"></a>
-      <a class="showSingle" id="meatPic" target="1"></a>
-      <a class="showSingle" id="veggiePic" target="2"></a>
-      <a class="showSingle" id="fruitPic" target="3"></a>
-      <a class="showSingle" id="breadPic" target="4"></a>
-      <a class="showSingle" id="meatAltPic" target="5"></a>
-      <a class="showSingle" id="dairyPic" target="6"></a>
+      <a class="showSingle" id="meatPic" target="meat"></a>
+      <a class="showSingle" id="veggiePic" target="veg"></a>
+      <a class="showSingle" id="fruitPic" target="fruit"></a>
+      <a class="showSingle" id="breadPic" target="bake"></a>
+      <a class="showSingle" id="meatAltPic" target="meatAlt"></a>
+      <a class="showSingle" id="dairyPic" target="dairy"></a>
   </div>
 
         <p id ="pickFood"> Pick the food your would like to learn more about.</p>
@@ -39,14 +39,12 @@
   <div id="vegDiv" class="targetDiv">
       <h1 id="veggieTitle">Vegetables</h1>
       <ul id="veggieUL">
-          
       </ul>
   </div>
 
   <div id="fruitDiv" class="targetDiv">
       <h1 id="fruitTitle">Fruit</h1>
       <ul id="fruitUL">
-       
       </ul>
   </div>
 
@@ -85,7 +83,7 @@
               });
               jQuery('.showSingle').click(function(){
                     jQuery('.targetDiv').hide();
-                    jQuery('#div'+$(this).attr('target')).fadeIn('fast');
+                    jQuery('#'+ $(this).attr('target') + 'Div').fadeIn('fast');
               });
       });
 
@@ -98,11 +96,12 @@
 
 
   </script>
-        <script src="./page2.js"></script>
+        
+    </div>
+    <script src="./page2.js"></script>
         <script>
         console.log(sessionStorage.getItem("diet"));
         console.log(sessionStorage.getItem("cuisine"));
         </script>
-    </div>
 </body>
 </html>
