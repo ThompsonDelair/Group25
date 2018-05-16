@@ -9,6 +9,18 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source" : "/[Ff][Oo][Oo]",
+        "destination" : "/Foo",
+        "type" : 301
+      },
+      {
+        "source": "/firebase/*",
+        "destination": "https://www.firebase.com",
+        "type": 302
+      }
     ]
   }
 }
