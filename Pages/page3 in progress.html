@@ -12,13 +12,13 @@
         
 <!--        our javascripts-->
         
-        <script src="navbar.js"></script>
+        <script src="Javascript/navbar.js"></script>
         
 <!--        our css-->
         
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="Css/style.css"/>
         
-        <link rel="stylesheet" href="page3.css" />
+        <link rel="stylesheet" href="Css/page3.css" />
         
 <!--        font awesome-->
         
@@ -36,8 +36,11 @@
         
         <div id = "navigation"></div>
         
+<!--        Page content-->
         
         <div class="pagemain">
+            
+<!--            food items to choose from-->
             
             <div id="selections">
                 <div id='#columnOne' class='mycolumn'></div>
@@ -45,19 +48,12 @@
                 <div id='#mobileSelections'></div>
             </div>
             
+<!--            info of selected food-->
+            
             <div id="info">
                 <div id="infoIntro">Click on a food to learn more about it <br><i style="font-size:24px" class="fa">&#xf0a9;</i></div>
                 <div id="infoMain"></div>
-            </div>    
-            
-<!--            <p id='blurb'>Learn more about your food!</p>-->
-            
-            <!-- Accordion -->
-<!--
-            <div id="accordion" class="accordion">                     
-                
-            </div>            
--->
+            </div>
             
         </div>
                
@@ -134,18 +130,19 @@
             
             // food items
             
-            // seven is an arbitrary number to populate item groups with placeholders           
+            // seven is an arbitrary number to populate item groups with placeholders   
             
             for (n=0;n < 7;n++ ){
                 
                 var item = document.createElement('a');
                 item.classList.add('item');     
                 
-                column.appendChild(item);
-                
+                column.appendChild(item);                
                 
                 var image = document.createElement('img');
+                
                 image.setAttribute('src','Images/foodIcons/cheese-01.png');
+                
                 image.setAttribute('width','20px');
                 image.setAttribute('height','20px');
                 item.appendChild(image);
@@ -154,6 +151,7 @@
                 label.innerHTML = 'food item';
                 item.appendChild(label);
                 
+                // clones the item element (with children) for the mobile selection div
                 document.getElementById('selections').children[2].appendChild(item.cloneNode(true));
             }
         }        

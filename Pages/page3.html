@@ -24,6 +24,9 @@
         
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- firestore database -->
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
     </head>
     <body>
         
@@ -47,7 +50,7 @@
             
             <!-- Accordion -->
             <div id="accordion" class="accordion">                     
-                
+
             </div>            
             
         </div>
@@ -55,13 +58,32 @@
         
     </body>
     <script>
+<<<<<<< HEAD
         
         createNavbar();
         
         var food = ["Eggs","Bread","Potato","Banana"];
         
+=======
+    
+    var config = {
+        apiKey: "AIzaSyCGNoYTlu22XUIBGUL8gfUq4_ysaOXhMHU",
+        authDomain: "testerino-ae33c.firebaseapp.com",
+        databaseURL: "https://testerino-ae33c.firebaseio.com",
+        projectId: "testerino-ae33c",
+        storageBucket: "testerino-ae33c.appspot.com",
+        messagingSenderId: "931560337847"
+    };
+        firebase.initializeApp(config);
+        var firestore = firebase.firestore();
+
+        //var food = ["Eggs","Bread","Potato","Banana"];
+        var food = JSON.parse(sessionStorage.getItem("foods"));
+        console.log(food);
+>>>>>>> 03c8cf3402cfe2f65c7147097af420c54bbf0e98
         var accordion = document.getElementById("accordion");
-        
+      
+       
         var card = document.createElement("div");
         card.classList.add('card');
         accordion.appendChild(card);
@@ -121,12 +143,20 @@
                 detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
                 content.append(detail2);
             }
-            
+            var found = false;
+            var query;
+            if(!found){
+                var meatRef = firestore.collection("Meats");
+                query = meatRef.where("Name", "==", food[i]);
+                
+                console.log(query.get());
+            }
             // content info
             
             var storage =  block.childNodes[0];
             storage.classList.add('storage');
             storage.childNodes[0].innerHTML = "Storage<br>Method";
+            storage.childNodes[1].innerHTML = "Weird Thing";
             
             var spoil = block.childNodes[1];
             spoil.classList.add('spoil');
@@ -135,7 +165,7 @@
             
             var community = block.childNodes[2];
             community.classList.add('community');
-            community.childNodes[0].innerHTML = "Community Advice"
+            community.childNodes[0].innerHTML = "Community Advice";
             community.childNodes[1].innerHTML = "'Meat is like good or something'";
             
         }

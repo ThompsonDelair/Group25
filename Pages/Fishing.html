@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>fishin'</title>
-        <link rel="stylesheet" href="fishing.css" />
+        <link rel="stylesheet" href="Css/fishing.css" />
     </head>
     <body>
         <canvas id="canvas" width="640" height="640"></canvas>
@@ -186,8 +186,7 @@
         // fishing rod animation
         function playAnimation(){
             
-            playingAnimation = true;            
-            console.log("playing animation ...");           
+            playingAnimation = true;         
             
             setTimeout(function(){
                 currentFrame = frame3;
@@ -264,7 +263,6 @@
         // get random fish
         function randomFish(){
             let rand = Math.floor(Math.random() * 4);
-            //console.log(rand);
             let returnFish = new Fish();
             
             if(rand == 0){
@@ -376,7 +374,6 @@
                     popupTexts.splice(i,1);
                 } else {
                     context.fillStyle = popupTexts[i].color;
-                    console.log(popupTexts[i].text);
                     context.font = popupTexts[i].textSize+"px Arial";
                     context.fillText(popupTexts[i].text,popupTexts[i].x,popupTexts[i].y);
                     popupTexts[i].textSize -= popupTexts[i].decayRate;

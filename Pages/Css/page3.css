@@ -1,0 +1,252 @@
+/* F O N T S */
+
+@font-face {
+	font-family: lato-light;
+	src: url('Fonts/Lato-Light.ttf')
+}
+
+@font-face {
+	font-family: lato-regular;
+	src: url('Fonts/Lato-Regular.ttf')
+}
+
+@font-face {
+	font-family: lato-medium;
+	src: url('Fonts/Lato-Medium.ttf')
+}
+
+:root {
+    
+    /*  C O L O R S */
+    
+    --black:       #1A1A1A;
+    --yellow:      #FFBD37;
+    --green-light: #B5FFC5;
+    --green-dark:  #3F7547;
+    --white:       #F9F9F9;
+    
+    --storage:      #6BC7D6;    
+    --spoil:        #C6586D;
+    --community:    #6F459B;
+    
+/*    block content spacing margin */
+    
+    --blockMargin: 10px;
+}
+
+body{
+/*    background-color: red;*/
+}
+
+.pagemain {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+#selections{
+/*    background-color: red;*/
+    float: right;
+    width: 64%;
+    margin-left: 2%;
+}
+
+#info{
+/*    background-color: deepskyblue;*/
+    float: left;
+    width: 34%;
+    padding: 2%;
+    background-color: #e3e4df;
+    border-radius: 25px;
+    text-align: center;
+    
+}
+
+#infoIntro{
+    color: var(--white);
+    padding: 10px;
+    background-color: var(--green-dark);
+    height: 100px;
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40%;
+    text-align: center;
+}
+
+#infoMain{
+    visibility: hidden;
+}
+
+.card-header{
+    background-color: #1A1A1A;
+    color: #F9F9F9;
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.headerLine{
+    top: 24%;
+    right: 45px;
+    width: 0px;
+    height: 52%;
+    position: absolute;    
+    border-left: 1px solid var(--white);    
+}
+
+.card{
+    background-color: transparent;
+    border-style: hidden;
+}
+
+.accordion .card-header:after{
+    font-family: 'FontAwesome';
+    content: "\f106";
+    float: right;
+    //background-color: red;
+    color: #F9F9F9;
+}
+
+.accordion .card-header.collapsed:after{
+    content: "\f107";
+}
+
+.transparentBG{
+    background-color: transparent;
+}
+
+.content{
+    margin-bottom: var(--blockMargin);
+    float: left; 
+    width: 100%;    
+    color: #F9F9F9;
+}
+
+.details:nth-child(1){
+    float: left;
+    width: 34%;
+    font-family: lato-medium;
+    font-size: 24px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.details:nth-child(2){    
+    padding: 15px;
+    float: right;
+    width: 66%;
+}
+
+/*  Storage   */
+
+.storage{
+    background-color: var(--storage);
+}
+
+/*  Spoil   */
+
+.spoil{
+    color: #F9F9F9;
+    background-color: var(--spoil);
+}
+
+/*  Community   */
+
+.community{    
+    margin-bottom: var(--blockMargin);
+}
+
+.community div:nth-child(1){
+    float: none;
+    width: 100%;
+    color: #F9F9F9;
+    margin: auto;
+    padding: 8px;
+    background-color: var(--community);
+    font-size: 24px;
+}
+
+.community div:nth-child(2){
+    float: none;
+    color: black;
+    background-color: #F9F9F9;
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+}
+
+.itemGroup{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.groupTitle{
+    background-color: var(--black);
+    color: var(--white);
+    padding: 5px;
+    padding-left: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.item{
+    display: inline-block;
+    margin: 10px;    
+}
+
+.item span{
+    margin-left: 5px;
+}
+
+.mycolumn{
+    width: 46%;
+    margin-left: 2%;
+    float:left;
+}
+
+#columnOne{
+    
+}
+
+#columnTwo{
+   
+}
+#mobileSelections{
+    display: none;
+}
+
+@media (max-width: 675px){
+   .pagemain {
+        width: 85vw;
+    }
+    #selections{
+        float: none;
+        width: auto;
+/*        background-color: orange;*/
+    }
+    #info {
+        float: none;
+        width: auto;
+/*        background-color: aquamarine;*/
+    }
+    .mycolumn{
+        display: none;
+    }
+    #mobileSelections{
+        display: inherit;
+    }
+    .groupTitle{
+        display: none;
+    }
+    .mycolumn{
+        width: auto;
+        margin: auto;
+        float: auto;
+    }
+    .item img{
+        display: none;
+    }
+}
