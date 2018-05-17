@@ -65,9 +65,13 @@
     </body>
     <script>
         
+        // create the navbar
+        
         createNavbar();
                 
         // info
+        
+        // this stuff is hidden until a button is pressed
             
         let infoMain = document.getElementById('infoMain');
             
@@ -106,14 +110,14 @@
         // food groups
         
         var groups = ['Meat','Vegetables','Meat Alternatives','Grains'];
+        
+        // reference to div that contains the food item selection anchors
+        
         var selections = document.getElementById('selections');
-        console.log(selections.id);
         
         for(var i = 0; i < groups.length; i++){
             
-            //var group = document.createElement('div');
-            
-            var column;
+            // toggle between which of the two columns the content is placed in
             
             if(i % 2 == 0){
                 column = selections.children[0];        
@@ -121,14 +125,16 @@
                 column = selections.children[1];  
             }
             
+            // food group title
+            
             var groupTitle = document.createElement('div');
             groupTitle.classList.add('groupTitle');
             groupTitle.innerHTML = groups[i];
-            column.appendChild(groupTitle);
+            column.appendChild(groupTitle);          
             
-//            var groupItems = document.createElement('div');
-//            groupItems.classList.add('itemGroup');
-//            column.appendChild(groupItems);            
+            // food items
+            
+            // seven is an arbitrary number to populate item groups with placeholders           
             
             for (n=0;n < 7;n++ ){
                 
@@ -150,72 +156,6 @@
                 
                 document.getElementById('selections').children[2].appendChild(item.cloneNode(true));
             }
-        }
-        
-        
-        
-        
-//        var accordion = document.getElementById("accordion");
-//        
-//        var card = document.createElement("div");
-//        card.classList.add('card');
-//        accordion.appendChild(card);
-        
-        // populate accordion
-//        console.log(groups.length);
-//        for(var i = 0; i < groups.length; i++){
-//            console.log('loop');
-//            // create card header
-//            
-//            var header = document.createElement("div");
-//            header.classList.add('card-header','collapsed');
-//            header.setAttribute("aria-expanded","true");
-//            header.setAttribute("data-toggle","collapse");
-//            header.setAttribute("cursor","pointer");
-//            header.setAttribute("data-parent","#accordion");
-//            var href = '#collapse' + i;
-//            header.setAttribute("href",href);            
-//            card.appendChild(header);
-//            
-//            // card header title
-//            
-//            var a = document.createElement("a");
-//            a.classList.add('card-title');            
-//            a.textContent = groups[i];
-//            header.appendChild(a);
-//            
-//            // card header line
-//            
-//            var line = document.createElement("div");
-//            line.classList.add('headerLine');
-//            header.appendChild(line);
-//            
-//            // create card body
-//            
-//            var block = document.createElement("div");
-//            block.classList.add('transparentBG');
-//            var id = 'collapse' + i;
-//            block.setAttribute("id",id);
-//            block.classList.add('card-block','collapse');
-//            card.appendChild(block);       
-//            
-//            for (n=0;n < 7;n++ ){
-//                
-//                var item = document.createElement('a');
-//                item.classList.add('item');
-//                block.appendChild(item);
-//                
-//                var image = document.createElement('img');
-//                image.setAttribute('src','Images/foodIcons/cheese-01.png');
-//                image.setAttribute('width','20px');
-//                image.setAttribute('height','20px');
-//                item.appendChild(image);
-//                
-//                var label = document.createElement('span');
-//                label.innerHTML = 'food item';
-//                item.appendChild(label);
-//            }
-//        }
-        
+        }        
     </script>
 </html>
