@@ -33,7 +33,7 @@
 
 .jumbotron {
 	background: rgb(255, 255, 255);
-	background: rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, 0.5);
 }
 
 #pressGo {
@@ -42,4 +42,10 @@
 
 #twitterFeed {
 	background-color: #f9ffe8;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+#dontbespoiled {
+	padding-left: 0px;
+	padding-right: 0px;
 }
