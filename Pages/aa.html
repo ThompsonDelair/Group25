@@ -13,22 +13,32 @@
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
 </head>
 
-<body onload="updatePage()">
-    <div class="container">
-
-        <div class="container" id="commentContainer">
-    
-        </div>
-
-        <div class="container">
-            <div class="input-group" id="commentInputContainer">
-                <textarea class="form-control" rows="5" id="commentInput"></textarea>
-                <span class="input-group-btn">
-                    <button class="btn btn-default align-middle" id="commentSubmit" onclick="addComment()">Submit</button>
-                </span>
+<body>
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="updatePage()">
+                            Comments
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <div id="commentContainer">
+                        </div>
+                        <di>
+                            <div class="input-group" id="commentInputContainer">
+                                <textarea class="form-control" rows="5" id="commentInput"></textarea>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default align-middle" id="commentSubmit" onclick="addComment()">Submit</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 </body>
 
 <!-- Script for Jquery, Popper.js, Javascript -->
