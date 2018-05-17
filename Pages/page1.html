@@ -42,10 +42,7 @@
 
 							<a class="nav-link" href="aboutus.html">About us</a>
 						</li>
-						<li class="nav-item">
 
-							<a class="nav-link" href="page4.html">Community Tips</a>
-						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Get Involved
@@ -99,30 +96,32 @@
 
 
 			<!-- Large screen only, row to split it into two columns -->
-			<div class="row">
-				<div class="jumbotron text-center col-md-6 col-sm-offset-1">
-					<div class="mx-auto pt-5 pb-5" style="width: 200px;" id="dontbespoiled">
-						<img src="images/dontbespoiledlogo.png" width="120%" height="auto">
+			<div class="container">
+				<div class="row">
+					<div class="jumbotron text-center col-md-6 col-sm-offset-1">
+						<div class="mx-auto pt-5 pb-5" style="width: 200px;" id="dontbespoiled">
+							<img src="images/dontbespoiledlogo.png" width="120%" height="auto">
+						</div>
+						<h6>Help us know what food you have at home</h6>
 					</div>
-					<h6>Help us know what food you have at home</h6>
-				</div>
-				<div class="jumbotron text-center col-md-6">
-					<p id="tips">Choose your dietary habits:</p>
-					<select class="form-control form-control-lg" id="dietSelectWeb" onchange="dietWebFunc()">
+					<div class="jumbotron text-center col-md-6">
+						<p id="tips">Choose your dietary habits:</p>
+						<select class="form-control form-control-lg" id="dietSelectWeb" onchange="dietWebFunc()">
 						<option value="none">No Restriction</option>
 						<option value="veg">Vegetarian</option>
 						<option value="vegan">Vegan</option>
 						<option value="glufree">Gluten Free</option>
 					</select>
-					<p id="tips">Choose your cuisine preference:</p>
-					<select class="form-control form-control-lg" id="cuisSelectWeb" onchange="cuisWebFunc()">
+						<p id="tips">Choose your cuisine preference:</p>
+						<select class="form-control form-control-lg" id="cuisSelectWeb" onchange="cuisWebFunc()">
 						<option value="na">North American</option>
 						<option value="korean">Korean</option>
 						<option value="chinese">Chinese</option>
 					</select>
 
 
-					<a href="page2.html" class="btn btn btn-link float-right" id="pressGo">GO »</a>
+						<a href="page2.html" class="btn btn btn-link float-right" id="pressGo">GO »</a>
+					</div>
 				</div>
 			</div>
 			<!-- Twitter feed on click retrieves Json, can remove if not needed, only shows up for large-->
