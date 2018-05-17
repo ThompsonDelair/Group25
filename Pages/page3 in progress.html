@@ -43,9 +43,9 @@
 <!--            food items to choose from-->
             
             <div id="selections">
-                <div id='#columnOne' class='mycolumn'></div>
-                <div id='#columnTwo' class='mycolumn'></div>
-                <div id='#mobileSelections'></div>
+                <div id="columnOne" class='mycolumn'></div>
+                <div id="columnTwo" class='mycolumn'></div>
+                <div id="mobileSelections"></div>
             </div>
             
 <!--            info of selected food-->
@@ -154,6 +154,17 @@
                 // clones the item element (with children) for the mobile selection div
                 document.getElementById('selections').children[2].appendChild(item.cloneNode(true));
             }
-        }        
+        }
+        
+        function onSelect(){
+            var infoMain = document.getElementById("infoMain");
+            infoMain.setAttribute('display','inherit');
+            
+            var infoIntro = document.getElementById("infoIntro");
+            infoIntro.setAttribute('display','none');
+        }
+        
+        onSelect;
+        
     </script>
 </html>

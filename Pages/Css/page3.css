@@ -35,7 +35,7 @@
 }
 
 body{
-/*    background-color: red;*/
+    
 }
 
 .pagemain {
@@ -46,14 +46,12 @@ body{
 }
 
 #selections{
-/*    background-color: red;*/
     float: right;
     width: 64%;
     margin-left: 2%;
 }
 
 #info{
-/*    background-color: deepskyblue;*/
     float: left;
     width: 34%;
     padding: 2%;
@@ -71,7 +69,7 @@ body{
     width: 200px;
     display: block;
     margin: 0 auto;
-    margin-top: 40%;
+    margin-top: 120px;
     text-align: center;
 }
 
@@ -92,7 +90,7 @@ body{
     width: 0px;
     height: 52%;
     position: absolute;    
-    border-left: 1px solid var(--white);    
+    border-left: 1px solid var(--white);   
 }
 
 .card{
@@ -176,12 +174,44 @@ body{
     padding: 30px;
 }
 
+.mycolumn{
+    width: 46%;
+    margin-left: 2%;
+    float:left;
+    text-align:justify;
+/*    background-color: pink;*/
+}
+
+.mycolumn div:nth-child(1){
+    margin-top: auto;
+}
+
+#columnOne{
+/*    background-color: red;*/
+}
+
+#columnTwo{
+/*   background-color: greenyellow;*/
+}
+
+#mobileSelections {
+/*    background-color: deepskyblue;*/
+    display: none;
+/*    visibility: none;*/
+}
+
 .itemGroup{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
 }
+
+/*
+.groupTitle{
+    
+}
+*/
 
 .groupTitle{
     background-color: var(--black);
@@ -190,32 +220,16 @@ body{
     padding-left: 10px;
     display: inline-block;
     width: 100%;
+    margin-top: 10px;
 }
 
-.item{
+.item {
     display: inline-block;
     margin: 10px;    
 }
 
-.item span{
+.item span {
     margin-left: 5px;
-}
-
-.mycolumn{
-    width: 46%;
-    margin-left: 2%;
-    float:left;
-}
-
-#columnOne{
-    
-}
-
-#columnTwo{
-   
-}
-#mobileSelections{
-    display: none;
 }
 
 @media (max-width: 675px){
@@ -225,18 +239,16 @@ body{
     #selections{
         float: none;
         width: auto;
-/*        background-color: orange;*/
     }
     #info {
         float: none;
         width: auto;
-/*        background-color: aquamarine;*/
     }
     .mycolumn{
-        display: none;
+        display: none;        
     }
     #mobileSelections{
-        display: inherit;
+        display: inline-block;
     }
     .groupTitle{
         display: none;
@@ -248,5 +260,8 @@ body{
     }
     .item img{
         display: none;
+    }
+    #infoMain {
+        height: 450px;
     }
 }
