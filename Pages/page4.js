@@ -47,60 +47,54 @@ function thumbsUp(docID) {
     var upvoteNum;
     var documentName = docID;
 
-    // collRef.doc(docID).onSnapshot(function (doc) {
-    //     upvoteNum = doc.data().upvote + 1; 
-    //     console.log(doc.data().upvote);  
-    //     console.log(upvoteNum);
-
-    //     collRef.doc(docID).update({
-    //         upvote : upvoteNum
-    //     })
-    // });
-
-    firestore.runTransaction(function(transaction) {
-        // This code may get re-run multiple times if there are conflicts.
-        return transaction.get(collRef.doc(docID)).then(function(commentDoc) {
-            if (!commentDoc.exists) {
-                throw "Document does not exist!";
-            }
-            var newUpvote = commentDoc.data().upvote + 1;
-            transaction.update(collRef.doc(docID), { upvote: newUpvote });
+    if (localStorage.getItem("clickedUp")) {
+        console.log("already clicked");
+        return;
+    } else {
+        firestore.runTransaction(function(transaction) {
+            // This code may get re-run multiple times if there are conflicts.
+            return transaction.get(collRef.doc(docID)).then(function(commentDoc) {
+                if (!commentDoc.exists) {
+                    throw "Document does not exist!";
+                }
+                var newUpvote = commentDoc.data().upvote + 1;
+                transaction.update(collRef.doc(docID), { upvote: newUpvote });
+            });
+        }).then(function() {
+            console.log("Transaction successfully committed!");
+        }).catch(function(error) {
+            console.log("Transaction failed: ", error);
         });
-    }).then(function() {
-        console.log("Transaction successfully committed!");
-    }).catch(function(error) {
-        console.log("Transaction failed: ", error);
-    });
+
+        localStorage.setItem("clickedUp", true);
+    } 
 }
 
 function thumbsDown(docID) {
     var downvoteNum;
     var documentName = docID;
 
-    // collRef.doc(docID).onSnapshot(function (doc) {
-    //     upvoteNum = doc.data().upvote + 1; 
-    //     console.log(doc.data().upvote);  
-    //     console.log(upvoteNum);
-
-    //     collRef.doc(docID).update({
-    //         upvote : upvoteNum
-    //     })
-    // });
-
-    firestore.runTransaction(function(transaction) {
-        // This code may get re-run multiple times if there are conflicts.
-        return transaction.get(collRef.doc(docID)).then(function(commentDoc) {
-            if (!commentDoc.exists) {
-                throw "Document does not exist!";
-            }
-            var newDownvote = commentDoc.data().downvote + 1;
-            transaction.update(collRef.doc(docID), { downvote: newDownvote });
+    if (localStorage.getItem("clickedDown")) {
+        console.log("already clicked");
+        return;
+    } else {
+        firestore.runTransaction(function(transaction) {
+            // This code may get re-run multiple times if there are conflicts.
+            return transaction.get(collRef.doc(docID)).then(function(commentDoc) {
+                if (!commentDoc.exists) {
+                    throw "Document does not exist!";
+                }
+                var newDownvote = commentDoc.data().downvote + 1;
+                transaction.update(collRef.doc(docID), { downvote: newDownvote });
+            });
+        }).then(function() {
+            console.log("Transaction successfully committed!");
+        }).catch(function(error) {
+            console.log("Transaction failed: ", error);
         });
-    }).then(function() {
-        console.log("Transaction successfully committed!");
-    }).catch(function(error) {
-        console.log("Transaction failed: ", error);
-    });
+
+        localStorage.setItem("clickedDown", true);
+    }
 }
 
 function addComment() {
@@ -109,8 +103,11 @@ function addComment() {
 
     var commentID = "comment";
     var dateData = new Date().toLocaleString();
+    var comment = document.getElementById("commentInput").value;
+    comment = comment.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    
     var commentData = {
-        quote: document.getElementById("commentInput").value,
+        quote: comment,
         upvote: 0,
         downvote: 0,
         date_posted: dateData,
@@ -121,3 +118,8 @@ function addComment() {
 
     document.getElementById("commentInput").value = "";
 };
+
+$('.collapse').collapse();
+
+// array of the names of the foods selected.
+var food = JSON.parse(sessionStorage.getItem("foods"));
