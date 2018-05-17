@@ -64,16 +64,17 @@
         //var food = ["Eggs","Bread","Potato","Banana"];
         var food = JSON.parse(sessionStorage.getItem("foods"));
         console.log(food);
+        var blocks = [];
+        
         var accordion = document.getElementById("accordion");
       
-       
         var card = document.createElement("div");
         card.classList.add('card');
         accordion.appendChild(card);
-        
+        var count = 0;
         // populate accordion
         
-        for(var i = 0; i < food.length; i++){
+        for(let i = 0; i < food.length; i++){
             
             // create card header
             
@@ -108,6 +109,8 @@
             block.setAttribute("id",id);
             block.classList.add('card-block','collapse');
             card.appendChild(block);
+
+            blocks.push(block);
             
             // populate card body contents
             
@@ -135,27 +138,62 @@
                 detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
                 content.append(detail2);
             }
-            var found = false;
-            var query;
-            if(!found){
-                var meatRef = firestore.collection("Meats");
-                query = meatRef.where("Name", "==", food[i]);
-                
-                console.log(query.get());
-            }
-            // content info
+
             var storage =  block.childNodes[0];
             storage.classList.add('storage');
-            storage.childNodes[0].innerHTML = "Storage<br>Method";
-            storage.childNodes[1].innerHTML = "Weird Thing";
-            
             var spoil = block.childNodes[1];
             spoil.classList.add('spoil');
-            spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
-            spoil.childNodes[1].innerHTML = "Slimy<br>Color chanaged<br>Unpleasant Odor";
-            
             var community = block.childNodes[2];
             community.classList.add('community');
+
+            var found = false;
+            var query;
+            var foodName = food[i];
+            console.log("Retrieving" + food[count]);
+            if(!found){
+                var meatRef = firestore.collection("Meats");
+                query = meatRef.where("Name", "==", foodName);
+                query.get().then(function(querySnapshot){             
+                    if(!querySnapshot.empty){   
+                        found=true;
+                        querySnapshot.forEach(function(doc){
+                            console.log("Promise " + food[count] + count);  
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            
+                        }); 
+                        count++;
+                    } else {
+                        var vegRef = firestore.collection("Vegetables");
+                        query = vegRef.where("Name", "==", foodName);
+                        console.log(food[count]);
+                        query.get().then(function(querySnapshot){
+                            if(!querySnapshot.empty){
+                                found=true;
+                                querySnapshot.forEach(function(doc){
+                                    console.log("Promise " + food[count] + count);
+                                    blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                                    blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                                });
+                                count++;
+                            } 
+                        
+                        })
+                    }
+            
+            
+                })
+            }    
+            // content info
+          
+            storage.childNodes[0].innerHTML = "Storage<br>Method";
+            //storage.childNodes[1].innerHTML = "Weird Thing";
+            
+            
+            spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
+            //spoil.childNodes[1].innerHTML = "Slimy<br>Color chanaged<br>Unpleasant Odor";
+            
+            
             community.childNodes[0].innerHTML = "Community Advice";
             community.childNodes[1].innerHTML = "'Meat is like good or something'";
             
