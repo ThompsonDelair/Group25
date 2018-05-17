@@ -39,27 +39,45 @@ body{
 }
 
 .pagemain {
-    width: 50vw;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
 }
 
-@media (max-width: 675px){
-   .pagemain {
-        width: 85vw;
-    } 
+#selections{
+/*    background-color: red;*/
+    float: right;
+    width: 64%;
+    margin-left: 2%;
 }
 
-/*
-.navbar{
-    color: #F9F9F9;
+#info{
+/*    background-color: deepskyblue;*/
+    float: left;
+    width: 34%;
+    padding: 2%;
+    background-color: #e3e4df;
+    border-radius: 25px;
+    text-align: center;
+    
 }
 
-.navbar a {
-    color: #F9F9F9;
+#infoIntro{
+    color: var(--white);
+    padding: 10px;
+    background-color: var(--green-dark);
+    height: 100px;
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40%;
+    text-align: center;
 }
-*/
+
+#infoMain{
+    visibility: hidden;
+}
 
 .card-header{
     background-color: #1A1A1A;
@@ -76,12 +94,6 @@ body{
     position: absolute;    
     border-left: 1px solid var(--white);    
 }
-
-/*
-.collapse{
-    background-color: #F9F9F9;
-}
-*/
 
 .card{
     background-color: transparent;
@@ -105,7 +117,7 @@ body{
 }
 
 .content{
-    margin-top: var(--blockMargin);
+    margin-bottom: var(--blockMargin);
     float: left; 
     width: 100%;    
     color: #F9F9F9;
@@ -162,4 +174,73 @@ body{
     width: 100%;
     text-align: center;
     padding: 30px;
+}
+
+.itemGroup{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.groupTitle{
+    background-color: var(--black);
+    color: var(--white);
+    padding: 5px;
+    padding-left: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.item{
+    display: inline-block;
+    margin: 10px;    
+}
+
+.item span{
+    margin-left: 5px;
+}
+
+.mycolumn{
+    width: 46%;
+    margin-left: 2%;
+    float:left;
+}
+
+#columnOne{
+    
+}
+
+#columnTwo{
+   
+}
+
+@media (max-width: 675px){
+   .pagemain {
+        width: 85vw;
+    }
+    #selections{
+        float: none;
+        width: auto;
+/*        background-color: orange;*/
+    }
+    #info {
+        float: none;
+        width: auto;
+/*        background-color: aquamarine;*/
+    }
+    .mycolumn{
+        float: none;
+    }
+    .groupTitle{
+        display: none;
+    }
+    .mycolumn{
+        width: auto;
+        margin: auto;
+        float: auto;
+    }
+    .item img{
+        display: none;
+    }
 }

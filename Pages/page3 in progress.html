@@ -1,0 +1,211 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!--        bootstrap-->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        
+<!--        our javascripts-->
+        
+        <script src="navbar.js"></script>
+        
+<!--        our css-->
+        
+        <link rel="stylesheet" href="style.css"/>
+        
+        <link rel="stylesheet" href="page3.css" />
+        
+<!--        font awesome-->
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        
+        <!-- Navbar -->
+        
+        <div id = "navigation"></div>
+        
+        
+        <div class="pagemain">
+            
+            <div id="selections">
+                <div id='#columnOne' class='mycolumn'></div>
+                <div id='#columnTwo' class='mycolumn'></div>
+            </div>
+            
+            <div id="info">
+                <div id="infoIntro">Click on a food to learn more about it <br><i style="font-size:24px" class="fa">&#xf0a9;</i></div>
+                <div id="infoMain"></div>
+            </div>    
+            
+<!--            <p id='blurb'>Learn more about your food!</p>-->
+            
+            <!-- Accordion -->
+<!--
+            <div id="accordion" class="accordion">                     
+                
+            </div>            
+-->
+            
+        </div>
+               
+        
+    </body>
+    <script>
+        
+        createNavbar();
+        
+        // info
+            
+        let infoMain = document.getElementById('infoMain');
+            
+        for(n = 0;n < 3;n++){                
+            var content = document.createElement("div");
+            content.classList.add('content');
+            infoMain.appendChild(content);
+            
+            var detail1 = document.createElement("div");
+            detail1.classList.add('details');
+            detail1.innerHTML = 'Title';
+            content.append(detail1);
+            
+            var detail2 = document.createElement("div");
+            detail2.classList.add('details');
+            detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
+            content.append(detail2);
+        }
+        
+        // content info
+        
+        var storage =  infoMain.childNodes[0];
+        storage.classList.add('storage');
+        storage.childNodes[0].innerHTML = "Storage<br>Method";
+        
+        var spoil = infoMain.childNodes[1];
+        spoil.classList.add('spoil');
+        spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
+        spoil.childNodes[1].innerHTML = "Slimy<br>Color chanaged<br>Unpleasant Odor";
+        
+        var community = infoMain.childNodes[2];
+        community.classList.add('community');
+        community.childNodes[0].innerHTML = "Community Advice"
+        community.childNodes[1].innerHTML = "'Meat is like good or something'";
+        
+        // food groups
+        
+        var groups = ['Meat','Vegetables','Meat Alternatives','Grains'];
+        var selections = document.getElementById('selections');
+        console.log(selections.id);
+        
+        for(var i = 0; i < groups.length; i++){
+            
+            //var group = document.createElement('div');
+            
+            var column;
+            
+            if(i % 2 == 0){
+                column = selections.children[0];        
+            } else {
+                column = selections.children[1];  
+            }
+            
+            var groupTitle = document.createElement('div');
+            groupTitle.classList.add('groupTitle');
+            groupTitle.innerHTML = groups[i];
+            column.appendChild(groupTitle);
+            
+//            var groupItems = document.createElement('div');
+//            groupItems.classList.add('itemGroup');
+//            column.appendChild(groupItems);            
+            
+            for (n=0;n < 7;n++ ){
+                
+                var item = document.createElement('a');
+                item.classList.add('item');
+                column.appendChild(item);
+                
+                var image = document.createElement('img');
+                image.setAttribute('src','Images/foodIcons/cheese-01.png');
+                image.setAttribute('width','20px');
+                image.setAttribute('height','20px');
+                item.appendChild(image);
+                
+                var label = document.createElement('span');
+                label.innerHTML = 'food item';
+                item.appendChild(label);
+            }
+        }
+        
+        
+        
+        
+//        var accordion = document.getElementById("accordion");
+//        
+//        var card = document.createElement("div");
+//        card.classList.add('card');
+//        accordion.appendChild(card);
+        
+        // populate accordion
+//        console.log(groups.length);
+//        for(var i = 0; i < groups.length; i++){
+//            console.log('loop');
+//            // create card header
+//            
+//            var header = document.createElement("div");
+//            header.classList.add('card-header','collapsed');
+//            header.setAttribute("aria-expanded","true");
+//            header.setAttribute("data-toggle","collapse");
+//            header.setAttribute("cursor","pointer");
+//            header.setAttribute("data-parent","#accordion");
+//            var href = '#collapse' + i;
+//            header.setAttribute("href",href);            
+//            card.appendChild(header);
+//            
+//            // card header title
+//            
+//            var a = document.createElement("a");
+//            a.classList.add('card-title');            
+//            a.textContent = groups[i];
+//            header.appendChild(a);
+//            
+//            // card header line
+//            
+//            var line = document.createElement("div");
+//            line.classList.add('headerLine');
+//            header.appendChild(line);
+//            
+//            // create card body
+//            
+//            var block = document.createElement("div");
+//            block.classList.add('transparentBG');
+//            var id = 'collapse' + i;
+//            block.setAttribute("id",id);
+//            block.classList.add('card-block','collapse');
+//            card.appendChild(block);       
+//            
+//            for (n=0;n < 7;n++ ){
+//                
+//                var item = document.createElement('a');
+//                item.classList.add('item');
+//                block.appendChild(item);
+//                
+//                var image = document.createElement('img');
+//                image.setAttribute('src','Images/foodIcons/cheese-01.png');
+//                image.setAttribute('width','20px');
+//                image.setAttribute('height','20px');
+//                item.appendChild(image);
+//                
+//                var label = document.createElement('span');
+//                label.innerHTML = 'food item';
+//                item.appendChild(label);
+//            }
+//        }
+        
+    </script>
+</html>
