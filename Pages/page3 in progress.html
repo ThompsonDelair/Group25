@@ -24,6 +24,11 @@
         
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+<!--        jquery-->
+        
+<!--        <script src="jquery-3.3.1.min.js"></script>-->
+        
     </head>
     <body>
         
@@ -37,6 +42,7 @@
             <div id="selections">
                 <div id='#columnOne' class='mycolumn'></div>
                 <div id='#columnTwo' class='mycolumn'></div>
+                <div id='#mobileSelections'></div>
             </div>
             
             <div id="info">
@@ -60,7 +66,7 @@
     <script>
         
         createNavbar();
-        
+                
         // info
             
         let infoMain = document.getElementById('infoMain');
@@ -127,8 +133,10 @@
             for (n=0;n < 7;n++ ){
                 
                 var item = document.createElement('a');
-                item.classList.add('item');
+                item.classList.add('item');     
+                
                 column.appendChild(item);
+                
                 
                 var image = document.createElement('img');
                 image.setAttribute('src','Images/foodIcons/cheese-01.png');
@@ -139,6 +147,8 @@
                 var label = document.createElement('span');
                 label.innerHTML = 'food item';
                 item.appendChild(label);
+                
+                document.getElementById('selections').children[2].appendChild(item.cloneNode(true));
             }
         }
         

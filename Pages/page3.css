@@ -214,6 +214,9 @@ body{
 #columnTwo{
    
 }
+#mobileSelections{
+    display: none;
+}
 
 @media (max-width: 675px){
    .pagemain {
@@ -230,7 +233,10 @@ body{
 /*        background-color: aquamarine;*/
     }
     .mycolumn{
-        float: none;
+        display: none;
+    }
+    #mobileSelections{
+        display: inherit;
     }
     .groupTitle{
         display: none;
