@@ -13,7 +13,6 @@
 <!--        our css-->
         
         <link rel="stylesheet" href="Css/style.css"/>
-        
         <link rel="stylesheet" href="Css/page3.css" />
         
 <!--        font awesome-->
@@ -39,43 +38,38 @@
             
             <!-- Accordion -->
             <div id="accordion" class="accordion">                     
-
             </div>            
         </div>
     </body>
     <script>
-    
-    var config = {
-        apiKey: "AIzaSyCGNoYTlu22XUIBGUL8gfUq4_ysaOXhMHU",
-        authDomain: "testerino-ae33c.firebaseapp.com",
-        databaseURL: "https://testerino-ae33c.firebaseio.com",
-        projectId: "testerino-ae33c",
-        storageBucket: "testerino-ae33c.appspot.com",
-        messagingSenderId: "931560337847"
-    };
+        //initialize firestore
+        var config = {
+            apiKey: "AIzaSyCGNoYTlu22XUIBGUL8gfUq4_ysaOXhMHU",
+            authDomain: "testerino-ae33c.firebaseapp.com",
+            databaseURL: "https://testerino-ae33c.firebaseio.com",
+            projectId: "testerino-ae33c",
+            storageBucket: "testerino-ae33c.appspot.com",
+            messagingSenderId: "931560337847"
+        };
         firebase.initializeApp(config);
         var firestore = firebase.firestore();
-
-        //var food = ["Eggs","Bread","Potato","Banana"];
+        //retrieve foods and types from session storage
         var food = JSON.parse(sessionStorage.getItem("foods"));
         var types = JSON.parse(sessionStorage.getItem("types"));
-
-        console.log(food);
-        console.log(types);
+        //stores a reference to each div block
         var blocks = [];
-        
+        //count to iterate through block
+        var count = 0;
         var accordion = document.getElementById("accordion");
       
         var card = document.createElement("div");
         card.classList.add('card');
         accordion.appendChild(card);
-        var count = 0;
-        // populate accordion
         
+        // populate accordion
         for(let i = 0; i < food.length; i++){
-            
+
             // create card header
-            
             var header = document.createElement("div");
             header.classList.add('card-header','collapsed');
             header.setAttribute("aria-expanded","true");
@@ -87,7 +81,6 @@
             card.appendChild(header);
             
             // card header title
-            
             var a = document.createElement("a");
             a.classList.add('card-title');            
             a.textContent = food[i];
@@ -143,29 +136,25 @@
             spoil.classList.add('spoil');
             var community = block.childNodes[2];
             community.classList.add('community');
-
-            //var found = false;
+            
+            //checks food category and retrieves from that category
             var query;
-
             switch(types[i]){
                 case "Meats":
-                var meatRef = firestore.collection("Meats");
-                query = meatRef.where("Name", "==", food[i])
-
-                query.get().then(function(querySnapshot){
-                    querySnapshot.forEach(function(doc){
-                        blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
-                        blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
-                        count++;
+                    var meatRef = firestore.collection("Meats");
+                    query = meatRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
                     });
-                });
 
                 break;
                 case "Vegetables":
                 var vegRef = firestore.collection("Vegetables");
-                
-                query = vegRef.where("Name", "==", food[i])
-
+                query = vegRef.where("Name", "==", food[i]);
                 query.get().then(function(querySnapshot){
                     querySnapshot.forEach(function(doc){
                         blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
@@ -174,65 +163,54 @@
                     });
                 });
                 break;
+
                 case "Fruits":
-                var fruitRef = firestore.collection("Fruits");
-                query = fruitRef.where("Name", "==", food[i])
-
-                query.get().then(function(querySnapshot){
-                    querySnapshot.forEach(function(doc){
-                        blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
-                        blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
-                        count++;
+                    var fruitRef = firestore.collection("Fruits");
+                    query = fruitRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
                     });
-                });
-                
                 break;
+
                 case "Grains":
-                var grainRef = firestore.collection("Grains");
-                query = grainRef.where("Name", "==", food[i])
-
-                query.get().then(function(querySnapshot){
-                    querySnapshot.forEach(function(doc){
-                        blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
-                        blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
-                        count++;
+                    var grainRef = firestore.collection("Grains");
+                    query = grainRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
                     });
-                });
-                break;
-                var grainRef = firestore.collection("Grains");
-                query = grainRef.where("Name", "==", food[i])
-
-                query.get().then(function(querySnapshot){
-                    querySnapshot.forEach(function(doc){
-                        blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
-                        blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
-                        count++;
-                    });
-                });
+                    break;
+              
                 case "MeatAlternatives":
-                var meatAltRef = firestore.collection("MeatAlternatives");
-                query = meatAltRef.where("Name", "==", food[i])
-
-                query.get().then(function(querySnapshot){
-                    querySnapshot.forEach(function(doc){
-                        blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
-                        blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
-                        count++;
+                    var meatAltRef = firestore.collection("MeatAlternatives");
+                    query = meatAltRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
                     });
-                });
-                break;
+                    break;
+
                 case "DairyandEggs":
-                var dairyRef = firestore.collection("DairyandEggs");
-                query = dairyRef.where("Name", "==", food[i])
-
-                query.get().then(function(querySnapshot){
-                    querySnapshot.forEach(function(doc){
-                        blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
-                        blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
-                        count++;
+                    var dairyRef = firestore.collection("DairyandEggs");
+                    query = dairyRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
                     });
-                });
-                break;
+                    break;
             }
            
             
