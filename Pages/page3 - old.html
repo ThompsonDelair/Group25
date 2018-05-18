@@ -1,0 +1,290 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!--        bootstrap-->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        
+<!--        our css-->
+        
+        <link rel="stylesheet" href="Css/style.css"/>
+        <link rel="stylesheet" href="Css/page3.css" />
+        
+<!--        font awesome-->
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- firestore database -->
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+    </head>
+    <body>
+        
+        <!-- Navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="page2.html"><i class="fas fa-angle-left"></i></a>
+                    <span class="nav navbar-nav navbar-right">Your Cart(x)</span>
+                </div>
+            </nav>
+        
+        <div class="pagemain">
+            <p id='blurb'>Learn more about your food!</p>
+            
+            <!-- Accordion -->
+            <div id="accordion" class="accordion">                     
+            </div>            
+        </div>
+    </body>
+    <script>
+        //initialize firestore
+        var config = {
+            apiKey: "AIzaSyCGNoYTlu22XUIBGUL8gfUq4_ysaOXhMHU",
+            authDomain: "testerino-ae33c.firebaseapp.com",
+            databaseURL: "https://testerino-ae33c.firebaseio.com",
+            projectId: "testerino-ae33c",
+            storageBucket: "testerino-ae33c.appspot.com",
+            messagingSenderId: "931560337847"
+        };
+        firebase.initializeApp(config);
+        var firestore = firebase.firestore();
+        //retrieve foods and types from session storage
+        var food = JSON.parse(sessionStorage.getItem("foods"));
+        var types = JSON.parse(sessionStorage.getItem("types"));
+        //stores a reference to each div block
+        var blocks = [];
+        //count to iterate through block
+        var count = 0;
+        var accordion = document.getElementById("accordion");
+      
+        var card = document.createElement("div");
+        card.classList.add('card');
+        accordion.appendChild(card);
+        
+        // populate accordion
+        for(let i = 0; i < food.length; i++){
+
+            // create card header
+            var header = document.createElement("div");
+            header.classList.add('card-header','collapsed');
+            header.setAttribute("aria-expanded","true");
+            header.setAttribute("data-toggle","collapse");
+            header.setAttribute("cursor","pointer");
+            header.setAttribute("data-parent","#accordion");
+            var href = '#collapse' + i;
+            header.setAttribute("href",href);            
+            card.appendChild(header);
+            
+            // card header title
+            var a = document.createElement("a");
+            a.classList.add('card-title');            
+            a.textContent = food[i];
+            header.appendChild(a);
+            
+            // card header line
+            
+            var line = document.createElement("div");
+            line.classList.add('headerLine');
+            header.appendChild(line);
+            
+            // create card body
+            
+            var block = document.createElement("div");
+            block.classList.add('transparentBG');
+            var id = 'collapse' + i;
+            block.setAttribute("id",id);
+            block.classList.add('card-block','collapse');
+            card.appendChild(block);
+
+            blocks.push(block);
+            
+            // populate card body contents
+            
+            for(n = 0;n < 3;n++){
+//                var type;
+//                if(n == 0){
+//                    type = "storage";
+//                } else if(n == 1) {
+//                    type = "spoil";
+//                } else {
+//                    type = "community";
+//                }
+                
+                var content = document.createElement("div");
+                content.classList.add('content');
+                block.appendChild(content);
+                
+                var detail1 = document.createElement("div");
+                detail1.classList.add('details');
+                detail1.innerHTML = 'Title';
+                content.append(detail1);
+                
+                var detail2 = document.createElement("div");
+                detail2.classList.add('details');
+                detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
+                content.append(detail2);
+            }
+
+            var storage =  block.childNodes[0];
+            storage.classList.add('storage');
+            var spoil = block.childNodes[1];
+            spoil.classList.add('spoil');
+            var community = block.childNodes[2];
+            community.classList.add('community');
+            
+            //checks food category and retrieves from that category
+            var query;
+            switch(types[i]){
+                case "Meats":
+                    var meatRef = firestore.collection("Meats");
+                    query = meatRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+
+                break;
+                case "Vegetables":
+                var vegRef = firestore.collection("Vegetables");
+                query = vegRef.where("Name", "==", food[i]);
+                query.get().then(function(querySnapshot){
+                    querySnapshot.forEach(function(doc){
+                        blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                        blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                        count++;
+                    });
+                });
+                break;
+
+                case "Fruits":
+                    var fruitRef = firestore.collection("Fruits");
+                    query = fruitRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+                break;
+
+                case "Grains":
+                    var grainRef = firestore.collection("Grains");
+                    query = grainRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+                    break;
+              
+                case "MeatAlternatives":
+                    var meatAltRef = firestore.collection("MeatAlternatives");
+                    query = meatAltRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+                    break;
+
+                case "DairyandEggs":
+                    var dairyRef = firestore.collection("DairyandEggs");
+                    query = dairyRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+                    break;
+            }
+           
+            
+            // content info
+          
+            storage.childNodes[0].innerHTML = "Storage<br>Method"; 
+            spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
+          
+            community.childNodes[0].innerHTML = "Community Advice";
+            community.childNodes[1].innerHTML = "'Meat is like good or something'";
+            
+//            // Storage
+//            
+//            var storage = document.createElement("div");
+//            storage.classList.add('storage');
+//            block.appendChild(storage);
+//            
+//            var storageTitle = document.createElement("div");
+//            storageTitle.classList.add('storageTitle','details');
+//            storageTitle.innerHTML = "Storage<br>Method";
+//            storageTitle.style.fontFamily = "lato-medium";
+//            storageTitle.style.fontWeight = "bold";
+//            storage.appendChild(storageTitle);
+//            
+//            
+//            var storageContent = document.createElement("div");
+//            storageContent.classList.add('storageContent','details');
+//            storageContent.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.";
+//            storageContent.style.fontFamily = "lato-regular";
+//            storageContent.style.fontWeight = "normal";
+//            storage.appendChild(storageContent);
+//            
+//            
+//            // Spoil
+//            
+//            var spoil = document.createElement("div");
+//            spoil.classList.add('spoil');
+//            block.appendChild(storge);
+//            
+//            var spoilTitle = document.createElement("div");
+//            storageTitle.classList.add('spoilTitle','details');
+//            spoilTitle.innerHTML = "Spoil";
+//            spoilTitle.style.fontFamily = "lato-medium";
+//            spoilTitle.style.fontWeight = "bold";
+//            spoil.appendChild(spoilTitle);
+//              
+//            var spoilContent = document.createElement("div");
+//            storageTitle.classList.add('spoilContent','details');
+//            spoilContent.innerHTML = "Spoil2";
+//            spoilContent.style.fontFamily = "lato-regular";
+//            spoilContent.style.fontWeight = "normal";
+//            spoil.appendChild(spoilContent;
+//            
+//            // Community
+//            
+//            var community = document.createElement("div");
+//            community.classList.add('community');
+//            community.innerHTML = "Community";
+//            
+//            var community2 = document.createElement("div");
+//            community2.innerHTML = "Community2";
+//            community2.style.backgroundColor = "#F9F9F9";
+//            community.appendChild(community2);
+//            
+//            var comments = document.createElement("a");
+//            comments.setAttribute("href", "page4.html");
+//            comments.innerHTML = "Community";
+
+            
+            
+            
+            
+
+        }
+        
+    </script>
+</html>
