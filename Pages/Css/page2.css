@@ -210,6 +210,18 @@ body {
   background-position: 40% 60%;
 }
 
+#meatAltPic{
+    background-image:url("../Images/meatAlt.png");
+    background-size:100%;
+    background-position:40% 60%;
+}
+
+#dairyPic{
+    background-image:url("../Images/Dairy.png");
+    background-size:100%;
+    background-position:40% 60%;
+}
+
 /*********************************
                         Meat Div
 *********************************/
@@ -323,6 +335,59 @@ body {
   background-color: #222222;
   color: #aaaaaa;
 }
+
+/*********************************
+                    Meat Alt Div
+*********************************/
+#meatAltDiv {
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+    font-size: 16pt;
+  }
+  
+  #meatAltTitle {
+    font-size: 30pt;
+    margin: 15px 0 0 5px;
+  }
+  
+  #meatAltUL {
+    width: 80%;
+    padding: 0 0 0 5px;
+  }
+  
+  .meatAltLI {
+    list-style-type: none;
+    padding: 20px 0 20px 20px;
+    background-color: #222222;
+    color: #aaaaaa;
+  }
+
+/*********************************
+                    Dairy Div
+*********************************/
+#dairyDiv {
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+    font-size: 16pt;
+  }
+  
+  #dairyTitle {
+    font-size: 30pt;
+    margin: 15px 0 0 5px;
+  }
+  
+  #dairyUL {
+    width: 80%;
+    padding: 0 0 0 5px;
+  }
+  
+  .dairyLI {
+    list-style-type: none;
+    padding: 20px 0 20px 20px;
+    background-color: #222222;
+    color: #aaaaaa;
+  }
+
 
 /*********************************
                     button Div
