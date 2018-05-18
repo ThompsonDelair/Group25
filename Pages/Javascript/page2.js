@@ -15,7 +15,7 @@ var firestore = firebase.firestore();
 firestore.collection("Meats").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("meatUL").innerHTML+="<li class='meatLI'><label class='container'><input type='checkbox'"
-        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + " name='" + doc.data().Name + "' value='Meats' class='check' onclick='onCheck(this);'>" + doc.data().Name
         + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
@@ -27,7 +27,7 @@ firestore.collection("Meats").get().then(function(querySnapshot){
 firestore.collection("Vegetables").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("veggieUL").innerHTML+="<li class='veggieLI'><label class='container'><input type='checkbox'"
-        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + " name='" + doc.data().Name + "' value='Vegetables' class='check' onclick='onCheck(this);'>" + doc.data().Name
         + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
@@ -39,7 +39,7 @@ firestore.collection("Vegetables").get().then(function(querySnapshot){
 firestore.collection("Fruits").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("fruitUL").innerHTML+="<li class='fruitLI'><label class='container'><input type='checkbox'"
-        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + " name='" + doc.data().Name + "' value='Fruits' class='check' onclick='onCheck(this);'>" + doc.data().Name
         + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
@@ -50,7 +50,7 @@ firestore.collection("Fruits").get().then(function(querySnapshot){
 firestore.collection("Grains").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("bakeUL").innerHTML+="<li class='bakeLI'><label class='container'><input type='checkbox'"
-        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + " name='" + doc.data().Name + "' value='Grains' class='check' onclick='onCheck(this);'>" + doc.data().Name
         + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
@@ -61,7 +61,7 @@ firestore.collection("Grains").get().then(function(querySnapshot){
 firestore.collection("MeatAlternatives").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("meatAltUL").innerHTML+="<li class='meatAltLI'><label class='container'><input type='checkbox'"
-        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + " name='" + doc.data().Name + "' value='MeatAlternatives' class='check' onclick='onCheck(this);'>" + doc.data().Name
         + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
@@ -72,7 +72,7 @@ firestore.collection("MeatAlternatives").get().then(function(querySnapshot){
 firestore.collection("DairyandEggs").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         document.getElementById("dairyUL").innerHTML+="<li class='dairyLI'><label class='container'><input type='checkbox'"
-        + " value='" + doc.data().Name + "' class='check' onclick='onCheck(this);'>" + doc.data().Name
+        + " name='" + doc.data().Name + "' value='DairyandEggs' class='check' onclick='onCheck(this);'>" + doc.data().Name
         + "<span class='checkmark'></span> </label></li>";
     });
 }).catch(function(error){
@@ -99,22 +99,29 @@ switch(sessionStorage.getItem("diet")){
 };
 
 var cart =[];
+var typeCart =[];
 
 function onCheck(foodItem){
     if(foodItem.checked){
-        cart.push(foodItem.value);
-        console.log("This food is checked! " + foodItem.value);
+        
+        cart.push(foodItem.name);
+        typeCart.push(foodItem.value);
+        console.log("This food is checked! " + foodItem.name);
     } else{
-        var index = cart.indexOf(foodItem.value);
-        cart.splice(index, 1);
-        console.log("This food is unchecked! " + foodItem.value);
+        var indexName = cart.indexOf(foodItem.value["name"]);
+        cart.splice(indexName, 1);
+        var indexType = cart.indexOf(foodItem.value["type"]);
+        typeCart.splice(indexType, 1);
+        console.log("This food is unchecked! " + foodItem.value["name"]);
     }
     console.log(cart);
+    console.log(typeCart);
 }
 
 function storeArray(){
 
     sessionStorage.setItem("foods", JSON.stringify(cart));
+    sessionStorage.setItem("types", JSON.stringify(typeCart));
     console.log("Array is stored!")
 }
 
