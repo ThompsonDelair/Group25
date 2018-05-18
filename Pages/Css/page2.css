@@ -173,7 +173,7 @@ body {
 *********************************/
 
 #showall {
-    background-image: url("Images/showall-v2.jpg");
+    background-image: url("../Images/showall-v2.jpg");
     background-size: 100%;
     background-position: 40% 40%;
 }
@@ -187,25 +187,25 @@ body {
 }
 
 #meatPic {
-  background-image: url("Images/meat-v2.jpg");
+  background-image: url("../Images/meat-v2.jpg");
   background-size: 100%;
   background-position: 55% 40%;
 }
 
 #veggiePic {
-  background-image: url("Images/veggie-v2.jpg");
+  background-image: url("../Images/veggie-v2.jpg");
   background-size: 100%;
   background-position: 40% 30%;
 }
 
 #fruitPic {
-  background-image: url("Images/fruits-v2.jpg");
+  background-image: url("../Images/fruits-v2.jpg");
   background-size: 100%;
   background-position: 30% 50%;
 }
 
 #breadPic {
-  background-image: url("Images/bread-v2.jpg");
+  background-image: url("../Images/bread-v2.jpg");
   background-size: 100%;
   background-position: 40% 60%;
 }
