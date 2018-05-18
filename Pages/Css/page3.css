@@ -136,6 +136,7 @@ body{
 .spoil{
     color: #F9F9F9;
     background-color: var(--spoil);
+    margin-bottom: var(--blockMargin);
 }
 
 /*  Community   */
@@ -147,18 +148,16 @@ body{
 .community div:nth-child(1){
     float: none;
     width: 100%;
-    color: #F9F9F9;
-    margin: auto;
-    padding: 8px;
-    background-color: var(--community);
-    font-size: 24px;
+    font-size: 15px;
 }
 
-.community div:nth-child(2){
-    float: none;
-    color: black;
-    background-color: #F9F9F9;
-    width: 100%;
+.jumbotron {
+    background-color: var(--community2);
+    color: #F9F9F9;
+}
+
+.commentText {
     text-align: center;
-    padding: 30px;
+    background-color: var(--community);
+
 }
