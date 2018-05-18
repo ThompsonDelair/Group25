@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!--        bootstrap-->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        
+<!--        our javascripts-->
+        
+        <script src="Javascript/navbar.js"></script>
+        
+<!--        our css-->
+        
+        <link rel="stylesheet" href="Css/style.css"/>
+        
+        <link rel="stylesheet" href="Css/page3.css" />
+        
+<!--        font awesome-->
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+<!--        jquery-->
+        
+<!--        <script src="jquery-3.3.1.min.js"></script>-->
+        
+    </head>
+    <body>
+        
+        <!-- Navbar -->
+        
+        <div id = "navigation"></div>
+        
+<!--        Page content-->
+        
+        <div class="pagemain">
+            
+<!--            food items to choose from-->
+            
+            <div id="mobileSelections"></div>
+            
+            <div id="selections">
+                <div id="columnOne" class='mycolumn'></div>
+                <div id="columnTwo" class='mycolumn'></div>
+                
+            </div>
+            
+<!--            info of selected food-->
+            
+            <div id="info">
+                <div id="infoIntro">Click on a food to learn more about it <br><i style="font-size:24px" class="fa">&#xf0a9;</i></div>
+                <div id="infoMain"></div>
+            </div>
+            
+        </div>
+               
+        
+    </body>
+    <script>
+        
+        // create the navbar
+        
+        createNavbar();
+                
+        // info
+        
+        // this stuff is hidden until a button is pressed
+            
+        let infoMain = document.getElementById('infoMain');
+            
+        for(n = 0;n < 3;n++){                
+            var content = document.createElement("div");
+            content.classList.add('content');
+            infoMain.appendChild(content);
+            
+            var detail1 = document.createElement("div");
+            detail1.classList.add('details');
+            detail1.innerHTML = 'Title';
+            content.append(detail1);
+            
+            var detail2 = document.createElement("div");
+            detail2.classList.add('details');
+            detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
+            content.append(detail2);
+        }
+        
+        // content info
+        
+        var storage =  infoMain.childNodes[0];
+        storage.classList.add('storage');
+        storage.childNodes[0].innerHTML = "Storage<br>Method";
+        
+        var spoil = infoMain.childNodes[1];
+        spoil.classList.add('spoil');
+        spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
+        spoil.childNodes[1].innerHTML = "Slimy<br>Color chanaged<br>Unpleasant Odor";
+        
+        var community = infoMain.childNodes[2];
+        community.classList.add('community');
+        community.childNodes[0].innerHTML = "Community Advice"
+        community.childNodes[1].innerHTML = "'Meat is like good or something'";
+        
+        // food groups
+        
+        var groups = ['Meat','Vegetables','Meat Alternatives','Grains'];
+        
+        // reference to div that contains the food item selection anchors
+        
+        var selections = document.getElementById('selections');
+        
+        for(var i = 0; i < groups.length; i++){
+            
+            // toggle between which of the two columns the content is placed in
+            
+            if(i % 2 == 0){
+                column = selections.children[0];        
+            } else {
+                column = selections.children[1];  
+            }
+            
+            // food group title
+            
+            var groupTitle = document.createElement('div');
+            groupTitle.classList.add('groupTitle');
+            groupTitle.innerHTML = groups[i];
+            column.appendChild(groupTitle);          
+            
+            // food items
+            
+            // seven is an arbitrary number to populate item groups with placeholders   
+            
+            for (n=0;n < 7;n++ ){
+                
+                var item = document.createElement('a');
+                item.setAttribute('href','#');
+                item.setAttribute('onClick','onSelect();');
+                item.classList.add('item');     
+                
+                column.appendChild(item);                
+                
+                var image = document.createElement('img');
+                
+                image.setAttribute('src','Images/foodIcons/cheese-01.png');
+                
+                image.setAttribute('width','20px');
+                image.setAttribute('height','20px');
+                item.appendChild(image);
+                
+                var label = document.createElement('span');
+                label.innerHTML = 'food item';
+                item.appendChild(label);
+                
+                // clones the item element (with children) for the mobile selection div
+                document.getElementById('mobileSelections').appendChild(item.cloneNode(true));
+            }
+        }
+        
+        function onSelect(){
+            var infoMain = document.getElementById('infoMain');
+            infoMain.style.display = "block";
+            
+            var infoIntro = document.getElementById('infoIntro');
+            infoIntro.style.display = "none";
+            
+            console.log("press'ed");
+        }
+        
+        onSelect;
+        
+    </script>
+</html>

@@ -47,13 +47,13 @@ body{
 
 #selections{
     float: right;
-    width: 64%;
+    width: 49%;
     margin-left: 2%;
 }
 
 #info{
     float: left;
-    width: 34%;
+    width: 49%;
     padding: 2%;
     background-color: #e3e4df;
     border-radius: 25px;
@@ -169,8 +169,7 @@ body{
 
 .commentText {
     text-align: center;
-<<<<<<< HEAD
-    padding: 30px;
+    background-color: var(--community);
 }
 
 .mycolumn{
