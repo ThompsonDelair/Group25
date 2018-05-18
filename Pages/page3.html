@@ -311,6 +311,9 @@
                             }
                             var newDownvote = commentDoc.data().downvote + 1;
                             transaction.update(firestore.collection(types[num]).doc(food[num]).collection("Comments").doc(docID), { downvote: newDownvote });
+                            if(newDownvote > 9) {
+                                firestore.collection(types[num]).doc(food[num]).collection("Comments").doc(docID).delete();
+                            }
                         });
                     }).then(function() {
                         console.log("Transaction successfully committed!");
