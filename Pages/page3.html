@@ -129,6 +129,50 @@
         
         for(let i = 0; i < food.length; i++){
             
+
+            // populate card body contents
+            
+            for(n = 0;n < 2;n++){
+//                var type;
+//                if(n == 0){
+//                    type = "storage";
+//                } else if(n == 1) {
+//                    type = "spoil";
+//                } else {
+//                    type = "community";
+//                }
+                
+                var content = document.createElement("div");
+                content.classList.add('content');
+                block.appendChild(content);
+                
+                var detail1 = document.createElement("div");
+                detail1.classList.add('details');
+                detail1.innerHTML = 'Title';
+                content.append(detail1);
+                
+                var detail2 = document.createElement("div");
+                detail2.classList.add('details');
+                detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
+                content.append(detail2);
+            }
+            
+            //creates community section (had css errors so needed to pull out of loop)
+            var content = document.createElement("div");
+            block.appendChild(content);
+                
+            var detail1 = document.createElement("div");
+            content.append(detail1);
+
+            var storage =  block.childNodes[0];
+            storage.classList.add('storage');
+            var spoil = block.childNodes[1];
+            spoil.classList.add('spoil');
+            var community = block.childNodes[2];
+            community.classList.add('community');
+            
+            //checks food category and retrieves from that category
+
             var query;
             switch(types[i]){
                 case "Meats":
@@ -218,6 +262,191 @@
                     break;
             }
             
+
+            // content info
+          
+            storage.childNodes[0].innerHTML = "Storage<br>Method"; 
+            spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
+            
+            community.childNodes[0].innerHTML = '<div id="accordion"><div class="card"><div class="card-header commentText" onclick="updatePage(' + i + ')" data-toggle="collapse" data-target="#comment' + i +
+                '"><a>Comments</button></div><div id="comment' + i + '" class="collapse show" data-parent="#accordion">' + 
+                '<div class="card-body"><div id="commentContainer' + i + '"></div><di><div class="input-group" id="commentInputContainer">' +
+                '<textarea class="form-control" rows="5" id="commentSubmit' + i + 'Input"></textarea><span class="input-group-btn">' +
+                '<button class="btn btn-default align-middle" id="commentSubmit' + i + '" onclick="addComment(this.id, ' + i + ')">Submit</button></span></div></div>' +
+                '</div></div></div></div>';
+
+            //inserts comments into community
+            function updatePage(num) {
+                firestore.collection(types[num]).doc(food[num]).collection("Comments").orderBy("date_posted", "desc").onSnapshot(function (querySnapshot) {
+                    var commentDate = [];
+                    var commentEntry = [];
+                    var commentID = [];
+                    var commentUp = [];
+                    var commentDown = [];
+                    
+                    querySnapshot.forEach(function (doc) {
+                        commentDate.push(doc.data().date_posted);
+                        commentEntry.push(doc.data().quote);
+                        commentID.push(doc.data().reference);
+                        commentUp.push(doc.data().upvote);
+                        commentDown.push(doc.data().downvote);
+                    });
+
+                    document.getElementById("commentContainer" + num).innerHTML = "";
+
+                    for(var commentUpdate = 0; commentUpdate < querySnapshot.size; commentUpdate++){
+                        document.getElementById("commentContainer" + num).innerHTML += 
+                            '<div class="jumbotron"><div class="container-fluid"><div class="row">' + commentEntry[commentUpdate] + '</div><div><br></div>' +
+                            '<div class="row"><div id="dateLeft" class="col-lg-8 col-md-8 col-sm-8 col-8">' + commentDate[commentUpdate] +
+                            '</div><div class="col-lg-4 col-md-4 col-sm-4 col-4"><div class="btn-group float-right" role="group">' + 
+                            '<button type="button" class="btn btn-xs float-right" onclick="thumbsUp(this.id, ' + num + ')" id="' + commentID[commentUpdate] + 
+                            '">&#128402; : ' + commentUp[commentUpdate] + '</button>' +
+                            '<button type="button" class="btn btn-xs float-right" onclick="thumbsDown(this.id, ' + num + ')" id="' + commentID[commentUpdate] + 
+                            '">&#128403; : ' + commentDown[commentUpdate] + '</button>' +
+                            '</div></div></div></div></div>';
+                    }
+                });
+            }
+            
+            //upvote
+            function thumbsUp(docID, num) {
+                var upvoteNum;
+                
+                console.log(docID);
+
+                if (localStorage.getItem(docID + "up")) {
+                    console.log("already clicked");
+                    return;
+                } else {
+                    firestore.runTransaction(function(transaction) {
+                        // This code may get re-run multiple times if there are conflicts.
+                        return transaction.get(firestore.collection(types[num]).doc(food[num]).collection("Comments").doc(docID)).then(function(commentDoc) {
+                            if (!commentDoc.exists) {
+                                throw "Document does not exist!";
+                            }
+                            var newUpvote = commentDoc.data().upvote + 1;
+                            transaction.update(firestore.collection(types[num]).doc(food[num]).collection("Comments").doc(docID), { upvote: newUpvote });
+                        });
+                    }).then(function() {
+                        console.log("Transaction successfully committed!");
+                    }).catch(function(error) {
+                        console.log("Transaction failed: ", error);
+                    });
+
+                    localStorage.setItem(docID + "up", true);
+                } 
+            }
+            
+            //downvote
+            function thumbsDown(docID, num) {
+                var downvoteNum;
+
+                if (localStorage.getItem(docID + "down")) {
+                    console.log("already clicked");
+                    return;
+                } else {
+                    firestore.runTransaction(function(transaction) {
+                        // This code may get re-run multiple times if there are conflicts.
+                        return transaction.get(firestore.collection(types[num]).doc(food[num]).collection("Comments").doc(docID)).then(function(commentDoc) {
+                            if (!commentDoc.exists) {
+                                throw "Document does not exist!";
+                            }
+                            var newDownvote = commentDoc.data().downvote + 1;
+                            transaction.update(firestore.collection(types[num]).doc(food[num]).collection("Comments").doc(docID), { downvote: newDownvote });
+                            if(newDownvote > 9) {
+                                firestore.collection(types[num]).doc(food[num]).collection("Comments").doc(docID).delete();
+                            }
+                        });
+                    }).then(function() {
+                        console.log("Transaction successfully committed!");
+                    }).catch(function(error) {
+                        console.log("Transaction failed: ", error);
+                    });
+
+                    localStorage.setItem(docID + "down", true);
+                }
+            }
+            
+            //submits the comment to firebase
+            addComment = function(submitID, num) {
+                var newCommentRef = firestore.collection(types[num]).doc(food[num]).collection("Comments").doc();
+                
+                var dateData = new Date().toLocaleString();
+                var comment = document.getElementById(submitID + "Input").value;
+                comment = comment.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                
+                var commentData = {
+                    quote: comment,
+                    upvote: 0,
+                    downvote: 0,
+                    date_posted: dateData,
+                    reference: newCommentRef.id
+                }
+
+                newCommentRef.set(commentData);
+
+                document.getElementById(submitID + "Input").value = "";
+                
+                console.log("comment submitted");
+            };
+//            // Storage
+//            
+//            var storage = document.createElement("div");
+//            storage.classList.add('storage');
+//            block.appendChild(storage);
+//            
+//            var storageTitle = document.createElement("div");
+//            storageTitle.classList.add('storageTitle','details');
+//            storageTitle.innerHTML = "Storage<br>Method";
+//            storageTitle.style.fontFamily = "lato-medium";
+//            storageTitle.style.fontWeight = "bold";
+//            storage.appendChild(storageTitle);
+//            
+//            
+//            var storageContent = document.createElement("div");
+//            storageContent.classList.add('storageContent','details');
+//            storageContent.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.";
+//            storageContent.style.fontFamily = "lato-regular";
+//            storageContent.style.fontWeight = "normal";
+//            storage.appendChild(storageContent);
+//            
+//            
+//            // Spoil
+//            
+//            var spoil = document.createElement("div");
+//            spoil.classList.add('spoil');
+//            block.appendChild(storge);
+//            
+//            var spoilTitle = document.createElement("div");
+//            storageTitle.classList.add('spoilTitle','details');
+//            spoilTitle.innerHTML = "Spoil";
+//            spoilTitle.style.fontFamily = "lato-medium";
+//            spoilTitle.style.fontWeight = "bold";
+//            spoil.appendChild(spoilTitle);
+//              
+//            var spoilContent = document.createElement("div");
+//            storageTitle.classList.add('spoilContent','details');
+//            spoilContent.innerHTML = "Spoil2";
+//            spoilContent.style.fontFamily = "lato-regular";
+//            spoilContent.style.fontWeight = "normal";
+//            spoil.appendChild(spoilContent;
+//            
+//            // Community
+//            
+//            var community = document.createElement("div");
+//            community.classList.add('community');
+//            community.innerHTML = "Community";
+//            
+//            var community2 = document.createElement("div");
+//            community2.innerHTML = "Community2";
+//            community2.style.backgroundColor = "#F9F9F9";
+//            community.appendChild(community2);
+//            
+//            var comments = document.createElement("a");
+//            comments.setAttribute("href", "page4.html");
+//            comments.innerHTML = "Community";
+
+
         }
         
         
@@ -301,6 +530,7 @@
         // info
         
         // this stuff is hidden until a button is pressed
+
             
         let infoMain = document.getElementById('infoMain');
             
