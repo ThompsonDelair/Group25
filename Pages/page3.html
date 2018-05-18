@@ -12,14 +12,16 @@
         
 <!--        our css-->
         
-        <link rel="stylesheet" href="style.css"/>
-        
-        <link rel="stylesheet" href="page3.css" />
+        <link rel="stylesheet" href="Css/style.css"/>
+        <link rel="stylesheet" href="Css/page3.css" />
         
 <!--        font awesome-->
         
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- firestore database -->
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
     </head>
     <body>
         
@@ -32,34 +34,42 @@
             </nav>
         
         <div class="pagemain">
-            
-            
             <p id='blurb'>Learn more about your food!</p>
             
             <!-- Accordion -->
             <div id="accordion" class="accordion">                     
-                
             </div>            
-            
         </div>
-               
-        
     </body>
-    <script>        
-        var food = ["Eggs","Bread","Potato","Banana"];
-        
+    <script>
+        //initialize firestore
+        var config = {
+            apiKey: "AIzaSyCGNoYTlu22XUIBGUL8gfUq4_ysaOXhMHU",
+            authDomain: "testerino-ae33c.firebaseapp.com",
+            databaseURL: "https://testerino-ae33c.firebaseio.com",
+            projectId: "testerino-ae33c",
+            storageBucket: "testerino-ae33c.appspot.com",
+            messagingSenderId: "931560337847"
+        };
+        firebase.initializeApp(config);
+        var firestore = firebase.firestore();
+        //retrieve foods and types from session storage
+        var food = JSON.parse(sessionStorage.getItem("foods"));
+        var types = JSON.parse(sessionStorage.getItem("types"));
+        //stores a reference to each div block
+        var blocks = [];
+        //count to iterate through block
+        var count = 0;
         var accordion = document.getElementById("accordion");
-        
+      
         var card = document.createElement("div");
         card.classList.add('card');
         accordion.appendChild(card);
         
         // populate accordion
-        
-        for(var i = 0; i < food.length; i++){
-            
+        for(let i = 0; i < food.length; i++){
+
             // create card header
-            
             var header = document.createElement("div");
             header.classList.add('card-header','collapsed');
             header.setAttribute("aria-expanded","true");
@@ -71,7 +81,6 @@
             card.appendChild(header);
             
             // card header title
-            
             var a = document.createElement("a");
             a.classList.add('card-title');            
             a.textContent = food[i];
@@ -91,6 +100,8 @@
             block.setAttribute("id",id);
             block.classList.add('card-block','collapse');
             card.appendChild(block);
+
+            blocks.push(block);
             
             // populate card body contents
             
@@ -118,20 +129,97 @@
                 detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
                 content.append(detail2);
             }
-            
-            // content info
+
             var storage =  block.childNodes[0];
             storage.classList.add('storage');
-            storage.childNodes[0].innerHTML = "Storage<br>Method";
-            
             var spoil = block.childNodes[1];
             spoil.classList.add('spoil');
-            spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
-            spoil.childNodes[1].innerHTML = "Slimy<br>Color chanaged<br>Unpleasant Odor";
-            
             var community = block.childNodes[2];
             community.classList.add('community');
-            community.childNodes[0].innerHTML = "Community Advice"
+            
+            //checks food category and retrieves from that category
+            var query;
+            switch(types[i]){
+                case "Meats":
+                    var meatRef = firestore.collection("Meats");
+                    query = meatRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+
+                break;
+                case "Vegetables":
+                var vegRef = firestore.collection("Vegetables");
+                query = vegRef.where("Name", "==", food[i]);
+                query.get().then(function(querySnapshot){
+                    querySnapshot.forEach(function(doc){
+                        blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                        blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                        count++;
+                    });
+                });
+                break;
+
+                case "Fruits":
+                    var fruitRef = firestore.collection("Fruits");
+                    query = fruitRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+                break;
+
+                case "Grains":
+                    var grainRef = firestore.collection("Grains");
+                    query = grainRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+                    break;
+              
+                case "MeatAlternatives":
+                    var meatAltRef = firestore.collection("MeatAlternatives");
+                    query = meatAltRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+                    break;
+
+                case "DairyandEggs":
+                    var dairyRef = firestore.collection("DairyandEggs");
+                    query = dairyRef.where("Name", "==", food[i])
+                    query.get().then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            blocks[count].childNodes[0].childNodes[1].innerHTML = doc.data().StorageTip;
+                            blocks[count].childNodes[1].childNodes[1].innerHTML = doc.data().Spoiled;
+                            count++;
+                        });
+                    });
+                    break;
+            }
+           
+            
+            // content info
+          
+            storage.childNodes[0].innerHTML = "Storage<br>Method"; 
+            spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
+          
+            community.childNodes[0].innerHTML = "Community Advice";
             community.childNodes[1].innerHTML = "'Meat is like good or something'";
             
 //            // Storage
