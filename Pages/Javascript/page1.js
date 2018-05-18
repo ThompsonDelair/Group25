@@ -71,3 +71,4 @@ function cuisMobFunc(){
    }
    console.log("You have selected " + sessionStorage.getItem("cuisine"));
 }
+sessionStorage.setItem("diet", "none");
