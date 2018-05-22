@@ -25,12 +25,9 @@
     --green-dark:  #3F7547;
     --white:       #F9F9F9;
     
-    --storage:      #6BC7D6;
-    --storage2:     #2DB9EA;    
+    --storage:      #6BC7D6;    
     --spoil:        #C6586D;
-    --spoil2:       #D63031;
     --community:    #6F459B;
-    --community2:   #8C58BA;
     
 /*    block content spacing margin */
     
@@ -38,28 +35,46 @@
 }
 
 body{
-/*    background-color: red;*/
+    
 }
 
 .pagemain {
-    width: 50vw;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
 }
 
-@media (max-width: 675px){
-   .pagemain {
-        width: 85vw;
-    } 
+#selections{
+    float: right;
+    width: 64%;
+    margin-left: 2%;
 }
 
-.navbar{
-    color: #F9F9F9;
+#info{
+    float: left;
+    width: 34%;
+    padding: 2%;
+    background-color: #e3e4df;
+    border-radius: 25px;
+    text-align: center;
+    
 }
 
-.navbar a {
-    color: #F9F9F9;
+#infoIntro{
+    color: var(--white);
+    padding: 10px;
+    background-color: var(--green-dark);
+    height: 100px;
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 120px;
+    text-align: center;
+}
+
+#infoMain{
+    display: none;
 }
 
 .card-header{
@@ -75,11 +90,7 @@ body{
     width: 0px;
     height: 52%;
     position: absolute;    
-    border-left: 1px solid var(--white);    
-}
-
-.collapse{
-    background-color: #F9F9F9;
+    border-left: 1px solid var(--white);   
 }
 
 .card{
@@ -104,7 +115,7 @@ body{
 }
 
 .content{
-    margin-top: var(--blockMargin);
+    margin-bottom: var(--blockMargin);
     float: left; 
     width: 100%;    
     color: #F9F9F9;
@@ -136,6 +147,7 @@ body{
 .spoil{
     color: #F9F9F9;
     background-color: var(--spoil);
+    margin-bottom: var(--blockMargin);
 }
 
 /*  Community   */
@@ -147,18 +159,111 @@ body{
 .community div:nth-child(1){
     float: none;
     width: 100%;
-    color: #F9F9F9;
-    margin: auto;
-    padding: 8px;
-    background-color: var(--community);
-    font-size: 24px;
+    font-size: 15px;
 }
 
-.community div:nth-child(2){
-    float: none;
-    color: black;
-    background-color: #F9F9F9;
-    width: 100%;
+.jumbotron {
+    background-color: var(--community2);
+    color: #F9F9F9;
+}
+
+.commentText {
     text-align: center;
-    padding: 30px;
+
+    background-color: var(--community);
+
+
+}
+
+.mycolumn{
+    width: 46%;
+    margin-left: 2%;
+    float:left;
+    text-align:justify;
+/*    background-color: pink;*/
+}
+
+.mycolumn div:nth-child(1){
+    margin-top: auto;
+}
+
+#columnOne{
+/*    background-color: red;*/
+}
+
+#columnTwo{
+/*   background-color: greenyellow;*/
+}
+
+#mobileSelections {
+/*    background-color: deepskyblue;*/
+    display: none;
+/*    visibility: none;*/
+}
+
+.itemGroup{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+/*
+.groupTitle{
+    
+}
+*/
+
+.groupTitle{
+    background-color: var(--black);
+    color: var(--white);
+    padding: 5px;
+    padding-left: 10px;
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.item {
+    display: inline-block;
+    margin: 10px;    
+}
+
+.item span {
+    margin-left: 5px;
+}
+
+@media (max-width: 675px){
+   .pagemain {
+        width: 85vw;
+    }
+    #selections{
+        float: none;
+        width: auto;
+    }
+    #info {
+        float: none;
+        width: auto;
+    }
+    .mycolumn{
+        display: none;        
+    }
+    #mobileSelections{
+        display: inline-block;
+    }
+    .groupTitle{
+        display: none;
+    }
+    .mycolumn{
+        width: auto;
+        margin: auto;
+        float: auto;
+    }
+    .item img{
+        display: none;
+    }
+    #infoMain {
+        height: 450px;
+    }
+
 }
