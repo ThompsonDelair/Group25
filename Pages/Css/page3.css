@@ -163,7 +163,7 @@ body{
 }
 
 .jumbotron {
-    background-color: var(--community2);
+    background-color: var(--community);
     color: #F9F9F9;
 }
 
@@ -231,6 +231,10 @@ body{
 
 .item span {
     margin-left: 5px;
+}
+
+.community {
+    display: block;
 }
 
 @media (max-width: 675px){
