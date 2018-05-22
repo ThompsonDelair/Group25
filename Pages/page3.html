@@ -268,14 +268,72 @@
             storage.childNodes[0].innerHTML = "Storage<br>Method"; 
             spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
             
-            community.childNodes[0].innerHTML = '<div id="accordion"><div class="card"><div class="card-header commentText" onclick="updatePage(' + i + ')" data-toggle="collapse" data-target="#comment' + i +
-                '"><a>Comments</button></div><div id="comment' + i + '" class="collapse show" data-parent="#accordion">' + 
-                '<div class="card-body"><div id="commentContainer' + i + '"></div><di><div class="input-group" id="commentInputContainer">' +
-                '<textarea class="form-control" rows="5" id="commentSubmit' + i + 'Input"></textarea><span class="input-group-btn">' +
-                '<button class="btn btn-default align-middle" id="commentSubmit' + i + '" onclick="addComment(this.id, ' + i + ')">Submit</button></span></div></div>' +
-                '</div></div></div></div>';
 
-            //inserts comments into community
+            //community content
+            var communityAccordian = document.createElement("div");
+            communityAccordian.setAttribute("id", "accordian");
+
+            var communityCard = document.createElement("div");
+            communityCard.classList.add("card");
+
+            var communityDiv1 = document.createElement("div");
+            communityDiv1.classList.add("card-header", "commentText");
+            communityDiv1.setAttribute("onclick", "updatePage(" + i + ")");
+            communityDiv1.setAttribute("data-toggle", "collapse");
+            communityDiv1.setAttribute("data-target", "#comment" + i);
+
+            var communityComment = document.createElement("a");
+            communityComment.innerHTML = "Community";
+
+            var communityDropdown = document.createElement("div");
+            communityDropdown.setAttribute("id", "comment" + i);
+            communityDropdown.setAttribute("data-parent", "#accordion");
+            communityDropdown.classList.add("collapse");
+
+            var communityDropdownBody = document.createElement("div");
+            communityDropdownBody.classList.add("card-body");
+
+            var communityCommentContainer = document.createElement("div");
+            communityCommentContainer.setAttribute("id", "commentContainer" + i);
+
+            var communityCommentInputContainer = document.createElement("div");
+            communityCommentInputContainer.classList.add("input-group");
+            communityCommentInputContainer.setAttribute("id", "commentInputContainer");
+
+            var communityCommentText = document.createElement("textarea");
+            communityCommentText.classList.add("form-control");
+            communityCommentText.setAttribute("id", "commentSubmit" + i + "Input");
+            communityCommentText.setAttribute("rows", "3");
+
+            var communityCommentSubmit = document.createElement("span");
+            communityCommentSubmit.classList.add("input-group-btn");
+
+            var communityCommentSubmitBtn = document.createElement("button");
+            communityCommentSubmitBtn.classList.add("btn", "btn-default", "align-middle");
+            communityCommentSubmitBtn.setAttribute("id", "commentSubmit" + i)
+            communityCommentSubmitBtn.setAttribute("onclick", "addComment(this.id, " + i + ")")
+            communityCommentSubmitBtn.innerHTML = "Submit";
+
+            communityCommentSubmit.appendChild(communityCommentSubmitBtn);
+            communityCommentInputContainer.appendChild(communityCommentText);
+            communityCommentInputContainer.appendChild(communityCommentSubmit);
+
+            communityDropdownBody.appendChild(communityCommentContainer);
+            communityDropdownBody.appendChild(communityCommentInputContainer);
+
+            communityDropdown.appendChild(communityDropdownBody);
+
+            communityDiv1.appendChild(communityComment);
+
+            communityCard.appendChild(communityDiv1);
+            communityCard.appendChild(communityDropdown);
+
+            communityAccordian.appendChild(communityCard);
+
+            community.childNodes[0].appendChild(communityAccordian);
+
+
+            //pulls comment data from database and inserts into community
             function updatePage(num) {
                 firestore.collection(types[num]).doc(food[num]).collection("Comments").orderBy("date_posted", "desc").onSnapshot(function (querySnapshot) {
                     var commentDate = [];
@@ -295,15 +353,63 @@
                     document.getElementById("commentContainer" + num).innerHTML = "";
 
                     for(var commentUpdate = 0; commentUpdate < querySnapshot.size; commentUpdate++){
-                        document.getElementById("commentContainer" + num).innerHTML += 
-                            '<div class="jumbotron"><div class="container-fluid"><div class="row">' + commentEntry[commentUpdate] + '</div><div><br></div>' +
-                            '<div class="row"><div id="dateLeft" class="col-lg-8 col-md-8 col-sm-8 col-8">' + commentDate[commentUpdate] +
-                            '</div><div class="col-lg-4 col-md-4 col-sm-4 col-4"><div class="btn-group float-right" role="group">' + 
-                            '<button type="button" class="btn btn-xs float-right" onclick="thumbsUp(this.id, ' + num + ')" id="' + commentID[commentUpdate] + 
-                            '">&#128402; : ' + commentUp[commentUpdate] + '</button>' +
-                            '<button type="button" class="btn btn-xs float-right" onclick="thumbsDown(this.id, ' + num + ')" id="' + commentID[commentUpdate] + 
-                            '">&#128403; : ' + commentDown[commentUpdate] + '</button>' +
-                            '</div></div></div></div></div>';
+                        var jumbo = document.createElement("div");
+                        jumbo.classList.add("jumbotron");
+
+                        var jumboContent = document.createElement("div");
+                        jumboContent.classList.add("containter-fluid");
+
+                        var jumboCommentEntry = document.createElement("div");
+                        jumboCommentEntry.classList.add("row");
+                        jumboCommentEntry.innerHTML = commentEntry[commentUpdate];
+
+                        var jumboBreak = document.createElement("div");
+                        jumboBreak.innerHTML = "<br/>";
+
+                        var jumboCommentData = document.createElement("div");
+                        jumboCommentData.classList.add("row");
+
+                        var jumboCommentDate = document.createElement("div");
+                        jumboCommentDate.setAttribute("id", "dateLeft");
+                        jumboCommentDate.classList.add("col-lg-8", "col-md-8", "col-sm-8", "col-8");
+                        jumboCommentDate.innerHTML = commentDate[commentUpdate];
+
+                        var jumboCommentBtn = document.createElement("div");
+                        jumboCommentBtn.classList.add("col-lg-4", "col-md-4", "col-sm-4", "col-4");
+
+                        var jumboCommentBtnGroup = document.createElement("div");
+                        jumboCommentBtnGroup.classList.add("btn-group", "float-right");
+                        jumboCommentBtnGroup.setAttribute("role", "group");
+
+                        var jumboBtnUp = document.createElement("button");
+                        jumboBtnUp.setAttribute("type", "button");
+                        jumboBtnUp.classList.add("btn", "btn-xs", "float-right");
+                        jumboBtnUp.setAttribute("onclick", "thumbsUp(this.id, " + num);
+                        jumboBtnUp.setAttribute("id", commentID[commentUpdate]);
+                        jumboBtnUp.innerHTML = "&#128402; : " + commentUp[commentUpdate];
+
+                        var jumboBtnDown = document.createElement("button");
+                        jumboBtnDown.setAttribute("type", "button");
+                        jumboBtnDown.classList.add("btn", "btn-xs", "float-right");
+                        jumboBtnDown.setAttribute("onclick", "thumbsDown(this.id, " + num);
+                        jumboBtnDown.setAttribute("id", commentID[commentUpdate]);
+                        jumboBtnDown.innerHTML = "&#128403; : " + commentDown[commentUpdate];
+
+                        jumboCommentBtnGroup.appendChild(jumboBtnUp);
+                        jumboCommentBtnGroup.appendChild(jumboBtnDown);
+
+                        jumboCommentBtn.appendChild(jumboCommentBtnGroup);
+
+                        jumboCommentData.appendChild(jumboCommentDate);
+                        jumboCommentData.appendChild(jumboCommentBtn);
+
+                        jumboContent.appendChild(jumboCommentEntry);
+                        jumboContent.appendChild(jumboBreak);
+                        jumboContent.appendChild(jumboCommentData);
+
+                        jumbo.appendChild(jumboContent);
+
+                        document.getElementById("commentContainer" + num).appendChild(jumbo);
                     }
                 });
             }
