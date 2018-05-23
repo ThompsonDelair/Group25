@@ -1,4 +1,3 @@
-
 //initialize firestore
 
 var config = {
@@ -37,8 +36,10 @@ dairyandeggs.name = 'Dairy & Eggs';
 var groups = [ meats,vegetables,fruits,grains,meatalternatives,dairyandeggs ];
 
 // get the cuisine type from session storage
+
 let cuisineType = sessionStorage.getItem('cuisine');
 
+// populate info panel with content
 
 let infoMain = document.getElementById('infoMain');
     
@@ -58,22 +59,25 @@ for(n = 0;n < 3;n++){
     content.append(detail2);
 }
 
-// content info
+// set content info for each section
 
+// storage
 var storage =  infoMain.childNodes[0];
 storage.classList.add('storage');
 storage.childNodes[0].innerHTML = "Storage Method";
 
+// cuisine
 var cuisine = infoMain.childNodes[1];
 cuisine.classList.add('cuisine');
 cuisine.childNodes[0].innerHTML = "Cuisine Tips";
 
+// spoil
 var spoil = infoMain.childNodes[2];
 spoil.classList.add('spoil');
 spoil.childNodes[0].innerHTML = "Spoil Alert";
 spoil.childNodes[1].innerHTML = "Slimy<br>Color chanaged<br>Unpleasant Odor";
 
-// community stuff
+// community
 var content = document.createElement("div");
 infoMain.appendChild(content);
 
@@ -84,8 +88,8 @@ community.classList.add('community');
 
 // store info if user has selected food
 if(food != null && food.length > 0) {
-    for(let i = 0; i < food.length; i++){
-    
+    // sort food info into proper arrays
+    for(let i = 0; i < food.length; i++){    
         var query;
         switch(types[i]){
             case "Meats":
@@ -147,7 +151,7 @@ if(food != null && food.length > 0) {
                     });
                 });
                 break;
-        }  
+        }
         
         function storeInfo(doc,foodType,num){
             
@@ -175,7 +179,9 @@ if(food != null && food.length > 0) {
         }
     }
 } else {
-    // if user hasn't selected any food, prompt them to go back to page 2
+    
+    // if user hasn't selected any food, suggest they go back to page 2
+    
     var infoIntro = document.getElementById('infoIntro');
     infoIntro.style.height = 'auto';
     
@@ -353,13 +359,10 @@ query.get().then(function(querySnapshot){
     });
 });
 
-// populate selection
+// populate food selections
 
 function populate(){
     
-    //console.log('boop');
-    // reference to div that contains the food item selection anchors
-
     var selections = document.getElementById('selections');
 
     var toggle = 0;        
@@ -392,8 +395,7 @@ function populate(){
         
         // food items
         
-        for(var n = 0; n < groups[i].length; n++){              
-        
+        for(var n = 0; n < groups[i].length; n++){
             
             var item = document.createElement('a');
             item.setAttribute('href','#');
@@ -432,13 +434,12 @@ function populate(){
             }            
             
             // clones the item element (with children) for the mobile selection div
-            document.getElementById('selections').children[2].appendChild(item.cloneNode(true));
-        
+            document.getElementById('selections').children[2].appendChild(item.cloneNode(true));  
         }                
     }
 }
 
-//onSelect;
+// change info panel when user selects a food item
 
 function onSelect(input){
 
@@ -449,8 +450,6 @@ function onSelect(input){
     infoIntro.style.display = "none";
     
     infoMain.children[0].children[1].innerHTML = input.storage;
-    
-    //console.log(input.cuisine);
     
     if(input.cuisine){
         infoMain.children[1].children[1].innerHTML = input.cuisine;
@@ -484,7 +483,7 @@ function onSelect(input){
     var communityDropdown = document.createElement("div");
     communityDropdown.setAttribute("id", "comment" + i);
     communityDropdown.setAttribute("data-parent", "#accordion");
-    communityDropdown.classList.add("collapse");
+    communityDropdown.classList.add("collapse","show");
     
     var communityDropdownBody = document.createElement("div");
     communityDropdownBody.classList.add("card-body");
@@ -526,5 +525,7 @@ function onSelect(input){
     
     communityAccordian.appendChild(communityCard);
     
-    infoMain.childNodes[3].appendChild(communityAccordian);    
+    infoMain.childNodes[3].appendChild(communityAccordian); 
+    
+    updatePage(i);
 }

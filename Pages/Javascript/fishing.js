@@ -3,6 +3,21 @@
 let fishcanvas = document.getElementById("canvas");        
 let context = canvas.getContext('2d');
 
+// resize canvas to fit window
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas, false);
+
+function resizeCanvas() {
+    
+    if(window.innerWidth >= window.innerHeight){
+        canvas.style.width = Math.round(window.innerHeight);
+        canvas.style.height = Math.round(window.innerHeight);
+    } else {
+        canvas.style.width = Math.round(window.innerWidth);
+        canvas.style.height = Math.round(window.innerWidth);
+    }
+}
+
 // I M A G E S
 
 let bg = new Image;
@@ -53,16 +68,25 @@ easterEgg3.src = "images/fishing/EasterEgg3.png";
 
 // T R A C K  M O U S E
 
+// start mouse pos in the middle of canvas
+
 var mouseX = 320;
 var mouseY = 400;
 
-canvas.addEventListener('mousemove',function( event ){
-    var x = event.pageX - fishcanvas.offsetLeft;
-    //var x = event.pageX;
-    var y = event.pageY;
-    mouseX = x;
-    mouseY = y;
+canvas.addEventListener('mousemove',function( event ){    
     
+    // get correct mouse-on-canvas position depending on window resolution
+    var modifier = fishcanvas.width / parseInt(fishcanvas.style.width);
+    var x = event.pageX * modifier;
+    var y = event.pageY * modifier;
+    
+    if(window.innerWidth >= window.innerHeight){
+        x -= Math.round((window.innerWidth / 4) * modifier);
+    }
+    
+    // final mouse-on-canvas position
+    mouseX = x;
+    mouseY = y;    
 });
 
 //  O N  C L I C K
@@ -90,7 +114,8 @@ fishcanvas.addEventListener('mousedown',function(){
     
 },false);
 
-// G A M E  
+// G A M E  I N F O
+
 var score = 0;
 let spawnBossScore = 20;
 
@@ -114,6 +139,7 @@ function onCatch(){
         catched.text = "FISHES +1!";
     }
     
+    // spawn text on the fish's location
     catched.x = mainFish.x;
     catched.y = mainFish.y;
     popupTexts.push(catched);
@@ -158,8 +184,11 @@ function onMiss(){
     } else if (rand == 2){
         catched.text = "too slow!";
     }
+    
+    // spawn text on the fish's location
     catched.x = mainFish.x - 35;
     catched.y = mainFish.y;
+    
     popupTexts.push(catched);
 }
 
@@ -175,6 +204,8 @@ let delay = 215;
 function playAnimation(){
     
     playingAnimation = true;         
+    
+    // plays animation frame by frame with timed delays
     
     setTimeout(function(){
         currentFrame = frame3;
@@ -306,16 +337,15 @@ function tick(){
     
     //  G A M E  L O G I C             
     
-    // fish jukes are real
+    // make fish randomly change directions on a timer
     if(jukeTimestamp < totalTicks && mainFish.bounceXCooldown <= 0 && mainFish.bounceYCooldown <= 0){
         var rads = Math.random() * Math.PI * 2;
         mainFish.vectorX = Math.cos(rads);
         mainFish.vectorY = Math.sin(rads);
         jukeTimestamp = totalTicks + jukeCooldown;
-    }
+    }   
     
-    
-    // bounce off sides            
+    // bounce fish off sides            
     if(mainFish.bounceXCooldown <= 0){
         if(mainFish.x < 35 || mainFish.x > fishcanvas.width - mainFish.width - gameBorder){
             mainFish.vectorX *= -1;
