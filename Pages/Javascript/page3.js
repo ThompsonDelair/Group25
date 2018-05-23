@@ -37,8 +37,8 @@ dairyandeggs.name = 'Dairy & Eggs';
 var groups = [ meats,vegetables,fruits,grains,meatalternatives,dairyandeggs ];
 // this stuff is hidden until a button is pressed
 
-let cusineType = sessionStorage.getItem('cuisine');
-console.log(cusineType);
+let cuisineType = sessionStorage.getItem('cuisine');
+console.log(cuisineType);
 
 
 let infoMain = document.getElementById('infoMain');
@@ -65,9 +65,9 @@ var storage =  infoMain.childNodes[0];
 storage.classList.add('storage');
 storage.childNodes[0].innerHTML = "Storage Method";
 
-var cusine = infoMain.childNodes[1];
-cusine.classList.add('cusine');
-cusine.childNodes[0].innerHTML = "Cusine Tips";
+var cuisine = infoMain.childNodes[1];
+cuisine.classList.add('cuisine');
+cuisine.childNodes[0].innerHTML = "Cuisine Tips";
 
 var spoil = infoMain.childNodes[2];
 spoil.classList.add('spoil');
@@ -150,24 +150,24 @@ for(let i = 0; i < food.length; i++){
     
     function storeInfo(doc,foodType,num){
         
-        var cusineTip;                    
+        var cuisineTip;                    
                     
-        switch(cusineType){
+        switch(cuisineType){
             case 'na':
-                cusineTip = doc.data().NATip;
+                cuisineTip = doc.data().NATip;
                 break;
             case 'korean':
-                cusineTip = doc.data().ChineseTip;
+                cuisineTip = doc.data().ChineseTip;
                 break;
             case 'chinese':
-                cusineTip = doc.data().ChineseTip;
+                cuisineTip = doc.data().ChineseTip;
                 break;
         }
         
         foodType.push({
             'name':food[num],
             'storage':doc.data().StorageTip,
-            'cusine':cusineTip,
+            'cuisine':cuisineTip,
             'spoiled':doc.data().Spoiled,
             'commentNum':num
         });
@@ -524,10 +524,10 @@ function onSelect(input){
     
     infoMain.children[0].children[1].innerHTML = input.storage;
     
-    console.log(input.cusine);
+    console.log(input.cuisine);
     
-    if(input.cusine){
-        infoMain.children[1].children[1].innerHTML = input.cusine;
+    if(input.cuisine){
+        infoMain.children[1].children[1].innerHTML = input.cuisine;
         infoMain.children[1].style.display = 'block';
     } else {
         infoMain.children[1].style.display = 'none';

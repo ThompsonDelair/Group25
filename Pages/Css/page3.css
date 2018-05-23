@@ -144,9 +144,9 @@ body{
     background-color: var(--storage);
 }
 
-/*  Cusine  */
+/*  Cuisine  */
 
-.cusine{
+.cuisine{
     background-color: green;
 }
 
@@ -273,27 +273,27 @@ body{
     background-color: steelblue;
 }
 
-.item:visited{
+.item::after{
     background-color: var(--var);
 }
 
-.meat:visited{
+.meat::after{
     color: darkred;
 }
     
-.veg:visited{
+.veg::after{
     color: green;
 }
 
-.fruits:visited{
+.fruits::after{
     color: limegreen;
 }
 
-.grains:visited{
+.grains::after{
     color: darkgoldenrod;
 }
 
-.meatalt:visited{
+.meatalt::after{
     color: palevioletred;
 }
 
