@@ -154,4 +154,4 @@ function setAttributes(element, attributes){
     }
 }
 
-console.log('Navbar creator ran successfully!');
+//console.log('Navbar creator ran successfully!');

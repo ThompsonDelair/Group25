@@ -47,13 +47,13 @@ body{
 
 #selections{
     float: right;
-    width: 64%;
+    width: 44%;
     margin-left: 2%;
 }
 
 #info{
     float: left;
-    width: 34%;
+    width: 54%;
     padding: 2%;
     background-color: #e3e4df;
     border-radius: 25px;
