@@ -149,7 +149,7 @@ for(let i = 0; i < food.length; i++){
             query = meatAltRef.where("Name", "==", food[i])
             query.get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){
-                    meatalternativess.push({
+                    meatalternatives.push({
                         'name':food[i],
                         'storage':doc.data().StorageTip,
                         'spoiled':doc.data().Spoiled,
@@ -409,7 +409,7 @@ query.get().then(function(querySnapshot){
     });
 });
 
-// populate arrays
+// populate selection
 
 function populate(){
     
@@ -471,6 +471,33 @@ function populate(){
             label.innerHTML = groups[i][n].name;
             item.appendChild(label);
             
+            switch(groups[i].name){
+                    
+                case "Meats":
+                    item.classList.add('meat');
+                    break;
+                    
+                case "Vegetables":
+                    item.classList.add('veg');
+                    break;
+                    
+                case "Fruits":
+                    item.classList.add('fruits');
+                    break;
+             
+                case "Grains":
+                    item.classList.add('grains');
+                    break;
+            
+              case "Meat Alternatives":
+                  item.classList.add('meatalt');
+                  break;
+                  
+              case "Dairy & Eggs":
+                  item.classList.add('dairy');
+                  break;
+            }            
+            
             // clones the item element (with children) for the mobile selection div
             document.getElementById('selections').children[2].appendChild(item.cloneNode(true));
         
@@ -493,11 +520,7 @@ function onSelect(input){
     infoIntro.style.display = "none";
     
     infoMain.children[0].children[1].innerHTML = input.storage;
-    infoMain.children[2].children[1].innerHTML = input.spoiled;
-    
-    
-    
-    
+    infoMain.children[2].children[1].innerHTML = input.spoiled;   
     
     let i = input.commentNum;
     

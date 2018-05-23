@@ -239,6 +239,8 @@ body{
     margin-left: 5px;
 }
 
+
+
 .community {
     display: block;
 }
@@ -250,6 +252,7 @@ body{
     #selections{
         float: none;
         width: auto;
+        margin-left: -6vw; 
     }
     #info {
         float: none;
@@ -260,6 +263,8 @@ body{
     }
     #mobileSelections{
         display: inline-block;
+        width: 99vw;
+        
     }
     .groupTitle{
         display: none;
@@ -269,11 +274,36 @@ body{
         margin: auto;
         float: auto;
     }
+    .item{
+        color: var(--white);
+    }
     .item img{
         display: none;
     }
     #infoMain {
         height: auto;
     }
-
+    .meat{
+        background-color: darkred;
+    }
+    
+    .veg{
+        background-color: green;
+    }
+    
+    .fruits{
+        background-color: limegreen;
+    }
+    
+    .grains{
+        background-color: darkgoldenrod;
+    }
+    
+    .meatalt{
+        background-color: palevioletred;
+    }
+    
+    .dairy{
+        background-color: steelblue;
+    }
 }
