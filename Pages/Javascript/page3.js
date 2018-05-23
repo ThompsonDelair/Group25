@@ -36,7 +36,11 @@ dairyandeggs.name = 'Dairy & Eggs';
 
 var groups = [ meats,vegetables,fruits,grains,meatalternatives,dairyandeggs ];
 // this stuff is hidden until a button is pressed
-    
+
+let cusineType = sessionStorage.getItem('cuisine');
+console.log(cusineType);
+
+
 let infoMain = document.getElementById('infoMain');
     
 for(n = 0;n < 3;n++){                
@@ -87,14 +91,8 @@ for(let i = 0; i < food.length; i++){
             var meatRef = firestore.collection("Meats");
             query = meatRef.where("Name", "==", food[i])
             query.get().then(function(querySnapshot){
-                querySnapshot.forEach(function(doc){    
-                    //console.log(meats.length);
-                    meats.push({
-                        'name':food[i],
-                        'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled,
-                        'commentNum':i
-                    });                    
+                querySnapshot.forEach(function(doc){
+                    storeInfo(doc,meats,i);
                 });
             });
             break;
@@ -104,12 +102,7 @@ for(let i = 0; i < food.length; i++){
             query = vegRef.where("Name", "==", food[i]);
             query.get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){
-                    vegetables.push({
-                            'name':food[i],
-                            'storage':doc.data().StorageTip,
-                            'spoiled':doc.data().Spoiled,
-                            'commentNum':i
-                    });
+                    storeInfo(doc,vegetables,i);
                 });
             });
             break;
@@ -119,12 +112,7 @@ for(let i = 0; i < food.length; i++){
             query = fruitRef.where("Name", "==", food[i])
             query.get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){
-                    fruits.push({
-                        'name':food[i],
-                        'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled,
-                        'commentNum':i
-                    });
+                    storeInfo(doc,fruits,i);
                 });
             });
             break;
@@ -134,12 +122,7 @@ for(let i = 0; i < food.length; i++){
             query = grainRef.where("Name", "==", food[i])
             query.get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){
-                    grains.push({
-                        'name':food[i],
-                        'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled,
-                        'commentNum':i
-                    });
+                    storeInfo(doc,grains,i);
                 });
             });
             break;
@@ -149,12 +132,7 @@ for(let i = 0; i < food.length; i++){
             query = meatAltRef.where("Name", "==", food[i])
             query.get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){
-                    meatalternatives.push({
-                        'name':food[i],
-                        'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled,
-                        'commentNum':i
-                    });
+                    storeInfo(doc,meatalternatives,i);
                 });
             });
             break;
@@ -164,15 +142,36 @@ for(let i = 0; i < food.length; i++){
             query = dairyRef.where("Name", "==", food[i])
             query.get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){
-                    dairyandeggs.push({
-                        'name':food[i],
-                        'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled,
-                        'commentNum':i
-                    });
+                    storeInfo(doc,dairyandeggs,i);
                 });
             });
             break;
+    }  
+    
+    function storeInfo(doc,foodType,num){
+        
+        var cusineTip;                    
+                    
+        switch(cusineType){
+            case 'na':
+                cusineTip = doc.data().NATip;
+                break;
+            case 'korean':
+                cusineTip = doc.data().ChineseTip;
+                break;
+            case 'chinese':
+                cusineTip = doc.data().ChineseTip;
+                break;
+        }
+        
+        foodType.push({
+            'name':food[num],
+            'storage':doc.data().StorageTip,
+            'cusine':cusineTip,
+            'spoiled':doc.data().Spoiled,
+            'commentNum':num
+        });
+        
     }
     
 //    //community content
@@ -455,21 +454,22 @@ function populate(){
             item.setAttribute('href','#');
             var itemfunction = 'onSelect(groups[' + i + '][' + n + ']);'
             item.setAttribute('onclick',itemfunction);
-            item.classList.add('item');     
+            item.classList.add('item'); 
+            item.innerHTML = groups[i][n].name;
             
             column.appendChild(item);                
             
-            var image = document.createElement('img');
-            
-            image.setAttribute('src','Images/foodIcons/cheese-01.png');
-            
-            image.setAttribute('width','20px');
-            image.setAttribute('height','20px');
-            item.appendChild(image);
-            
-            var label = document.createElement('span');
-            label.innerHTML = groups[i][n].name;
-            item.appendChild(label);
+//            var image = document.createElement('img');
+//            
+//            image.setAttribute('src','Images/foodIcons/cheese-01.png');
+//            
+//            image.setAttribute('width','20px');
+//            image.setAttribute('height','20px');
+//            item.appendChild(image);
+//            
+//            var label = document.createElement('span');
+//            label.innerHTML = groups[i][n].name;
+//            item.appendChild(label);
             
             switch(groups[i].name){
                     
@@ -513,6 +513,9 @@ function onSelect(input){
     //console.log(input.spoiled);
     //console.log(input.storage);
     
+    console.log('click');
+    
+    
     var infoMain = document.getElementById("infoMain");
     infoMain.style.display = "block";
     
@@ -520,6 +523,16 @@ function onSelect(input){
     infoIntro.style.display = "none";
     
     infoMain.children[0].children[1].innerHTML = input.storage;
+    
+    console.log(input.cusine);
+    
+    if(input.cusine){
+        infoMain.children[1].children[1].innerHTML = input.cusine;
+        infoMain.children[1].style.display = 'block';
+    } else {
+        infoMain.children[1].style.display = 'none';
+    }
+    
     infoMain.children[2].children[1].innerHTML = input.spoiled;   
     
     let i = input.commentNum;
@@ -587,9 +600,5 @@ function onSelect(input){
     
     communityAccordian.appendChild(communityCard);
     
-    infoMain.childNodes[3].appendChild(communityAccordian);
-    
-}   
-
-
-    
+    infoMain.childNodes[3].appendChild(communityAccordian);    
+}

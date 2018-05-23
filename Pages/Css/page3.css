@@ -54,7 +54,7 @@ body{
 #info{
     float: left;
     width: 54%;
-    padding: 2%;
+    padding: 20px;
     background-color: #e3e4df;
     border-radius: 25px;
     text-align: center;
@@ -69,7 +69,8 @@ body{
     width: 200px;
     display: block;
     margin: 0 auto;
-    margin-top: 120px;
+    margin-top: 80px;
+    margin-bottom: 80px;
     text-align: center;
 }
 
@@ -126,7 +127,7 @@ body{
     width: 34%;
     font-family: lato-medium;
     font-size: 20px;
-    margin-top: 12px;
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -134,6 +135,7 @@ body{
     padding: 15px;
     float: right;
     width: 66%;
+    text-align: left;
 }
 
 /*  Storage   */
@@ -232,8 +234,73 @@ body{
 
 .item {
     display: inline-block;
-    margin: 10px;    
+    margin: 2px;
+    color: var(--white);
+        margin-left: 1px;
+        margin-right: 0px;
+/*    margin-top: 5px;*/
+    padding: 6px;
+/*
+    background-color: white;
+    border-color: darkgrey;
+*/
+    border-radius: 10px;    
+    border-style: solid;
+    border-width: 1px;
 }
+
+.meat{
+    background-color: darkred;
+}
+    
+.veg{
+    background-color: green;
+}
+
+.fruits{
+    background-color: limegreen;
+}
+
+.grains{
+    background-color: darkgoldenrod;
+}
+
+.meatalt{
+    background-color: palevioletred;
+}
+
+.dairy{
+    background-color: steelblue;
+}
+
+.item:visited{
+    background-color: var(--var);
+}
+
+.meat:visited{
+    color: darkred;
+}
+    
+.veg:visited{
+    color: green;
+}
+
+.fruits:visited{
+    color: limegreen;
+}
+
+.grains:visited{
+    color: darkgoldenrod;
+}
+
+.meatalt:visited{
+    color: palevioletred;
+}
+
+.dairy:active{
+    color: steelblue;
+}
+
 
 .item span {
     margin-left: 5px;
@@ -247,23 +314,25 @@ body{
 
 @media (max-width: 950px){
    .pagemain {
-        width: 85vw;
+       margin-top: 5px;
+       width: 100%;
     }
     #selections{
         float: none;
-        width: auto;
-        margin-left: -6vw; 
+        width: 99vw;
+        margin-bottom: 8px;
+        margin-left: 5px;
     }
     #info {
         float: none;
-        width: auto;
+        width: 85vw;
+        margin: 0 auto;
     }
     .mycolumn{
         display: none;        
     }
     #mobileSelections{
         display: inline-block;
-        width: 99vw;
         
     }
     .groupTitle{
@@ -275,35 +344,12 @@ body{
         float: auto;
     }
     .item{
-        color: var(--white);
+        
     }
     .item img{
         display: none;
     }
     #infoMain {
         height: auto;
-    }
-    .meat{
-        background-color: darkred;
-    }
-    
-    .veg{
-        background-color: green;
-    }
-    
-    .fruits{
-        background-color: limegreen;
-    }
-    
-    .grains{
-        background-color: darkgoldenrod;
-    }
-    
-    .meatalt{
-        background-color: palevioletred;
-    }
-    
-    .dairy{
-        background-color: steelblue;
-    }
+    }    
 }
