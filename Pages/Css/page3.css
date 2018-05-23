@@ -47,13 +47,13 @@ body{
 
 #selections{
     float: right;
-    width: 64%;
+    width: 44%;
     margin-left: 2%;
 }
 
 #info{
     float: left;
-    width: 34%;
+    width: 54%;
     padding: 2%;
     background-color: #e3e4df;
     border-radius: 25px;
@@ -125,7 +125,7 @@ body{
     float: left;
     width: 34%;
     font-family: lato-medium;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 12px;
     text-align: center;
 }
@@ -140,6 +140,12 @@ body{
 
 .storage{
     background-color: var(--storage);
+}
+
+/*  Cusine  */
+
+.cusine{
+    background-color: green;
 }
 
 /*  Spoil   */
@@ -233,17 +239,20 @@ body{
     margin-left: 5px;
 }
 
+
+
 .community {
     display: block;
 }
 
-@media (max-width: 675px){
+@media (max-width: 950px){
    .pagemain {
         width: 85vw;
     }
     #selections{
         float: none;
         width: auto;
+        margin-left: -6vw; 
     }
     #info {
         float: none;
@@ -254,6 +263,8 @@ body{
     }
     #mobileSelections{
         display: inline-block;
+        width: 99vw;
+        
     }
     .groupTitle{
         display: none;
@@ -263,11 +274,36 @@ body{
         margin: auto;
         float: auto;
     }
+    .item{
+        color: var(--white);
+    }
     .item img{
         display: none;
     }
     #infoMain {
-        height: 450px;
+        height: auto;
     }
-
+    .meat{
+        background-color: darkred;
+    }
+    
+    .veg{
+        background-color: green;
+    }
+    
+    .fruits{
+        background-color: limegreen;
+    }
+    
+    .grains{
+        background-color: darkgoldenrod;
+    }
+    
+    .meatalt{
+        background-color: palevioletred;
+    }
+    
+    .dairy{
+        background-color: steelblue;
+    }
 }
