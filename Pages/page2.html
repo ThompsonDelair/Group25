@@ -78,6 +78,7 @@
   };
 
       jQuery(function(){
+        var dietType = sessionStorage.getItem("diet");
                jQuery('#showall').click(function(){
                      jQuery('.targetDiv').fadeIn('fast');
                      switch(dietType){
