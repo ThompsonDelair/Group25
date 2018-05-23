@@ -125,7 +125,7 @@ body{
     float: left;
     width: 34%;
     font-family: lato-medium;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 12px;
     text-align: center;
 }
@@ -140,6 +140,12 @@ body{
 
 .storage{
     background-color: var(--storage);
+}
+
+/*  Cusine  */
+
+.cusine{
+    background-color: green;
 }
 
 /*  Spoil   */
@@ -237,7 +243,7 @@ body{
     display: block;
 }
 
-@media (max-width: 675px){
+@media (max-width: 950px){
    .pagemain {
         width: 85vw;
     }
@@ -267,7 +273,7 @@ body{
         display: none;
     }
     #infoMain {
-        height: 450px;
+        height: auto;
     }
 
 }

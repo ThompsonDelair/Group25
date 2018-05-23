@@ -39,7 +39,7 @@ var groups = [ meats,vegetables,fruits,grains,meatalternatives,dairyandeggs ];
     
 let infoMain = document.getElementById('infoMain');
     
-for(n = 0;n < 2;n++){                
+for(n = 0;n < 3;n++){                
     var content = document.createElement("div");
     content.classList.add('content');
     infoMain.appendChild(content);
@@ -59,11 +59,15 @@ for(n = 0;n < 2;n++){
 
 var storage =  infoMain.childNodes[0];
 storage.classList.add('storage');
-storage.childNodes[0].innerHTML = "Storage<br>Method";
+storage.childNodes[0].innerHTML = "Storage Method";
 
-var spoil = infoMain.childNodes[1];
+var cusine = infoMain.childNodes[1];
+cusine.classList.add('cusine');
+cusine.childNodes[0].innerHTML = "Cusine Tips";
+
+var spoil = infoMain.childNodes[2];
 spoil.classList.add('spoil');
-spoil.childNodes[0].innerHTML = "Spoil<br>Alert";
+spoil.childNodes[0].innerHTML = "Spoil Alert";
 spoil.childNodes[1].innerHTML = "Slimy<br>Color chanaged<br>Unpleasant Odor";
 
 // community stuff
@@ -72,7 +76,7 @@ infoMain.appendChild(content);
 
 var detail1 = document.createElement("div");
 content.append(detail1);
-var community = infoMain.childNodes[2];
+var community = infoMain.childNodes[3];
 community.classList.add('community');
 
 for(let i = 0; i < food.length; i++){
@@ -88,7 +92,8 @@ for(let i = 0; i < food.length; i++){
                     meats.push({
                         'name':food[i],
                         'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled
+                        'spoiled':doc.data().Spoiled,
+                        'commentNum':i
                     });                    
                 });
             });
@@ -102,7 +107,8 @@ for(let i = 0; i < food.length; i++){
                     vegetables.push({
                             'name':food[i],
                             'storage':doc.data().StorageTip,
-                            'spoiled':doc.data().Spoiled
+                            'spoiled':doc.data().Spoiled,
+                            'commentNum':i
                     });
                 });
             });
@@ -116,7 +122,8 @@ for(let i = 0; i < food.length; i++){
                     fruits.push({
                         'name':food[i],
                         'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled
+                        'spoiled':doc.data().Spoiled,
+                        'commentNum':i
                     });
                 });
             });
@@ -130,7 +137,8 @@ for(let i = 0; i < food.length; i++){
                     grains.push({
                         'name':food[i],
                         'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled
+                        'spoiled':doc.data().Spoiled,
+                        'commentNum':i
                     });
                 });
             });
@@ -144,7 +152,8 @@ for(let i = 0; i < food.length; i++){
                     meatalternativess.push({
                         'name':food[i],
                         'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled
+                        'spoiled':doc.data().Spoiled,
+                        'commentNum':i
                     });
                 });
             });
@@ -158,76 +167,82 @@ for(let i = 0; i < food.length; i++){
                     dairyandeggs.push({
                         'name':food[i],
                         'storage':doc.data().StorageTip,
-                        'spoiled':doc.data().Spoiled
+                        'spoiled':doc.data().Spoiled,
+                        'commentNum':i
                     });
                 });
             });
             break;
     }
     
-    //community content
-    var communityAccordian = document.createElement("div");
-    communityAccordian.setAttribute("id", "accordian");
-    
-    var communityCard = document.createElement("div");
-    communityCard.classList.add("card");
-    
-    var communityDiv1 = document.createElement("div");
-    communityDiv1.classList.add("card-header", "commentText");
-    communityDiv1.setAttribute("onclick", "updatePage(" + i + ")");
-    communityDiv1.setAttribute("data-toggle", "collapse");
-    communityDiv1.setAttribute("data-target", "#comment" + i);
-    
-    var communityComment = document.createElement("a");
-    communityComment.innerHTML = "Community";
-    
-    var communityDropdown = document.createElement("div");
-    communityDropdown.setAttribute("id", "comment" + i);
-    communityDropdown.setAttribute("data-parent", "#accordion");
-    communityDropdown.classList.add("collapse");
-    
-    var communityDropdownBody = document.createElement("div");
-    communityDropdownBody.classList.add("card-body");
-    
-    var communityCommentContainer = document.createElement("div");
-    communityCommentContainer.setAttribute("id", "commentContainer" + i);
-    
-    var communityCommentInputContainer = document.createElement("div");
-    communityCommentInputContainer.classList.add("input-group");
-    communityCommentInputContainer.setAttribute("id", "commentInputContainer");
-    
-    var communityCommentText = document.createElement("textarea");
-    communityCommentText.classList.add("form-control");
-    communityCommentText.setAttribute("id", "commentSubmit" + i + "Input");
-    communityCommentText.setAttribute("rows", "3");
-    
-    var communityCommentSubmit = document.createElement("span");
-    communityCommentSubmit.classList.add("input-group-btn");
-    
-    var communityCommentSubmitBtn = document.createElement("button");
-    communityCommentSubmitBtn.classList.add("btn", "btn-default", "align-middle");
-    communityCommentSubmitBtn.setAttribute("id", "commentSubmit" + i)
-    communityCommentSubmitBtn.setAttribute("onclick", "addComment(this.id, " + i + ")")
-    communityCommentSubmitBtn.innerHTML = "Submit";
-    
-    communityCommentSubmit.appendChild(communityCommentSubmitBtn);
-    communityCommentInputContainer.appendChild(communityCommentText);
-    communityCommentInputContainer.appendChild(communityCommentSubmit);
-    
-    communityDropdownBody.appendChild(communityCommentContainer);
-    communityDropdownBody.appendChild(communityCommentInputContainer);
-    
-    communityDropdown.appendChild(communityDropdownBody);
-    
-    communityDiv1.appendChild(communityComment);
-    
-    communityCard.appendChild(communityDiv1);
-    communityCard.appendChild(communityDropdown);
-    
-    communityAccordian.appendChild(communityCard);
-    
-    community.childNodes[0].appendChild(communityAccordian);
+//    //community content
+//    var communityAccordian = document.createElement("div");
+//    communityAccordian.setAttribute("id", "accordian");
+//    
+//    var communityCard = document.createElement("div");
+//    communityCard.classList.add("card");
+//    
+//    var communityDiv1 = document.createElement("div");
+//    communityDiv1.classList.add("card-header", "commentText");
+//    communityDiv1.setAttribute("onclick", "updatePage(" + i + ")");
+//    communityDiv1.setAttribute("data-toggle", "collapse");
+//    communityDiv1.setAttribute("data-target", "#comment" + i);
+//    
+//    var communityComment = document.createElement("a");
+//    communityComment.innerHTML = "Community";
+//    
+//    var communityDropdown = document.createElement("div");
+//    communityDropdown.setAttribute("id", "comment" + i);
+//    communityDropdown.setAttribute("data-parent", "#accordion");
+//    communityDropdown.classList.add("collapse");
+//    
+//    var communityDropdownBody = document.createElement("div");
+//    communityDropdownBody.classList.add("card-body");
+//    
+//    var communityCommentContainer = document.createElement("div");
+//    communityCommentContainer.setAttribute("id", "commentContainer" + i);
+//    
+//    var communityCommentInputContainer = document.createElement("div");
+//    communityCommentInputContainer.classList.add("input-group");
+//    communityCommentInputContainer.setAttribute("id", "commentInputContainer");
+//    
+//    var communityCommentText = document.createElement("textarea");
+//    communityCommentText.classList.add("form-control");
+//    communityCommentText.setAttribute("id", "commentSubmit" + i + "Input");
+//    communityCommentText.setAttribute("rows", "3");
+//    
+//    var communityCommentSubmit = document.createElement("span");
+//    communityCommentSubmit.classList.add("input-group-btn");
+//    
+//    var communityCommentSubmitBtn = document.createElement("button");
+//    communityCommentSubmitBtn.classList.add("btn", "btn-default", "align-middle");
+//    communityCommentSubmitBtn.setAttribute("id", "commentSubmit" + i)
+//    communityCommentSubmitBtn.setAttribute("onclick", "addComment(this.id, " + i + ")")
+//    communityCommentSubmitBtn.innerHTML = "Submit";
+//    
+//    communityCommentSubmit.appendChild(communityCommentSubmitBtn);
+//    communityCommentInputContainer.appendChild(communityCommentText);
+//    communityCommentInputContainer.appendChild(communityCommentSubmit);
+//    
+//    communityDropdownBody.appendChild(communityCommentContainer);
+//    communityDropdownBody.appendChild(communityCommentInputContainer);
+//    
+//    communityDropdown.appendChild(communityDropdownBody);
+//    
+//    communityDiv1.appendChild(communityComment);
+//    
+//    communityCard.appendChild(communityDiv1);
+//    communityCard.appendChild(communityDropdown);
+//    
+//    communityAccordian.appendChild(communityCard);
+//    
+//    community.childNodes[0].appendChild(communityAccordian);
  }
+
+
+//function (num) {
+//    
+//}
 
 //pulls comment data from database and inserts into community
 function updatePage(num) {
@@ -478,7 +493,79 @@ function onSelect(input){
     infoIntro.style.display = "none";
     
     infoMain.children[0].children[1].innerHTML = input.storage;
-    infoMain.children[1].children[1].innerHTML = input.spoiled;
+    infoMain.children[2].children[1].innerHTML = input.spoiled;
+    
+    
+    
+    
+    
+    let i = input.commentNum;
+    
+    infoMain.children[3].innerHTML = '';
+    
+    //community content
+    var communityAccordian = document.createElement("div");
+    communityAccordian.setAttribute("id", "accordian");
+    
+    var communityCard = document.createElement("div");
+    communityCard.classList.add("card");
+    
+    var communityDiv1 = document.createElement("div");
+    communityDiv1.classList.add("card-header", "commentText");
+    communityDiv1.setAttribute("onclick", "updatePage(" + i + ")");
+    communityDiv1.setAttribute("data-toggle", "collapse");
+    communityDiv1.setAttribute("data-target", "#comment" + i);
+    
+    var communityComment = document.createElement("a");
+    communityComment.innerHTML = "Community";
+    
+    var communityDropdown = document.createElement("div");
+    communityDropdown.setAttribute("id", "comment" + i);
+    communityDropdown.setAttribute("data-parent", "#accordion");
+    communityDropdown.classList.add("collapse");
+    
+    var communityDropdownBody = document.createElement("div");
+    communityDropdownBody.classList.add("card-body");
+    
+    var communityCommentContainer = document.createElement("div");
+    communityCommentContainer.setAttribute("id", "commentContainer" + i);
+    
+    var communityCommentInputContainer = document.createElement("div");
+    communityCommentInputContainer.classList.add("input-group");
+    communityCommentInputContainer.setAttribute("id", "commentInputContainer");
+    
+    var communityCommentText = document.createElement("textarea");
+    communityCommentText.classList.add("form-control");
+    communityCommentText.setAttribute("id", "commentSubmit" + i + "Input");
+    communityCommentText.setAttribute("rows", "3");
+    
+    var communityCommentSubmit = document.createElement("span");
+    communityCommentSubmit.classList.add("input-group-btn");
+    
+    var communityCommentSubmitBtn = document.createElement("button");
+    communityCommentSubmitBtn.classList.add("btn", "btn-default", "align-middle");
+    communityCommentSubmitBtn.setAttribute("id", "commentSubmit" + i)
+    communityCommentSubmitBtn.setAttribute("onclick", "addComment(this.id, " + i + ")")
+    communityCommentSubmitBtn.innerHTML = "Submit";
+    
+    communityCommentSubmit.appendChild(communityCommentSubmitBtn);
+    communityCommentInputContainer.appendChild(communityCommentText);
+    communityCommentInputContainer.appendChild(communityCommentSubmit);
+    
+    communityDropdownBody.appendChild(communityCommentContainer);
+    communityDropdownBody.appendChild(communityCommentInputContainer);
+    
+    communityDropdown.appendChild(communityDropdownBody);
+    
+    communityDiv1.appendChild(communityComment);
+    
+    communityCard.appendChild(communityDiv1);
+    communityCard.appendChild(communityDropdown);
+    
+    communityAccordian.appendChild(communityCard);
+    
+    infoMain.childNodes[3].appendChild(communityAccordian);
+    
 }   
 
 
