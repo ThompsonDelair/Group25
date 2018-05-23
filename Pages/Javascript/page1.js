@@ -1,7 +1,7 @@
 
 
 function dietWebFunc(){
-    console.log("You called diet web!");
+    //console.log("You called diet web!");
     switch(document.getElementById("dietSelectWeb").value){
         case "none":
             sessionStorage.setItem("diet", "none");
@@ -16,11 +16,11 @@ function dietWebFunc(){
             sessionStorage.setItem("diet", "glufree");
             break;
    }
-   console.log("You have selected " + sessionStorage.getItem("diet"));
+   //console.log("You have selected " + sessionStorage.getItem("diet"));
 }
 
 function cuisWebFunc(){
-    console.log("You called cuisine web!");
+    //console.log("You called cuisine web!");
    switch(document.getElementById("cuisSelectWeb").value){
         case "na":
             sessionStorage.setItem("cuisine", "na");
@@ -33,11 +33,11 @@ function cuisWebFunc(){
             break;
         
    }
-   console.log("You have selected " + sessionStorage.getItem("cuisine"));
+   //console.log("You have selected " + sessionStorage.getItem("cuisine"));
 }
 
 function dietMobFunc(){
-    console.log("You called diet mob func!");
+    //console.log("You called diet mob func!");
     switch(document.getElementById("dietSelectMob").value){
         case "none":
             sessionStorage.setItem("diet", "none");
@@ -52,11 +52,11 @@ function dietMobFunc(){
             sessionStorage.setItem("diet", "glufree");
             break;
    }
-   console.log("You have selected " + sessionStorage.getItem("diet"));
+   //console.log("You have selected " + sessionStorage.getItem("diet"));
 }
 
 function cuisMobFunc(){
-    console.log("You called cuis mob func!");
+    //console.log("You called cuis mob func!");
     switch(document.getElementById("cuisSelectMob").value){
         case "na":
             sessionStorage.setItem("cuisine", "na");
@@ -69,6 +69,6 @@ function cuisMobFunc(){
             break;
         
    }
-   console.log("You have selected " + sessionStorage.getItem("cuisine"));
+   //console.log("You have selected " + sessionStorage.getItem("cuisine"));
 }
 sessionStorage.setItem("diet", "none");
