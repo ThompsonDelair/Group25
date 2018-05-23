@@ -35,10 +35,9 @@ dairyandeggs.name = 'Dairy & Eggs';
 // food groups
 
 var groups = [ meats,vegetables,fruits,grains,meatalternatives,dairyandeggs ];
-// this stuff is hidden until a button is pressed
 
+// get the cuisine type from session storage
 let cuisineType = sessionStorage.getItem('cuisine');
-console.log(cuisineType);
 
 
 let infoMain = document.getElementById('infoMain');
@@ -83,165 +82,111 @@ content.append(detail1);
 var community = infoMain.childNodes[3];
 community.classList.add('community');
 
-for(let i = 0; i < food.length; i++){
+// store info if user has selected food
+if(food != null && food.length > 0) {
+    for(let i = 0; i < food.length; i++){
     
-    var query;
-    switch(types[i]){
-        case "Meats":
-            var meatRef = firestore.collection("Meats");
-            query = meatRef.where("Name", "==", food[i])
-            query.get().then(function(querySnapshot){
-                querySnapshot.forEach(function(doc){
-                    storeInfo(doc,meats,i);
+        var query;
+        switch(types[i]){
+            case "Meats":
+                var meatRef = firestore.collection("Meats");
+                query = meatRef.where("Name", "==", food[i])
+                query.get().then(function(querySnapshot){
+                    querySnapshot.forEach(function(doc){
+                        storeInfo(doc,meats,i);
+                    });
                 });
-            });
-            break;
-            
-        case "Vegetables":
-            var vegRef = firestore.collection("Vegetables");
-            query = vegRef.where("Name", "==", food[i]);
-            query.get().then(function(querySnapshot){
-                querySnapshot.forEach(function(doc){
-                    storeInfo(doc,vegetables,i);
+                break;
+                
+            case "Vegetables":
+                var vegRef = firestore.collection("Vegetables");
+                query = vegRef.where("Name", "==", food[i]);
+                query.get().then(function(querySnapshot){
+                    querySnapshot.forEach(function(doc){
+                        storeInfo(doc,vegetables,i);
+                    });
                 });
-            });
-            break;
-       
-        case "Fruits":
-            var fruitRef = firestore.collection("Fruits");
-            query = fruitRef.where("Name", "==", food[i])
-            query.get().then(function(querySnapshot){
-                querySnapshot.forEach(function(doc){
-                    storeInfo(doc,fruits,i);
+                break;
+           
+            case "Fruits":
+                var fruitRef = firestore.collection("Fruits");
+                query = fruitRef.where("Name", "==", food[i])
+                query.get().then(function(querySnapshot){
+                    querySnapshot.forEach(function(doc){
+                        storeInfo(doc,fruits,i);
+                    });
                 });
-            });
-            break;
-       
-        case "Grains":
-            var grainRef = firestore.collection("Grains");
-            query = grainRef.where("Name", "==", food[i])
-            query.get().then(function(querySnapshot){
-                querySnapshot.forEach(function(doc){
-                    storeInfo(doc,grains,i);
+                break;
+           
+            case "Grains":
+                var grainRef = firestore.collection("Grains");
+                query = grainRef.where("Name", "==", food[i])
+                query.get().then(function(querySnapshot){
+                    querySnapshot.forEach(function(doc){
+                        storeInfo(doc,grains,i);
+                    });
                 });
-            });
-            break;
-      
-        case "MeatAlternatives":
-            var meatAltRef = firestore.collection("MeatAlternatives");
-            query = meatAltRef.where("Name", "==", food[i])
-            query.get().then(function(querySnapshot){
-                querySnapshot.forEach(function(doc){
-                    storeInfo(doc,meatalternatives,i);
+                break;
+          
+            case "MeatAlternatives":
+                var meatAltRef = firestore.collection("MeatAlternatives");
+                query = meatAltRef.where("Name", "==", food[i])
+                query.get().then(function(querySnapshot){
+                    querySnapshot.forEach(function(doc){
+                        storeInfo(doc,meatalternatives,i);
+                    });
                 });
-            });
-            break;
-            
-        case "DairyandEggs":
-            var dairyRef = firestore.collection("DairyandEggs");
-            query = dairyRef.where("Name", "==", food[i])
-            query.get().then(function(querySnapshot){
-                querySnapshot.forEach(function(doc){
-                    storeInfo(doc,dairyandeggs,i);
+                break;
+                
+            case "DairyandEggs":
+                var dairyRef = firestore.collection("DairyandEggs");
+                query = dairyRef.where("Name", "==", food[i])
+                query.get().then(function(querySnapshot){
+                    querySnapshot.forEach(function(doc){
+                        storeInfo(doc,dairyandeggs,i);
+                    });
                 });
-            });
-            break;
-    }  
-    
-    function storeInfo(doc,foodType,num){
+                break;
+        }  
         
-        var cuisineTip;                    
-                    
-        switch(cuisineType){
-            case 'na':
-                cuisineTip = doc.data().NATip;
-                break;
-            case 'korean':
-                cuisineTip = doc.data().ChineseTip;
-                break;
-            case 'chinese':
-                cuisineTip = doc.data().ChineseTip;
-                break;
+        function storeInfo(doc,foodType,num){
+            
+            var cuisineTip;                    
+                        
+            switch(cuisineType){
+                case 'na':
+                    cuisineTip = doc.data().NATip;
+                    break;
+                case 'korean':
+                    cuisineTip = doc.data().ChineseTip;
+                    break;
+                case 'chinese':
+                    cuisineTip = doc.data().ChineseTip;
+                    break;
+            }
+            
+            foodType.push({
+                'name':food[num],
+                'storage':doc.data().StorageTip,
+                'cuisine':cuisineTip,
+                'spoiled':doc.data().Spoiled,
+                'commentNum':num
+            });            
         }
-        
-        foodType.push({
-            'name':food[num],
-            'storage':doc.data().StorageTip,
-            'cuisine':cuisineTip,
-            'spoiled':doc.data().Spoiled,
-            'commentNum':num
-        });
-        
     }
+} else {
+    // if user hasn't selected any food, prompt them to go back to page 2
+    var infoIntro = document.getElementById('infoIntro');
+    infoIntro.style.height = 'auto';
     
-//    //community content
-//    var communityAccordian = document.createElement("div");
-//    communityAccordian.setAttribute("id", "accordian");
-//    
-//    var communityCard = document.createElement("div");
-//    communityCard.classList.add("card");
-//    
-//    var communityDiv1 = document.createElement("div");
-//    communityDiv1.classList.add("card-header", "commentText");
-//    communityDiv1.setAttribute("onclick", "updatePage(" + i + ")");
-//    communityDiv1.setAttribute("data-toggle", "collapse");
-//    communityDiv1.setAttribute("data-target", "#comment" + i);
-//    
-//    var communityComment = document.createElement("a");
-//    communityComment.innerHTML = "Community";
-//    
-//    var communityDropdown = document.createElement("div");
-//    communityDropdown.setAttribute("id", "comment" + i);
-//    communityDropdown.setAttribute("data-parent", "#accordion");
-//    communityDropdown.classList.add("collapse");
-//    
-//    var communityDropdownBody = document.createElement("div");
-//    communityDropdownBody.classList.add("card-body");
-//    
-//    var communityCommentContainer = document.createElement("div");
-//    communityCommentContainer.setAttribute("id", "commentContainer" + i);
-//    
-//    var communityCommentInputContainer = document.createElement("div");
-//    communityCommentInputContainer.classList.add("input-group");
-//    communityCommentInputContainer.setAttribute("id", "commentInputContainer");
-//    
-//    var communityCommentText = document.createElement("textarea");
-//    communityCommentText.classList.add("form-control");
-//    communityCommentText.setAttribute("id", "commentSubmit" + i + "Input");
-//    communityCommentText.setAttribute("rows", "3");
-//    
-//    var communityCommentSubmit = document.createElement("span");
-//    communityCommentSubmit.classList.add("input-group-btn");
-//    
-//    var communityCommentSubmitBtn = document.createElement("button");
-//    communityCommentSubmitBtn.classList.add("btn", "btn-default", "align-middle");
-//    communityCommentSubmitBtn.setAttribute("id", "commentSubmit" + i)
-//    communityCommentSubmitBtn.setAttribute("onclick", "addComment(this.id, " + i + ")")
-//    communityCommentSubmitBtn.innerHTML = "Submit";
-//    
-//    communityCommentSubmit.appendChild(communityCommentSubmitBtn);
-//    communityCommentInputContainer.appendChild(communityCommentText);
-//    communityCommentInputContainer.appendChild(communityCommentSubmit);
-//    
-//    communityDropdownBody.appendChild(communityCommentContainer);
-//    communityDropdownBody.appendChild(communityCommentInputContainer);
-//    
-//    communityDropdown.appendChild(communityDropdownBody);
-//    
-//    communityDiv1.appendChild(communityComment);
-//    
-//    communityCard.appendChild(communityDiv1);
-//    communityCard.appendChild(communityDropdown);
-//    
-//    communityAccordian.appendChild(communityCard);
-//    
-//    community.childNodes[0].appendChild(communityAccordian);
- }
-
-
-//function (num) {
-//    
-//}
+    var goBack = document.createElement('a');
+    goBack.innerHTML = 'You have not chosen any food! Click here to go back to page 2 and pick some food items.';
+    goBack.setAttribute('href','page2.html');
+    goBack.style.color = '#FFFFFF';
+    
+    infoIntro.innerHTML = '';
+    infoIntro.appendChild(goBack);
+}
 
 //pulls comment data from database and inserts into community
 function updatePage(num) {
@@ -459,18 +404,6 @@ function populate(){
             
             column.appendChild(item);                
             
-//            var image = document.createElement('img');
-//            
-//            image.setAttribute('src','Images/foodIcons/cheese-01.png');
-//            
-//            image.setAttribute('width','20px');
-//            image.setAttribute('height','20px');
-//            item.appendChild(image);
-//            
-//            var label = document.createElement('span');
-//            label.innerHTML = groups[i][n].name;
-//            item.appendChild(label);
-            
             switch(groups[i].name){
                     
                 case "Meats":
@@ -508,14 +441,7 @@ function populate(){
 //onSelect;
 
 function onSelect(input){
-    //console.log('hi there!');
-    //console.log(input.name);
-    //console.log(input.spoiled);
-    //console.log(input.storage);
-    
-    console.log('click');
-    
-    
+
     var infoMain = document.getElementById("infoMain");
     infoMain.style.display = "block";
     
@@ -524,7 +450,7 @@ function onSelect(input){
     
     infoMain.children[0].children[1].innerHTML = input.storage;
     
-    console.log(input.cuisine);
+    //console.log(input.cuisine);
     
     if(input.cuisine){
         infoMain.children[1].children[1].innerHTML = input.cuisine;

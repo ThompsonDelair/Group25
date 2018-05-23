@@ -273,31 +273,33 @@ body{
     background-color: steelblue;
 }
 
-.item::after{
+.item:hover .item:focus{
     background-color: var(--var);
+    text-decoration:none;
+    font-weight: bolder;
 }
 
-.meat::after{
+.meat:focus{
     color: darkred;
 }
     
-.veg::after{
+.veg:focus{
     color: green;
 }
 
-.fruits::after{
+.fruits:focus{
     color: limegreen;
 }
 
-.grains::after{
+.grains:focus{
     color: darkgoldenrod;
 }
 
-.meatalt::after{
+.meatalt:focus{
     color: palevioletred;
 }
 
-.dairy:active{
+.dairy:focus{
     color: steelblue;
 }
 
