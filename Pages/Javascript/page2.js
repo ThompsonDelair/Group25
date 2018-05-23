@@ -22,6 +22,7 @@ firestore.collection("Meats").get().then(function(querySnapshot){
     console.log("Error getting meat documents: ", error);
 });
 
+
 //puts vegetables into html into veg list
 firestore.collection("Vegetables").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
@@ -76,8 +77,6 @@ firestore.collection("DairyandEggs").get().then(function(querySnapshot){
         + "<span class='checkmark'></span> </label></li>";
     });
 
-
-    
     if(JSON.parse(sessionStorage.getItem("foods"))){
         var checkboxes = document.getElementsByClassName("check");
         for(let i=0; i< prevInputs.length;i++){
@@ -93,7 +92,6 @@ firestore.collection("DairyandEggs").get().then(function(querySnapshot){
             }
         }
     }
-    
 }).catch(function(error){
     console.log("Error getting documents: ", error);
 });
@@ -125,31 +123,29 @@ if(JSON.parse(sessionStorage.getItem("foods"))){
     var typeCart = [];
 }
 
-
-
 function onCheck(foodItem){
-    if(foodItem.checked){    
+    if(foodItem.checked){
+        
         cart.push(foodItem.name);
         typeCart.push(foodItem.value);
-        //console.log("This food is checked! " + foodItem.name);
+        console.log("This food is checked! " + foodItem.name);
     } else{
         var indexName = cart.indexOf(foodItem.value["name"]);
         cart.splice(indexName, 1);
         var indexType = cart.indexOf(foodItem.value["type"]);
         typeCart.splice(indexType, 1);
-        //console.log("This food is unchecked! " + foodItem.value["name"]);
+        console.log("This food is unchecked! " + foodItem.value["name"]);
     }
-    //console.log(cart);
-    //console.log(typeCart);
+    console.log(cart);
+    console.log(typeCart);
 }
 
 function storeArray(){
+
     sessionStorage.setItem("foods", JSON.stringify(cart));
     sessionStorage.setItem("types", JSON.stringify(typeCart));
-    //console.log("Array is stored!")
+    console.log("Array is stored!")
 }
-
-
 
 
 
