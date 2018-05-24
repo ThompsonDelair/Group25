@@ -179,6 +179,10 @@ body{
     font-size: 15px;
 }
 
+#communityDropdown {
+    padding: 0;
+}
+
 .jumbotron {
     background-color: var(--community);
     color: #F9F9F9;
