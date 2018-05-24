@@ -70,7 +70,7 @@ let collapseUl = createElement('ul');
 collapseUl.classList.add('navbar-nav','mr-auto');
 collapseDiv.appendChild(collapseUl);
 
-for (i = 0; i < 2; i++){
+for (i = 0; i < 3; i++){
     var li = createElement('li');
     li.classList.add('nav-item');
     collapseUl.appendChild(li);
@@ -81,15 +81,19 @@ for (i = 0; i < 2; i++){
 }
 
 let anchorOne = collapseUl.childNodes[0].childNodes[0];
-anchorOne.setAttribute('href','aboutus.html');
-anchorOne.innerHTML = 'About us';
+anchorOne.setAttribute('href','page1.html');
+anchorOne.innerHTML = 'Home';
+
+let anchorTwo = collapseUl.childNodes[1].childNodes[0];
+anchorTwo.setAttribute('href','aboutus.html');
+anchorTwo.innerHTML = 'About us';
 
 //let anchorTwo = collapseUl.childNodes[1].childNodes[0];
 //anchorTwo.setAttribute('href','page4.html');
 //anchorTwo.innerHTML = 'Community Tips';
 
-collapseUl.childNodes[1].classList.add('dropdown');
-let anchorThree = collapseUl.childNodes[1].childNodes[0];
+collapseUl.childNodes[2].classList.add('dropdown');
+let anchorThree = collapseUl.childNodes[2].childNodes[0];
 anchorThree.classList.add('dropdown-toggle');
 setAttributes(anchorThree,{
     'href':'#',
@@ -106,7 +110,7 @@ anchorThree.innerHTML = "Get Involved";
 let dropdownDiv = createElement('div');
 dropdownDiv.classList.add('dropdown-menu');
 dropdownDiv.setAttribute('aria-labelledby','navbarDropdown');
-collapseUl.childNodes[1].appendChild(dropdownDiv);
+collapseUl.childNodes[2].appendChild(dropdownDiv);
 
 for (i = 0;i < 5;i++){
     var a = createElement('a');
@@ -159,8 +163,8 @@ function setPage(){
             back.setAttribute('href','page2.html');
             break;
         case 'about':
-            currentPage.innerHTML = ('About');
-            back.setAttribute('display','none');
+            currentPage.innerHTML = ('About us');
+            back.style.display = 'none';
             break;        
         default:
             back.setAttribute('href','#');
