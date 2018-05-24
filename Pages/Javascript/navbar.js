@@ -79,7 +79,7 @@ for (i = 0; i < 3; i++){
 }
 
 let anchorOne = collapseUl.childNodes[0].childNodes[0];
-anchorOne.setAttribute('href','page1.html');
+anchorOne.setAttribute('href','index.html');
 anchorOne.innerHTML = 'Home';
 
 let anchorTwo = collapseUl.childNodes[1].childNodes[0];
@@ -126,10 +126,10 @@ dropdownDiv.childNodes[0].setAttribute('href','http://www.lovefoodhatewaste.ca')
 dropdownDiv.childNodes[0].innerHTML = "Love Food Hate Waste";
 
 dropdownDiv.childNodes[2].setAttribute('href','https://www.foodbank.bc.ca/our-programs/food-recovery/');
-dropdownDiv.childNodes[2].innerHTML = "Greater Vancouver Foodban";
+dropdownDiv.childNodes[2].innerHTML = "Greater Vancouver Foodbank";
 
-dropdownDiv.childNodes[4].setAttribute('href','#');
-dropdownDiv.childNodes[4].innerHTML = "Link to Another team's project";
+dropdownDiv.childNodes[4].setAttribute('href','http://www.tapncook.ca/');
+dropdownDiv.childNodes[4].innerHTML = "Tap'N Cook recipes";
 
 function createElement (input){
     return document.createElement(input);
