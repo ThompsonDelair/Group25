@@ -133,7 +133,16 @@ body {
 #pickFood {
     font-family: lato;
     font-weight: 600;
-    margin: 40px 0 40px 30px;
+    margin: 40px 0 0px 30px;
+}
+
+#pickMessage{
+    margin-top: 15px;
+}
+
+#goButton{
+    width: 150px;
+    height: 75px;
 }
 
 .buttonSticky {
