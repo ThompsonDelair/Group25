@@ -76,6 +76,10 @@ if(!sessionStorage.getItem("diet")){
     sessionStorage.setItem("diet", "none");
 }
 
+if(!sessionStorage.getItem("cuisine")){
+    sessionStorage.setItem("cuisine", "na");
+}
+
 var socket = io.connect('https://obscure-waters-64024.herokuapp.com/');
 socket.on('stream', function(tweet){
     // $('#tweetd').append(tweet+'<br>');
