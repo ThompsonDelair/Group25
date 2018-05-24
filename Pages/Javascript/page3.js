@@ -15,9 +15,6 @@ var firestore = firebase.firestore();
 
 var food = JSON.parse(sessionStorage.getItem("foods"));
 var types = JSON.parse(sessionStorage.getItem("types"));
-console.log('food.length : ' + food.length);
-
-// food type arrays
 
 var meats = [];
 meats.name = 'Meats';
@@ -39,7 +36,6 @@ var groups = [ meats,vegetables,fruits,grains,meatalternatives,dairyandeggs ];
 // get the cuisine type from session storage
 
 var cuisineType = sessionStorage.getItem('cuisine');
-console.log('cuisine is: ' + cuisineType);
 
 // populate info panel with content
 
@@ -91,14 +87,13 @@ community.classList.add('community');
 // store info if user has selected food
 if(food != null && food.length > 0) {
     // sort food info into proper arrays
-    for(var i = 0; i < food.length; i++){    
-        var query;
+    for(let i = 0; i < food.length; i++){        
         switch(types[i]){
             case "Meats":
                 var meatRef = firestore.collection("Meats");
                 query = meatRef.where("Name", "==", food[i])
                 query.get().then(function(querySnapshot){
-                    querySnapshot.forEach(function(doc){
+                    querySnapshot.forEach(function(doc){                        
                         storeInfo(doc,meats,i);
                     });
                 });
@@ -155,30 +150,7 @@ if(food != null && food.length > 0) {
                 break;
         }
         
-        function storeInfo(doc,foodType,num){
-            
-            var cuisineTip;                    
-                        
-            switch(cuisineType){
-                case 'na':
-                    cuisineTip = doc.data().NATip;
-                    break;
-                case 'korean':
-                    cuisineTip = doc.data().ChineseTip;
-                    break;
-                case 'chinese':
-                    cuisineTip = doc.data().ChineseTip;
-                    break;
-            }
-            
-            foodType.push({
-                'name':food[num],
-                'storage':doc.data().StorageTip,
-                'cuisine':cuisineTip,
-                'spoiled':doc.data().Spoiled,
-                'commentNum':num
-            });            
-        }
+        
     }
 } else {
     
@@ -195,6 +167,39 @@ if(food != null && food.length > 0) {
     infoIntro.innerHTML = '';
     infoIntro.appendChild(goBack);
 }
+
+function storeInfo(doc,foodType,n){
+    
+            var cuisineTip;                    
+                        
+            switch(cuisineType){
+                case 'na':
+                    cuisineTip = doc.data().NATip;
+                    break;
+                case 'korean':
+                    cuisineTip = doc.data().KoreanTip;
+                    break;
+                case 'chinese':
+                    cuisineTip = doc.data().ChineseTip;
+                    break;
+            }
+            foodType.push({
+                'name':food[n],
+                'storage':doc.data().StorageTip,
+                'cuisine':cuisineTip,
+                'spoiled':doc.data().Spoiled,
+                'commentNum':n
+            });            
+        }
+
+
+
+
+
+
+
+
+
 
 //pulls comment data from database and inserts into community
 function updatePage(num) {
@@ -356,7 +361,6 @@ addComment = function(submitID, num) {
 
 query.get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
-        //console.log('beep');
         populate();
     });
 });
