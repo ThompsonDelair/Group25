@@ -15,6 +15,7 @@ var firestore = firebase.firestore();
 
 var food = JSON.parse(sessionStorage.getItem("foods"));
 var types = JSON.parse(sessionStorage.getItem("types"));
+console.log('food.length : ' + food.length);
 
 // food type arrays
 
@@ -37,11 +38,12 @@ var groups = [ meats,vegetables,fruits,grains,meatalternatives,dairyandeggs ];
 
 // get the cuisine type from session storage
 
-let cuisineType = sessionStorage.getItem('cuisine');
+var cuisineType = sessionStorage.getItem('cuisine');
+console.log('cuisine is: ' + cuisineType);
 
 // populate info panel with content
 
-let infoMain = document.getElementById('infoMain');
+var infoMain = document.getElementById('infoMain');
     
 for(n = 0;n < 3;n++){                
     var content = document.createElement("div");
@@ -55,7 +57,7 @@ for(n = 0;n < 3;n++){
     
     var detail2 = document.createElement("div");
     detail2.classList.add('details');
-    detail2.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.';
+    detail2.innerHTML = 'No text loaded.';
     content.append(detail2);
 }
 
@@ -89,7 +91,7 @@ community.classList.add('community');
 // store info if user has selected food
 if(food != null && food.length > 0) {
     // sort food info into proper arrays
-    for(let i = 0; i < food.length; i++){    
+    for(var i = 0; i < food.length; i++){    
         var query;
         switch(types[i]){
             case "Meats":
@@ -335,7 +337,8 @@ function thumbsDown(docID, num) {
 addComment = function(submitID, num) {
     var newCommentRef = firestore.collection(types[num]).doc(food[num]).collection("Comments").doc();
     
-    var dateData = new Date().toLocaleString();
+    var currentDate = new Date();
+    var dateData = currentDate.getMonth() + 1 + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
     var comment = document.getElementById(submitID + "Input").value;
     comment = comment.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     
@@ -450,17 +453,22 @@ function onSelect(input){
     infoIntro.style.display = "none";
     
     infoMain.children[0].children[1].innerHTML = input.storage;
+    console.log('storage info is : '+input.storage);
     
     if(input.cuisine){
         infoMain.children[1].children[1].innerHTML = input.cuisine;
         infoMain.children[1].style.display = 'block';
+        console.log('cuisine info is : '+input.cuisine);
     } else {
         infoMain.children[1].style.display = 'none';
+        console.log('no cuisine tip for this food item.');
     }
     
-    infoMain.children[2].children[1].innerHTML = input.spoiled;   
     
-    let i = input.commentNum;
+    infoMain.children[2].children[1].innerHTML = input.spoiled;  
+    console.log('spoil info is : '+input.spoiled);
+    
+    var i = input.commentNum;
     
     infoMain.children[3].innerHTML = '';
     
