@@ -19,8 +19,6 @@ back.style.color = '#FFFFFF';
 back.innerHTML = '<i style="font-size:28px" class="fa">&#xf0d9;</i>';
 nav.append(back);
 
-
-
 // current page
 
 let currentUl = createElement('ul');
