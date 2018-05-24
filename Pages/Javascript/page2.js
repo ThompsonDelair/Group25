@@ -147,6 +147,37 @@ function storeArray(){
     console.log("Array is stored!")
 }
 
+function resetColor(){
+    $("li").removeClass("myClass").addClass('backgroundWhite');
+};
 
+jQuery(function(){
+    var dietType = sessionStorage.getItem("diet");
+            jQuery('#showall').click(function(){
+                jQuery('.targetDiv').fadeIn('fast');
+                switch(dietType){
+                    case "veg":
+                        jQuery("#meatDiv").hide();
+                        break;
+                    case "vegan":
+                        jQuery("#meatDiv").hide();
+                        jQuery("#meatPic").hide();
+                        break;
+                    
+                    case "glufree":
+                        jQuery("#bakeDiv").hide();
+                        break;
+                    default:
+                }
+            });
+        jQuery('.showSingle').click(function(){
+                jQuery('.targetDiv').hide();
+                jQuery('#'+ $(this).attr('target') + 'Div').fadeIn('fast');
+        });
+});
 
-
+$("li").click(function(){
+    $(this).toggleClass('myClass');
+    $(".button").css("background-color", "lightgreen");
+    $(".button").css("border", "2px solid lightgreen");
+});
