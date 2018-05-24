@@ -125,16 +125,17 @@ if(JSON.parse(sessionStorage.getItem("foods"))){
 
 function onCheck(foodItem){
     if(foodItem.checked){
-        
+        checkCount++;
         cart.push(foodItem.name);
         typeCart.push(foodItem.value);
-        console.log("This food is checked! " + foodItem.name);
+        console.log("This food is checked! " + foodItem.name);        
     } else{
+        checkCount--;
         var indexName = cart.indexOf(foodItem.value["name"]);
         cart.splice(indexName, 1);
         var indexType = cart.indexOf(foodItem.value["type"]);
         typeCart.splice(indexType, 1);
-        console.log("This food is unchecked! " + foodItem.value["name"]);
+        console.log("This food is unchecked! " + foodItem.value["name"]);        
     }
     console.log(cart);
     console.log(typeCart);
