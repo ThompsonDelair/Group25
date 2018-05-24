@@ -452,15 +452,20 @@ function onSelect(input){
     infoIntro.style.display = "none";
     
     infoMain.children[0].children[1].innerHTML = input.storage;
+    console.log('storage info is : '+input.storage);
     
     if(input.cuisine){
         infoMain.children[1].children[1].innerHTML = input.cuisine;
         infoMain.children[1].style.display = 'block';
+        console.log('cuisine info is : '+input.cuisine);
     } else {
         infoMain.children[1].style.display = 'none';
+        console.log('no cuisine tip for this food item.');
     }
     
-    infoMain.children[2].children[1].innerHTML = input.spoiled;   
+    
+    infoMain.children[2].children[1].innerHTML = input.spoiled;  
+    console.log('spoil info is : '+input.spoiled);
     
     var i = input.commentNum;
     
