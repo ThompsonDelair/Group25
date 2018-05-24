@@ -72,3 +72,9 @@ function cuisMobFunc(){
    console.log("You have selected " + sessionStorage.getItem("cuisine"));
 }
 sessionStorage.setItem("diet", "none");
+
+var socket = io.connect('https://obscure-waters-64024.herokuapp.com/');
+socket.on('stream', function(tweet){
+    // $('#tweetd').append(tweet+'<br>');
+    document.getElementById("twitterFeed").innerHTML=tweet;
+});
