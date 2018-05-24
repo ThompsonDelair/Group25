@@ -226,7 +226,7 @@ function updatePage(num) {
             jumbo.classList.add("jumbotron");
             
             var jumboContent = document.createElement("div");
-            jumboContent.classList.add("containter-fluid");
+            jumboContent.classList.add("container-fluid");
             
             var jumboCommentEntry = document.createElement("div");
             jumboCommentEntry.classList.add("row");
@@ -240,11 +240,12 @@ function updatePage(num) {
             
             var jumboCommentDate = document.createElement("div");
             jumboCommentDate.setAttribute("id", "dateLeft");
-            jumboCommentDate.classList.add("col-lg-8", "col-md-8", "col-sm-8", "col-8");
+            jumboCommentDate.classList.add("col-lg-6", "col-md-6", "col-sm-6", "col-6");
             jumboCommentDate.innerHTML = commentDate[commentUpdate];
             
             var jumboCommentBtn = document.createElement("div");
-            jumboCommentBtn.classList.add("col-lg-4", "col-md-4", "col-sm-4", "col-4");
+            jumboCommentBtn.setAttribute("id", "buttonGroup");
+            jumboCommentBtn.classList.add("col-lg-6", "col-md-6", "col-sm-6", "col-6");
             
             var jumboCommentBtnGroup = document.createElement("div");
             jumboCommentBtnGroup.classList.add("btn-group", "float-right");
@@ -252,14 +253,14 @@ function updatePage(num) {
             
             var jumboBtnUp = document.createElement("button");
             jumboBtnUp.setAttribute("type", "button");
-            jumboBtnUp.classList.add("btn", "btn-xs", "float-right");
+            jumboBtnUp.classList.add("btn", "btn-sm", "float-right");
             jumboBtnUp.setAttribute("onclick", "thumbsUp(this.id, " + num + ")");
             jumboBtnUp.setAttribute("id", commentID[commentUpdate]);
             jumboBtnUp.innerHTML = "&#128402; : " + commentUp[commentUpdate];
             
             var jumboBtnDown = document.createElement("button");
             jumboBtnDown.setAttribute("type", "button");
-            jumboBtnDown.classList.add("btn", "btn-xs", "float-right");
+            jumboBtnDown.classList.add("btn", "btn-sm", "float-right");
             jumboBtnDown.setAttribute("onclick", "thumbsDown(this.id, " + num + ")");
             jumboBtnDown.setAttribute("id", commentID[commentUpdate]);
             jumboBtnDown.innerHTML = "&#128403; : " + commentDown[commentUpdate];
@@ -523,8 +524,8 @@ function onSelect(input){
     communityCommentInputContainer.appendChild(communityCommentText);
     communityCommentInputContainer.appendChild(communityCommentSubmit);
     
-    communityDropdownBody.appendChild(communityCommentContainer);
     communityDropdownBody.appendChild(communityCommentInputContainer);
+    communityDropdownBody.appendChild(communityCommentContainer);
     
     communityDropdown.appendChild(communityDropdownBody);
     

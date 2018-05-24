@@ -184,6 +184,19 @@ body{
     color: #F9F9F9;
 }
 
+#commentInputContainer {
+    margin-bottom: 1em;
+}
+
+#dateLeft {
+    text-align: left;
+    padding: 0;
+}
+
+#buttonGroup {
+    padding: 0;
+}
+
 .commentText {
     text-align: center;
     background-color: var(--community);
