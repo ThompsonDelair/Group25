@@ -154,7 +154,7 @@ function setPage(){
             break;
         case '2':
             currentPage.innerHTML = ('Food Selection');
-            back.setAttribute('href','page1.html');
+            back.setAttribute('href','index.html');
             break;
         case '3':
             currentPage.innerHTML = ('Food Info');
