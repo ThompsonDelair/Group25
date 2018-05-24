@@ -92,7 +92,7 @@ if(food != null && food.length > 0) {
         switch(types[i]){
             case "Meats":
                 var meatRef = firestore.collection("Meats");
-                query = meatRef.where("Name", "==", food[i])
+                var query = meatRef.where("Name", "==", food[i])
                 query.get().then(function(querySnapshot){
                     querySnapshot.forEach(function(doc){                        
                         storeInfo(doc,meats,i);
@@ -102,7 +102,7 @@ if(food != null && food.length > 0) {
                 
             case "Vegetables":
                 var vegRef = firestore.collection("Vegetables");
-                query = vegRef.where("Name", "==", food[i]);
+                var query = vegRef.where("Name", "==", food[i]);
                 query.get().then(function(querySnapshot){
                     querySnapshot.forEach(function(doc){
                         storeInfo(doc,vegetables,i);
@@ -112,7 +112,7 @@ if(food != null && food.length > 0) {
            
             case "Fruits":
                 var fruitRef = firestore.collection("Fruits");
-                query = fruitRef.where("Name", "==", food[i])
+                var query = fruitRef.where("Name", "==", food[i])
                 query.get().then(function(querySnapshot){
                     querySnapshot.forEach(function(doc){
                         storeInfo(doc,fruits,i);
@@ -122,7 +122,7 @@ if(food != null && food.length > 0) {
            
             case "Grains":
                 var grainRef = firestore.collection("Grains");
-                query = grainRef.where("Name", "==", food[i])
+                var query = grainRef.where("Name", "==", food[i])
                 query.get().then(function(querySnapshot){
                     querySnapshot.forEach(function(doc){
                         storeInfo(doc,grains,i);
@@ -132,7 +132,7 @@ if(food != null && food.length > 0) {
           
             case "MeatAlternatives":
                 var meatAltRef = firestore.collection("MeatAlternatives");
-                query = meatAltRef.where("Name", "==", food[i])
+                var query = meatAltRef.where("Name", "==", food[i])
                 query.get().then(function(querySnapshot){
                     querySnapshot.forEach(function(doc){
                         storeInfo(doc,meatalternatives,i);
@@ -142,7 +142,7 @@ if(food != null && food.length > 0) {
                 
             case "DairyandEggs":
                 var dairyRef = firestore.collection("DairyandEggs");
-                query = dairyRef.where("Name", "==", food[i])
+                var query = dairyRef.where("Name", "==", food[i])
                 query.get().then(function(querySnapshot){
                     querySnapshot.forEach(function(doc){
                         storeInfo(doc,dairyandeggs,i);
@@ -240,11 +240,11 @@ function updatePage(num) {
             
             var jumboCommentDate = document.createElement("div");
             jumboCommentDate.setAttribute("id", "dateLeft");
-            jumboCommentDate.classList.add("col-lg-8", "col-md-8", "col-sm-8", "col-8");
+            jumboCommentDate.classList.add("col-lg-5", "col-md-5", "col-sm-5", "col-5");
             jumboCommentDate.innerHTML = commentDate[commentUpdate];
             
             var jumboCommentBtn = document.createElement("div");
-            jumboCommentBtn.classList.add("col-lg-4", "col-md-4", "col-sm-4", "col-4");
+            jumboCommentBtn.classList.add("col-lg-7", "col-md-7", "col-sm-7", "col-7");
             
             var jumboCommentBtnGroup = document.createElement("div");
             jumboCommentBtnGroup.classList.add("btn-group", "float-right");
@@ -496,6 +496,7 @@ function onSelect(input){
     communityDropdown.classList.add("collapse","show");
     
     var communityDropdownBody = document.createElement("div");
+    communityDropdownBody.setAttribute("id", "communityDropdown");
     communityDropdownBody.classList.add("card-body");
     
     var communityCommentContainer = document.createElement("div");
