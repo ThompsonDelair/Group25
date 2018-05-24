@@ -239,6 +239,7 @@ body{
     border-radius: 10px;    
     border-style: solid;
     border-width: 1px;
+    font-size: 16px;
 }
 
 .meat{
@@ -307,16 +308,16 @@ body{
     display: block;
 }
 
-@media (max-width: 950px){
+@media (max-width: 991px){
    .pagemain {
        margin-top: 5px;
        width: 100%;
     }
     #selections{
         float: none;
-        width: 99vw;
+        width: 90vw;
         margin-bottom: 8px;
-        margin-left: 5px;
+        margin-left: 20px;
     }
     #info {
         float: none;
