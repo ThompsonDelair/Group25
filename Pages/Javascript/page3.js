@@ -335,7 +335,8 @@ function thumbsDown(docID, num) {
 addComment = function(submitID, num) {
     var newCommentRef = firestore.collection(types[num]).doc(food[num]).collection("Comments").doc();
     
-    var dateData = new Date().toLocaleString();
+    var currentDate = new Date();
+    var dateData = currentDate.getMonth() + 1 + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
     var comment = document.getElementById(submitID + "Input").value;
     comment = comment.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     

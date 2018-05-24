@@ -181,3 +181,6 @@ $("li").click(function(){
     $(".button").css("background-color", "lightgreen");
     $(".button").css("border", "2px solid lightgreen");
 });
+
+console.log(sessionStorage.getItem("diet"));
+console.log(sessionStorage.getItem("cuisine"));
