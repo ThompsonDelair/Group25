@@ -529,3 +529,18 @@ function onSelect(input){
     
     updatePage(i);
 }
+
+// change infoIntro depending on window size
+infoCheck();
+window.addEventListener('resize', infoCheck, false);
+
+function infoCheck(){
+    var infoIntro = document.getElementById('infoIntro');
+    
+    if(window.innerWidth > 991){
+        infoIntro.innerHTML = 'Click on a food to learn more about it <br><i style="font-size:24px" class="fa">&#xf0a9;</i>';
+    } else {
+        infoIntro.innerHTML= 'Tap on a food to learn more about it <br><i style="font-size:24px" class="fa">&#xf0aa;</i>';
+    }
+}
+

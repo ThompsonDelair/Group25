@@ -12,29 +12,14 @@ navDiv.appendChild(nav);
 
 // back button
 let back = document.createElement('a');
+back.setAttribute('id','back');
 back.setAttribute('href','Not implemented');
 back.style.marginRight = 10;
 back.style.color = '#FFFFFF';
 back.innerHTML = '<i style="font-size:28px" class="fa">&#xf0d9;</i>';
 nav.append(back);
 
-switch(navDiv.getAttribute('pageNumber')){
-    case '1':
-        back.setAttribute('display','none');
-        break;
-    case '2':
-        back.setAttribute('href','page1.html');
-        break;
-    case '3':
-        back.setAttribute('href','page2.html');
-        break;
-    case 'about':
-        back.setAttribute('display','none');
-        break;        
-    default:
-        back.setAttribute('href','#');
-        break;
-}
+
 
 // current page
 
@@ -46,9 +31,9 @@ let currentLi = createElement('li');
 currentLi.classList.add('nav-item');
 currentUl.appendChild(currentLi);
 
-let currentA = createElement('a');
-currentA.classList.add('nav-link');
-currentA.setAttribute('href','#');
+let currentA = createElement('span');
+currentA.setAttribute('id','currentPage');
+currentA.style.color = '#F9F9F9';
 currentA.innerHTML = 'Home';
 currentLi.appendChild(currentA);
 
@@ -85,7 +70,7 @@ let collapseUl = createElement('ul');
 collapseUl.classList.add('navbar-nav','mr-auto');
 collapseDiv.appendChild(collapseUl);
 
-for (i = 0; i < 3; i++){
+for (i = 0; i < 2; i++){
     var li = createElement('li');
     li.classList.add('nav-item');
     collapseUl.appendChild(li);
@@ -99,12 +84,12 @@ let anchorOne = collapseUl.childNodes[0].childNodes[0];
 anchorOne.setAttribute('href','aboutus.html');
 anchorOne.innerHTML = 'About us';
 
-let anchorTwo = collapseUl.childNodes[1].childNodes[0];
-anchorTwo.setAttribute('href','page4.html');
-anchorTwo.innerHTML = 'Community Tips';
+//let anchorTwo = collapseUl.childNodes[1].childNodes[0];
+//anchorTwo.setAttribute('href','page4.html');
+//anchorTwo.innerHTML = 'Community Tips';
 
-collapseUl.childNodes[2].classList.add('dropdown');
-let anchorThree = collapseUl.childNodes[2].childNodes[0];
+collapseUl.childNodes[1].classList.add('dropdown');
+let anchorThree = collapseUl.childNodes[1].childNodes[0];
 anchorThree.classList.add('dropdown-toggle');
 setAttributes(anchorThree,{
     'href':'#',
@@ -121,7 +106,7 @@ anchorThree.innerHTML = "Get Involved";
 let dropdownDiv = createElement('div');
 dropdownDiv.classList.add('dropdown-menu');
 dropdownDiv.setAttribute('aria-labelledby','navbarDropdown');
-collapseUl.childNodes[2].appendChild(dropdownDiv);
+collapseUl.childNodes[1].appendChild(dropdownDiv);
 
 for (i = 0;i < 5;i++){
     var a = createElement('a');
@@ -154,4 +139,31 @@ function setAttributes(element, attributes){
     }
 }
 
-//console.log('Navbar creator ran successfully!');
+// set page-specific info
+setPage();
+function setPage(){
+    var currentPage = document.getElementById('currentPage');
+    var back = document.getElementById('back');
+    
+    switch(navDiv.getAttribute('pageNumber')){
+        case '1':
+            currentPage.innerHTML = ('Home');
+            back.setAttribute('display','none');
+            break;
+        case '2':
+            currentPage.innerHTML = ('Food Selection');
+            back.setAttribute('href','page1.html');
+            break;
+        case '3':
+            currentPage.innerHTML = ('Food Info');
+            back.setAttribute('href','page2.html');
+            break;
+        case 'about':
+            currentPage.innerHTML = ('About');
+            back.setAttribute('display','none');
+            break;        
+        default:
+            back.setAttribute('href','#');
+            break;
+    }
+}
