@@ -197,6 +197,10 @@ body{
     padding: 0;
 }
 
+#buttonsUpDown {
+    text-align: right;
+}
+
 .commentText {
     text-align: center;
     background-color: var(--community);
