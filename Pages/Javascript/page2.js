@@ -162,6 +162,8 @@ jQuery(function(){
                     case "vegan":
                         jQuery("#meatDiv").hide();
                         jQuery("#meatPic").hide();
+                        jQuery("#dairyPic").hide();
+                        jQuery("#dairyDiv").hide();
                         break;
                     
                     case "glufree":
@@ -181,3 +183,6 @@ $("li").click(function(){
     $(".button").css("background-color", "lightgreen");
     $(".button").css("border", "2px solid lightgreen");
 });
+
+console.log(sessionStorage.getItem("diet"));
+console.log(sessionStorage.getItem("cuisine"));

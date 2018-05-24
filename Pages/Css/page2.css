@@ -5,7 +5,7 @@ body {
 
 
 #body {
-    background-image: url(Images/background-01-01.jpg);
+    background-image: url("../Images/background.jpg");
     background-size: auto 100%;
 }
 
@@ -134,6 +134,10 @@ body {
     font-family: lato;
     font-weight: 600;
     margin: 40px 0 40px 30px;
+}
+
+.buttonSticky {
+    float:right;
 }
 
 /***********************************
