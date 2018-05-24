@@ -62,7 +62,7 @@ body{
     float: left;
     width: 54%;
     padding: 20px;
-    background-color: #e3e4df;
+    background-color: #e3e4df64;
     border-radius: 25px;
     text-align: center;
     
@@ -200,14 +200,6 @@ body{
     margin-top: auto;
 }
 
-#columnOne{
-/*    background-color: red;*/
-}
-
-#columnTwo{
-/*   background-color: greenyellow;*/
-}
-
 #mobileSelections {
     display: none;
 }
@@ -228,6 +220,8 @@ body{
     width: 100%;
     margin-top: 10px;
 }
+
+/*  S E L E C T I O N   I T E M S   &    F O O D   G R O U P S  */
 
 .item {
     display: inline-block;
@@ -307,6 +301,8 @@ body{
 .community {
     display: block;
 }
+
+/*   M O B I L E   S T Y L E   */
 
 @media (max-width: 991px){
    .pagemain {
