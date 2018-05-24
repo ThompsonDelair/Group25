@@ -162,6 +162,8 @@ jQuery(function(){
                     case "vegan":
                         jQuery("#meatDiv").hide();
                         jQuery("#meatPic").hide();
+                        jQuery("#dairyPic").hide();
+                        jQuery("#dairyDiv").hide();
                         break;
                     
                     case "glufree":
